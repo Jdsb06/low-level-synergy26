@@ -1,0 +1,29 @@
+Linux 3.10.0-693.el7.x86_64 x86_64
+gcc (GCC) 9.3.1 20200408 (Red Hat 9.3.1-2)
+Python 3.6.8
+ldd (GNU libc) 2.17
+Linux 3.10.0-693.el7.x86_64 x86_64
+ldd (GNU libc) 2.17
+Makefile: OK
+include/libmemctl.h: OK
+src/allocator.c: OK
+tests/test_allocator.c: OK
+tests/soak.c: OK
+scripts/check_symbols.py: OK
+bench/lifetimes.c: OK
+bench/profile.h: OK
+build/test_allocator: OK
+build/soak: OK
+build/large_lifetimes: OK
+PASS zero semantics, alignment and size-class/large boundaries
+PASS injected mapping failures, realloc preservation and overflow
+PASS large cache reuse/zeroing, miss failure atomicity, shared cap and live-safe trim
+PASS full-region exhaustion, holes, reuse and trim with live objects
+PASS cross-thread realloc/free after producer thread exit
+PASS 240000 seeded mixed operations; bounded cache; zero mappings after trim
+All independent allocator tests passed.
+PASS mixed full-pattern soak seed=20261109
+PASS synchronized ownership handoffs seed=20261109
+PASS 1000000 mixed operations plus 131072 handoffs
+{"correct":true,"workers":8,"rss_source":"smaps_sum","snapshots":[{"cycle":0,"phase":"idle","live_bytes":0,"live_objects":0,"vm_kib":22932,"rss_kib":752,"rss_rollup_kib":760,"vm_peak_kib":22932,"vm_hwm_kib":644},{"cycle":1,"phase":"burst","live_bytes":50070016,"live_objects":512,"vm_kib":90516,"rss_kib":49308,"rss_rollup_kib":50988,"vm_peak_kib":90516,"vm_hwm_kib":49296},{"cycle":1,"phase":"sparse","live_bytes":6029376,"live_objects":64,"vm_kib":32436,"rss_kib":7496,"rss_rollup_kib":7500,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":1,"phase":"refill","live_bytes":50004480,"live_objects":512,"vm_kib":90516,"rss_kib":49704,"rss_rollup_kib":50988,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":1,"phase":"freed","live_bytes":0,"live_objects":0,"vm_kib":23988,"rss_kib":1352,"rss_rollup_kib":1356,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":1,"phase":"trimmed","live_bytes":0,"live_objects":0,"vm_kib":22932,"rss_kib":808,"rss_rollup_kib":812,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":2,"phase":"burst","live_bytes":50070016,"live_objects":512,"vm_kib":90516,"rss_kib":49352,"rss_rollup_kib":50988,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":2,"phase":"sparse","live_bytes":6029376,"live_objects":64,"vm_kib":32436,"rss_kib":7496,"rss_rollup_kib":7500,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":2,"phase":"refill","live_bytes":50004480,"live_objects":512,"vm_kib":90516,"rss_kib":49704,"rss_rollup_kib":50988,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":2,"phase":"freed","live_bytes":0,"live_objects":0,"vm_kib":23988,"rss_kib":1352,"rss_rollup_kib":1356,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":2,"phase":"trimmed","live_bytes":0,"live_objects":0,"vm_kib":22932,"rss_kib":808,"rss_rollup_kib":812,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":3,"phase":"burst","live_bytes":50070016,"live_objects":512,"vm_kib":90516,"rss_kib":49352,"rss_rollup_kib":50988,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":3,"phase":"sparse","live_bytes":6029376,"live_objects":64,"vm_kib":32436,"rss_kib":7496,"rss_rollup_kib":7500,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":3,"phase":"refill","live_bytes":50004480,"live_objects":512,"vm_kib":90516,"rss_kib":49704,"rss_rollup_kib":50988,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":3,"phase":"freed","live_bytes":0,"live_objects":0,"vm_kib":23988,"rss_kib":1352,"rss_rollup_kib":1356,"vm_peak_kib":90516,"vm_hwm_kib":50372},{"cycle":3,"phase":"trimmed","live_bytes":0,"live_objects":0,"vm_kib":22932,"rss_kib":808,"rss_rollup_kib":812,"vm_peak_kib":90516,"vm_hwm_kib":50372}]}
+NHPC_CHECKPOINT6_SUCCESS

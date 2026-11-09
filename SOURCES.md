@@ -38,3 +38,14 @@ and [Clang ASan documentation](https://clang.llvm.org/docs/AddressSanitizer.html
 Their alignment and overlapping-region restrictions informed the guarded stride
 and locking design. The implementation and annotation-control tests are authored
 here; no third-party allocator implementation was copied.
+
+
+Delivery recheck, 9 November 2026: official repository main remains d23ac1d above.
+The expanded Unstop listing still states 13 Nov23:59 IST (subject to change), and
+calls for build instructions, testable output where applicable, documentation,
+benchmarks and functional demonstration. The official form linked from the kickoff
+PDF is https://forms.cloud.microsoft/r/WDNMEiRVUG ; read-only inspection found its
+YouTube demo field explicitly optional. No form was filled and no OS-specific
+video/Docker/ranking rule is inferred for Systems Programming.
+Participant confirmed solo identity as Jashandeep Singh, IMT2024022 in chat;
+contact details and a portal receipt are not supplied or published.

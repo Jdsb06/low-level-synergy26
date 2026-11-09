@@ -37,5 +37,8 @@ do not show private SSH configuration, credentials or other students' directorie
    claim an official score.
 
 The official selected statement requires source/build instructions, a design note
-and benchmark results. Any final video/demo requirements from the general event
-contract must still be reconciled during package review. No video exists yet.
+and benchmark results; the general listing also calls for functional demonstration.
+The official form inspected 9 November labels its YouTube demo link optional.
+`bash demo/run_demo.sh` runs the authored independent tests; actual PTY output and
+a rendered replay are preserved in `demo/`, with two-minute speaker notes.
+This is not an unedited desktop screen capture, and no public video was uploaded.

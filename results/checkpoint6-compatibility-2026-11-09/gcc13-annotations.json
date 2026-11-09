@@ -1,0 +1,661 @@
+{
+  "environment": "Linux-7.0.0-42-generic-x86_64-with-glibc2.43",
+  "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "asan_options": "detect_leaks=0:halt_on_error=1:abort_on_error=0:exitcode=86",
+  "binary_sha256": "29d5bcd00f86f07d3ac9fb82661c22ab49b4b7aab11f728fdcd15506d95a6693",
+  "source_sha256": {
+    "src/allocator.c": "ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267",
+    "tests/asan_negative.c": "2885779e83a9273fe3608c7c39893e9c430c6be968b37246e0854736fa490286"
+  },
+  "cases": [
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "0"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "1"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "7"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "8"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "15"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "16"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "17"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "31"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "32"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "33"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "255"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "256"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "257"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "1024"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "1025"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "4096"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "4097"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "16384"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "16385"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "65536"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "65537"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "69616"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "69617"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "1048576"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "valid",
+        "1048577"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "0"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==176==ERROR: AddressSanitizer: use-after-poison on address 0x7ee6b1141fe1 at pc 0x56c46df63beb bp 0x7ffd1178e2f0 sp 0x7ffd1178e2e0\nWRITE of size 1 at 0x7ee6b1141fe1 thread T0\n    #0 0x56c46df63bea in main tests/asan_negative.c:45\n    #1 0x7ee6afe2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7ee6afe2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x56c46df634c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7ee6b1141fe1 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7ee6b1141d00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ee6b1141d80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ee6b1141e00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ee6b1141e80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ee6b1141f00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x7ee6b1141f80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7[01]f7 f7 f7\n  0x7ee6b1142000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ee6b1142080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ee6b1142100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ee6b1142180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ee6b1142200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==176==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "1"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==177==ERROR: AddressSanitizer: use-after-poison on address 0x78fe25329fe1 at pc 0x5eedc0c89beb bp 0x7fffa368d120 sp 0x7fffa368d110\nWRITE of size 1 at 0x78fe25329fe1 thread T0\n    #0 0x5eedc0c89bea in main tests/asan_negative.c:45\n    #1 0x78fe2402a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x78fe2402a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x5eedc0c894c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x78fe25329fe1 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x78fe25329d00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x78fe25329d80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x78fe25329e00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x78fe25329e80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x78fe25329f00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x78fe25329f80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7[01]f7 f7 f7\n  0x78fe2532a000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x78fe2532a080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x78fe2532a100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x78fe2532a180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x78fe2532a200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==177==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "7"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==178==ERROR: AddressSanitizer: use-after-poison on address 0x7e447cd12fe7 at pc 0x6024812fbbeb bp 0x7ffcf3cfa680 sp 0x7ffcf3cfa670\nWRITE of size 1 at 0x7e447cd12fe7 thread T0\n    #0 0x6024812fbbea in main tests/asan_negative.c:45\n    #1 0x7e447ba2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7e447ba2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x6024812fb4c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7e447cd12fe7 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7e447cd12d00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e447cd12d80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e447cd12e00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e447cd12e80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e447cd12f00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x7e447cd12f80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7[07]f7 f7 f7\n  0x7e447cd13000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e447cd13080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e447cd13100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e447cd13180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e447cd13200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==178==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "8"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==179==ERROR: AddressSanitizer: use-after-poison on address 0x7c48738c2fe8 at pc 0x592afe440beb bp 0x7ffc74dac6a0 sp 0x7ffc74dac690\nWRITE of size 1 at 0x7c48738c2fe8 thread T0\n    #0 0x592afe440bea in main tests/asan_negative.c:45\n    #1 0x7c4872e2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7c4872e2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x592afe4404c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7c48738c2fe8 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7c48738c2d00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7c48738c2d80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7c48738c2e00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7c48738c2e80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7c48738c2f00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x7c48738c2f80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 00[f7]f7 f7\n  0x7c48738c3000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7c48738c3080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7c48738c3100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7c48738c3180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7c48738c3200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==179==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "15"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==180==ERROR: AddressSanitizer: use-after-poison on address 0x7ee03fbb0fef at pc 0x60d9a789cbeb bp 0x7fffcbe5e380 sp 0x7fffcbe5e370\nWRITE of size 1 at 0x7ee03fbb0fef thread T0\n    #0 0x60d9a789cbea in main tests/asan_negative.c:45\n    #1 0x7ee03e82a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7ee03e82a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x60d9a789c4c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7ee03fbb0fef is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7ee03fbb0d00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ee03fbb0d80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ee03fbb0e00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ee03fbb0e80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ee03fbb0f00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x7ee03fbb0f80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 00[07]f7 f7\n  0x7ee03fbb1000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ee03fbb1080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ee03fbb1100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ee03fbb1180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ee03fbb1200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==180==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "16"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==181==ERROR: AddressSanitizer: use-after-poison on address 0x77faeed22ff0 at pc 0x5d8dd23f9beb bp 0x7ffe73e69850 sp 0x7ffe73e69840\nWRITE of size 1 at 0x77faeed22ff0 thread T0\n    #0 0x5d8dd23f9bea in main tests/asan_negative.c:45\n    #1 0x77faeda2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x77faeda2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x5d8dd23f94c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x77faeed22ff0 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x77faeed22d00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x77faeed22d80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x77faeed22e00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x77faeed22e80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x77faeed22f00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x77faeed22f80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 00 00[f7]f7\n  0x77faeed23000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x77faeed23080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x77faeed23100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x77faeed23180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x77faeed23200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==181==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "17"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==182==ERROR: AddressSanitizer: use-after-poison on address 0x71711c67bfe1 at pc 0x62a83508bbeb bp 0x7fff71dfd980 sp 0x7fff71dfd970\nWRITE of size 1 at 0x71711c67bfe1 thread T0\n    #0 0x62a83508bbea in main tests/asan_negative.c:45\n    #1 0x71711bc2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x71711bc2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x62a83508b4c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x71711c67bfe1 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x71711c67bd00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x71711c67bd80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x71711c67be00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x71711c67be80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x71711c67bf00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x71711c67bf80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 00 00[01]f7 f7 f7\n  0x71711c67c000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x71711c67c080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x71711c67c100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x71711c67c180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x71711c67c200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==182==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "31"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==183==ERROR: AddressSanitizer: use-after-poison on address 0x77d35f6abfef at pc 0x5752dd312beb bp 0x7fffd81db120 sp 0x7fffd81db110\nWRITE of size 1 at 0x77d35f6abfef thread T0\n    #0 0x5752dd312bea in main tests/asan_negative.c:45\n    #1 0x77d35ec2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x77d35ec2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x5752dd3124c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x77d35f6abfef is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x77d35f6abd00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x77d35f6abd80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x77d35f6abe00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x77d35f6abe80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x77d35f6abf00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x77d35f6abf80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 00 00 00[07]f7 f7\n  0x77d35f6ac000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x77d35f6ac080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x77d35f6ac100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x77d35f6ac180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x77d35f6ac200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==183==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "32"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==184==ERROR: AddressSanitizer: use-after-poison on address 0x7aa8e253cff0 at pc 0x5710038c3beb bp 0x7ffdb1258f40 sp 0x7ffdb1258f30\nWRITE of size 1 at 0x7aa8e253cff0 thread T0\n    #0 0x5710038c3bea in main tests/asan_negative.c:45\n    #1 0x7aa8e122a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7aa8e122a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x5710038c34c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7aa8e253cff0 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7aa8e253cd00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7aa8e253cd80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7aa8e253ce00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7aa8e253ce80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7aa8e253cf00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x7aa8e253cf80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 00 00 00 00[f7]f7\n  0x7aa8e253d000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7aa8e253d080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7aa8e253d100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7aa8e253d180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7aa8e253d200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==184==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "33"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==185==ERROR: AddressSanitizer: use-after-poison on address 0x76dd7a96ffe1 at pc 0x5f785fcc0beb bp 0x7ffec53c96b0 sp 0x7ffec53c96a0\nWRITE of size 1 at 0x76dd7a96ffe1 thread T0\n    #0 0x5f785fcc0bea in main tests/asan_negative.c:45\n    #1 0x76dd7962a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x76dd7962a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x5f785fcc04c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x76dd7a96ffe1 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x76dd7a96fd00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x76dd7a96fd80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x76dd7a96fe00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x76dd7a96fe80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x76dd7a96ff00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x76dd7a96ff80: f7 f7 f7 f7 f7 f7 f7 f7 00 00 00 00[01]f7 f7 f7\n  0x76dd7a970000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x76dd7a970080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x76dd7a970100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x76dd7a970180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x76dd7a970200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==185==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "255"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==186==ERROR: AddressSanitizer: use-after-poison on address 0x7dd8ca129f2f at pc 0x651a40669beb bp 0x7ffecc206960 sp 0x7ffecc206950\nWRITE of size 1 at 0x7dd8ca129f2f thread T0\n    #0 0x651a40669bea in main tests/asan_negative.c:45\n    #1 0x7dd8c8e2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7dd8c8e2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x651a406694c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7dd8ca129f2f is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7dd8ca129c80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7dd8ca129d00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7dd8ca129d80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7dd8ca129e00: f7 f7 f7 f7 f7 f7 00 00 00 00 00 00 00 00 00 00\n  0x7dd8ca129e80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7dd8ca129f00: 00 00 00 00 00[07]f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7dd8ca129f80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7dd8ca12a000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7dd8ca12a080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7dd8ca12a100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7dd8ca12a180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==186==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "256"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==187==ERROR: AddressSanitizer: use-after-poison on address 0x7ec99715cf30 at pc 0x5f06e5528beb bp 0x7ffcc0248570 sp 0x7ffcc0248560\nWRITE of size 1 at 0x7ec99715cf30 thread T0\n    #0 0x5f06e5528bea in main tests/asan_negative.c:45\n    #1 0x7ec995e2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7ec995e2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x5f06e55284c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7ec99715cf30 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7ec99715cc80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ec99715cd00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ec99715cd80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ec99715ce00: f7 f7 f7 f7 f7 f7 00 00 00 00 00 00 00 00 00 00\n  0x7ec99715ce80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7ec99715cf00: 00 00 00 00 00 00[f7]f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ec99715cf80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7ec99715d000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ec99715d080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ec99715d100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7ec99715d180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==187==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "257"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==188==ERROR: AddressSanitizer: use-after-poison on address 0x72eddd35bf31 at pc 0x64aad17a1beb bp 0x7fff17429ec0 sp 0x7fff17429eb0\nWRITE of size 1 at 0x72eddd35bf31 thread T0\n    #0 0x64aad17a1bea in main tests/asan_negative.c:45\n    #1 0x72eddc02a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x72eddc02a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x64aad17a14c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x72eddd35bf31 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x72eddd35bc80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x72eddd35bd00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x72eddd35bd80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x72eddd35be00: f7 f7 f7 f7 f7 f7 00 00 00 00 00 00 00 00 00 00\n  0x72eddd35be80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x72eddd35bf00: 00 00 00 00 00 00[01]f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x72eddd35bf80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x72eddd35c000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x72eddd35c080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x72eddd35c100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x72eddd35c180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==188==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "1024"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==189==ERROR: AddressSanitizer: use-after-poison on address 0x7b7af2715e10 at pc 0x5baf4fc73beb bp 0x7ffc3559f690 sp 0x7ffc3559f680\nWRITE of size 1 at 0x7b7af2715e10 thread T0\n    #0 0x5baf4fc73bea in main tests/asan_negative.c:45\n    #1 0x7b7af142a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7b7af142a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x5baf4fc734c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7b7af2715e10 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7b7af2715b80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7b7af2715c00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7b7af2715c80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7b7af2715d00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7b7af2715d80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7b7af2715e00: 00 00[f7]f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7b7af2715e80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7b7af2715f00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7b7af2715f80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7b7af2716000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7b7af2716080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==189==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "1025"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==190==ERROR: AddressSanitizer: use-after-poison on address 0x7e2c5dd6bcb1 at pc 0x605fbebe0beb bp 0x7ffc84729300 sp 0x7ffc847292f0\nWRITE of size 1 at 0x7e2c5dd6bcb1 thread T0\n    #0 0x605fbebe0bea in main tests/asan_negative.c:45\n    #1 0x7e2c5ca2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7e2c5ca2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x605fbebe04c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7e2c5dd6bcb1 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7e2c5dd6ba00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e2c5dd6ba80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e2c5dd6bb00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e2c5dd6bb80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e2c5dd6bc00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7e2c5dd6bc80: 00 00 00 00 00 00[01]f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e2c5dd6bd00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e2c5dd6bd80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e2c5dd6be00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e2c5dd6be80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e2c5dd6bf00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==190==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "4096"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==191==ERROR: AddressSanitizer: use-after-poison on address 0x73c9feb420b0 at pc 0x56acbb324beb bp 0x7ffe81bf3a90 sp 0x7ffe81bf3a80\nWRITE of size 1 at 0x73c9feb420b0 thread T0\n    #0 0x56acbb324bea in main tests/asan_negative.c:45\n    #1 0x73c9fd82a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x73c9fd82a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x56acbb3244c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x73c9feb420b0 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x73c9feb41e00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x73c9feb41e80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x73c9feb41f00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x73c9feb41f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x73c9feb42000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x73c9feb42080: 00 00 00 00 00 00[f7]f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x73c9feb42100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x73c9feb42180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x73c9feb42200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x73c9feb42280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x73c9feb42300: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==191==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "4097"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==192==ERROR: AddressSanitizer: use-after-poison on address 0x7c4e71699cb1 at pc 0x55aeb3a51beb bp 0x7ffd84f1b140 sp 0x7ffd84f1b130\nWRITE of size 1 at 0x7c4e71699cb1 thread T0\n    #0 0x55aeb3a51bea in main tests/asan_negative.c:45\n    #1 0x7c4e70c2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7c4e70c2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x55aeb3a514c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7c4e71699cb1 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7c4e71699a00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7c4e71699a80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7c4e71699b00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7c4e71699b80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7c4e71699c00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7c4e71699c80: 00 00 00 00 00 00[01]f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7c4e71699d00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7c4e71699d80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7c4e71699e00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7c4e71699e80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7c4e71699f00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==192==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "16384"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==193==ERROR: AddressSanitizer: use-after-poison on address 0x7689775490b0 at pc 0x5700b4457beb bp 0x7fff8072fc20 sp 0x7fff8072fc10\nWRITE of size 1 at 0x7689775490b0 thread T0\n    #0 0x5700b4457bea in main tests/asan_negative.c:45\n    #1 0x76897622a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x76897622a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x5700b44574c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7689775490b0 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x768977548e00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x768977548e80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x768977548f00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x768977548f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x768977549000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x768977549080: 00 00 00 00 00 00[f7]f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x768977549100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x768977549180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x768977549200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x768977549280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x768977549300: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==193==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "16385"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==194==ERROR: AddressSanitizer: use-after-poison on address 0x7e35a87800b1 at pc 0x593c358c0beb bp 0x7fff29c4dc70 sp 0x7fff29c4dc60\nWRITE of size 1 at 0x7e35a87800b1 thread T0\n    #0 0x593c358c0bea in main tests/asan_negative.c:45\n    #1 0x7e35a742a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7e35a742a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x593c358c04c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7e35a87800b1 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7e35a877fe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e35a877fe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e35a877ff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e35a877ff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e35a8780000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7e35a8780080: 00 00 00 00 00 00[01]f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e35a8780100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e35a8780180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e35a8780200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e35a8780280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e35a8780300: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==194==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "65536"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==195==ERROR: AddressSanitizer: use-after-poison on address 0x7809150c20b0 at pc 0x5c27334f6beb bp 0x7ffefcb08f50 sp 0x7ffefcb08f40\nWRITE of size 1 at 0x7809150c20b0 thread T0\n    #0 0x5c27334f6bea in main tests/asan_negative.c:45\n    #1 0x78091462a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x78091462a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x5c27334f64c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7809150c20b0 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7809150c1e00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7809150c1e80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7809150c1f00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7809150c1f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7809150c2000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7809150c2080: 00 00 00 00 00 00[f7]f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7809150c2100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7809150c2180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7809150c2200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7809150c2280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7809150c2300: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==195==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "65537"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==196==ERROR: AddressSanitizer: use-after-poison on address 0x7131a0a97051 at pc 0x61fe92864beb bp 0x7ffe2b65e4c0 sp 0x7ffe2b65e4b0\nWRITE of size 1 at 0x7131a0a97051 thread T0\n    #0 0x61fe92864bea in main tests/asan_negative.c:45\n    #1 0x7131a002a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7131a002a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x61fe928644c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7131a0a97051 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7131a0a96d80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7131a0a96e00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7131a0a96e80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7131a0a96f00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7131a0a96f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7131a0a97000: 00 00 00 00 00 00 00 00 00 00[01]f7 f7 f7 f7 f7\n  0x7131a0a97080: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7131a0a97100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7131a0a97180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7131a0a97200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7131a0a97280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==196==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "69616"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==197==ERROR: AddressSanitizer: use-after-poison on address 0x749692749040 at pc 0x62305807bbeb bp 0x7ffeb38d84c0 sp 0x7ffeb38d84b0\nWRITE of size 1 at 0x749692749040 thread T0\n    #0 0x62305807bbea in main tests/asan_negative.c:45\n    #1 0x74969142a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x74969142a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x62305807b4c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x749692749040 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x749692748d80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x749692748e00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x749692748e80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x749692748f00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x749692748f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x749692749000: 00 00 00 00 00 00 00 00[f7]f7 f7 f7 f7 f7 f7 f7\n  0x749692749080: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x749692749100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x749692749180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x749692749200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x749692749280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==197==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "69617"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==198==ERROR: AddressSanitizer: use-after-poison on address 0x77a13117e041 at pc 0x55bd297a2beb bp 0x7fff4a175860 sp 0x7fff4a175850\nWRITE of size 1 at 0x77a13117e041 thread T0\n    #0 0x55bd297a2bea in main tests/asan_negative.c:45\n    #1 0x77a12fe2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x77a12fe2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x55bd297a24c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x77a13117e041 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x77a13117dd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x77a13117de00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x77a13117de80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x77a13117df00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x77a13117df80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x77a13117e000: 00 00 00 00 00 00 00 00[01]f7 f7 f7 f7 f7 f7 f7\n  0x77a13117e080: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x77a13117e100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x77a13117e180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x77a13117e200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x77a13117e280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==198==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "1048576"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==199==ERROR: AddressSanitizer: use-after-poison on address 0x7e94503ff050 at pc 0x650b48a36beb bp 0x7ffcd6df9d40 sp 0x7ffcd6df9d30\nWRITE of size 1 at 0x7e94503ff050 thread T0\n    #0 0x650b48a36bea in main tests/asan_negative.c:45\n    #1 0x7e945002a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7e945002a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x650b48a364c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7e94503ff050 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x7e94503fed80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e94503fee00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e94503fee80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e94503fef00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7e94503fef80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7e94503ff000: 00 00 00 00 00 00 00 00 00 00[f7]f7 f7 f7 f7 f7\n  0x7e94503ff080: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e94503ff100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e94503ff180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e94503ff200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7e94503ff280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==199==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "overrun",
+        "1048577"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==200==ERROR: AddressSanitizer: use-after-poison on address 0x717c7adff051 at pc 0x610bab6cfbeb bp 0x7ffc8af5e130 sp 0x7ffc8af5e120\nWRITE of size 1 at 0x717c7adff051 thread T0\n    #0 0x610bab6cfbea in main tests/asan_negative.c:45\n    #1 0x717c7ae2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x717c7ae2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x610bab6cf4c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x717c7adff051 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:45 in main\nShadow bytes around the buggy address:\n  0x717c7adfed80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x717c7adfee00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x717c7adfee80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x717c7adfef00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x717c7adfef80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x717c7adff000: 00 00 00 00 00 00 00 00 00 00[01]f7 f7 f7 f7 f7\n  0x717c7adff080: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x717c7adff100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x717c7adff180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x717c7adff200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x717c7adff280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==200==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "underflow",
+        "33"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==201==ERROR: AddressSanitizer: use-after-poison on address 0x7a403df18fbf at pc 0x6363c6744855 bp 0x7ffcf24f7dc0 sp 0x7ffcf24f7db0\nWRITE of size 1 at 0x7a403df18fbf thread T0\n    #0 0x6363c6744854 in main tests/asan_negative.c:24\n    #1 0x7a403cc2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7a403cc2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x6363c67444c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7a403df18fbf is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:24 in main\nShadow bytes around the buggy address:\n  0x7a403df18d00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7a403df18d80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7a403df18e00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7a403df18e80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7a403df18f00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x7a403df18f80: f7 f7 f7 f7 f7 f7 f7[f7]00 00 00 00 01 f7 f7 f7\n  0x7a403df19000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7a403df19080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7a403df19100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7a403df19180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7a403df19200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==201==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "underflow",
+        "65537"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==202==ERROR: AddressSanitizer: use-after-poison on address 0x7684766b104f at pc 0x63e2afcad855 bp 0x7ffc06028f10 sp 0x7ffc06028f00\nWRITE of size 1 at 0x7684766b104f thread T0\n    #0 0x63e2afcad854 in main tests/asan_negative.c:24\n    #1 0x768475c2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x768475c2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x63e2afcad4c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7684766b104f is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:24 in main\nShadow bytes around the buggy address:\n  0x7684766b0d80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7684766b0e00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7684766b0e80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7684766b0f00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7684766b0f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7684766b1000: 00 00 00 00 00 00 00 00 f7[f7]00 00 00 00 00 00\n  0x7684766b1080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7684766b1100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7684766b1180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7684766b1200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7684766b1280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==202==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "freed",
+        "33"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==203==ERROR: AddressSanitizer: use-after-poison on address 0x74d63d15efc0 at pc 0x5929f5519945 bp 0x7fff19f9f3b0 sp 0x7fff19f9f3a0\nWRITE of size 1 at 0x74d63d15efc0 thread T0\n    #0 0x5929f5519944 in main tests/asan_negative.c:27\n    #1 0x74d63be2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x74d63be2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x5929f55194c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x74d63d15efc0 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:27 in main\nShadow bytes around the buggy address:\n  0x74d63d15ed00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x74d63d15ed80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x74d63d15ee00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x74d63d15ee80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x74d63d15ef00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x74d63d15ef80: f7 f7 f7 f7 f7 f7 f7 f7[f7]f7 f7 f7 f7 f7 f7 f7\n  0x74d63d15f000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x74d63d15f080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x74d63d15f100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x74d63d15f180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x74d63d15f200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==203==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "shrink",
+        "48"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==204==ERROR: AddressSanitizer: use-after-poison on address 0x787ffa774fe1 at pc 0x595075429a7d bp 0x7fff69a6ec70 sp 0x7fff69a6ec60\nWRITE of size 1 at 0x787ffa774fe1 thread T0\n    #0 0x595075429a7c in main tests/asan_negative.c:37\n    #1 0x787ff942a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x787ff942a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x5950754294c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x787ffa774fe1 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:37 in main\nShadow bytes around the buggy address:\n  0x787ffa774d00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x787ffa774d80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x787ffa774e00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x787ffa774e80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x787ffa774f00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x787ffa774f80: f7 f7 f7 f7 f7 f7 f7 f7 00 00 00 00[01]f7 f7 f7\n  0x787ffa775000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x787ffa775080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x787ffa775100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x787ffa775180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x787ffa775200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==204==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "grow",
+        "33"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==205==ERROR: AddressSanitizer: use-after-poison on address 0x71957d4c2fef at pc 0x63b9e0716b7a bp 0x7ffc4a0b5b90 sp 0x7ffc4a0b5b80\nWRITE of size 1 at 0x71957d4c2fef thread T0\n    #0 0x63b9e0716b79 in main tests/asan_negative.c:42\n    #1 0x71957ca2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x71957ca2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x63b9e07164c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x71957d4c2fef is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:42 in main\nShadow bytes around the buggy address:\n  0x71957d4c2d00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x71957d4c2d80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x71957d4c2e00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x71957d4c2e80: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x71957d4c2f00: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n=>0x71957d4c2f80: f7 f7 f7 f7 f7 f7 f7 f7 00 00 00 00 00[07]f7 f7\n  0x71957d4c3000: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x71957d4c3080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x71957d4c3100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x71957d4c3180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x71957d4c3200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==205==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "freed",
+        "65537"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==206==ERROR: AddressSanitizer: use-after-poison on address 0x787915273050 at pc 0x5cfe313c9945 bp 0x7fff6f420a10 sp 0x7fff6f420a00\nWRITE of size 1 at 0x787915273050 thread T0\n    #0 0x5cfe313c9944 in main tests/asan_negative.c:27\n    #1 0x78791482a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x78791482a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x5cfe313c94c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x787915273050 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:27 in main\nShadow bytes around the buggy address:\n  0x787915272d80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x787915272e00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x787915272e80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x787915272f00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x787915272f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x787915273000: 00 00 00 00 00 00 00 00 f7 f7[f7]f7 f7 f7 f7 f7\n  0x787915273080: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x787915273100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x787915273180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x787915273200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x787915273280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==206==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "reused",
+        "65537"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==207==ERROR: AddressSanitizer: use-after-poison on address 0x7871cae84051 at pc 0x6533fd2419e9 bp 0x7ffed9f2d770 sp 0x7ffed9f2d760\nWRITE of size 1 at 0x7871cae84051 thread T0\n    #0 0x6533fd2419e8 in main tests/asan_negative.c:33\n    #1 0x7871ca42a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x7871ca42a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x6533fd2414c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x7871cae84051 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:33 in main\nShadow bytes around the buggy address:\n  0x7871cae83d80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7871cae83e00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7871cae83e80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7871cae83f00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x7871cae83f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x7871cae84000: 00 00 00 00 00 00 00 00 00 00[01]f7 f7 f7 f7 f7\n  0x7871cae84080: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7871cae84100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7871cae84180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7871cae84200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x7871cae84280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==207==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "freed",
+        "1048576"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==208==ERROR: AddressSanitizer: use-after-poison on address 0x79ce5c6ff050 at pc 0x59239a6c3945 bp 0x7ffe1d22f6a0 sp 0x7ffe1d22f690\nWRITE of size 1 at 0x79ce5c6ff050 thread T0\n    #0 0x59239a6c3944 in main tests/asan_negative.c:27\n    #1 0x79ce5c42a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x79ce5c42a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x59239a6c34c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x79ce5c6ff050 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:27 in main\nShadow bytes around the buggy address:\n  0x79ce5c6fed80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x79ce5c6fee00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x79ce5c6fee80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x79ce5c6fef00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x79ce5c6fef80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x79ce5c6ff000: 00 00 00 00 00 00 00 00 f7 f7[f7]f7 f7 f7 f7 f7\n  0x79ce5c6ff080: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x79ce5c6ff100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x79ce5c6ff180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x79ce5c6ff200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x79ce5c6ff280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==208==ABORTING\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative",
+        "reused",
+        "1048576"
+      ],
+      "exit": 86,
+      "passed": true,
+      "stdout": "",
+      "stderr": "=================================================================\n==209==ERROR: AddressSanitizer: use-after-poison on address 0x785761fff050 at pc 0x62816640e9e9 bp 0x7ffc9a894120 sp 0x7ffc9a894110\nWRITE of size 1 at 0x785761fff050 thread T0\n    #0 0x62816640e9e8 in main tests/asan_negative.c:33\n    #1 0x785761c2a600 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59\n    #2 0x785761c2a717 in __libc_start_main_impl ../csu/libc-start.c:360\n    #3 0x62816640e4c4 in _start (/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build-gcc13-sanitize/asan_negative+0x74c4) (BuildId: 4be8b3c890d9f7446d2f9c3a8defe88f0aa2cb6a)\n\nAddress 0x785761fff050 is a wild pointer inside of access range of size 0x000000000001.\nSUMMARY: AddressSanitizer: use-after-poison tests/asan_negative.c:33 in main\nShadow bytes around the buggy address:\n  0x785761ffed80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x785761ffee00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x785761ffee80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x785761ffef00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x785761ffef80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x785761fff000: 00 00 00 00 00 00 00 00 00 00[f7]f7 f7 f7 f7 f7\n  0x785761fff080: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x785761fff100: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x785761fff180: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x785761fff200: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\n  0x785761fff280: f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7 f7\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n\nNOTE: the stack trace above identifies the code that *accessed* the poisoned memory.\nTo identify the code that *poisoned* the memory, try the experimental setting ASAN_OPTIONS=poison_history_size=<size>.\n==209==ABORTING\n"
+    }
+  ]
+}

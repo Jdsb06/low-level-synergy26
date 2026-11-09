@@ -1,0 +1,9 @@
+mkdir -p "build"
+gcc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -c src/allocator.c -o build/allocator.o
+ar rcs build/libmemctl.a build/allocator.o
+gcc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/test_allocator.c build/libmemctl.a -pthread \
+  -Wl,--wrap=mmap -Wl,--wrap=munmap -o build/test_allocator
+python3 scripts/check_symbols.py build/allocator.o
+PASS forbidden allocation symbol check
+gcc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/soak.c build/libmemctl.a -pthread -o build/soak
+gcc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -DMEMCTL_LARGE_LIFETIMES bench/lifetimes.c build/libmemctl.a -pthread -o build/large_lifetimes

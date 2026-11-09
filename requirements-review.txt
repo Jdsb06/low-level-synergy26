@@ -1,0 +1,4 @@
+# Optional review PDF generation only; core builds/tests do not use these packages.
+reportlab==4.4.9
+Pillow==12.1.1
+# Video rendering additionally uses system ffmpeg 8.0.1 and DejaVu fonts.

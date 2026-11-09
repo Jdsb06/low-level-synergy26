@@ -4,9 +4,11 @@ An original C11 memory allocator for the released Synergy '26 problem. It implem
 `my_malloc`, `my_free`, `my_realloc` and `my_calloc` using Linux anonymous private
 mappings, reusable size-class regions and POSIX mutexes. No standard heap allocator
 is called by the implementation. The optional `memctl_trim()` releases cached empty
-regions. **Checkpoint 5 is complete:** capped large-object reuse improves the measured large
-trace at the cost of more held VM and a lower eight-thread mixed-throughput median.
-Read [CHECKPOINT5.md](CHECKPOINT5.md) for the current policy, evidence and limits.
+regions. **Checkpoint 6 is complete:** current-source GCC 9/NHPC and
+Ubuntu/GCC 13 execution, a three-page report, an actual terminal demo and reproducible
+review packaging. Start with [REVIEW_GUIDE.md](REVIEW_GUIDE.md) and
+[CHECKPOINT6.md](CHECKPOINT6.md). [CHECKPOINT5.md](CHECKPOINT5.md) documents the
+current cache policy, measured gains and costs.
 [CHECKPOINT4.md](CHECKPOINT4.md) established the earlier latency/lifetime baseline.
 [CHECKPOINT3.md](CHECKPOINT3.md) records allocator-aware ASan guards and 51 controls;
 [CHECKPOINT2.md](CHECKPOINT2.md) records region-policy measurements and NHPC validation. This remains
@@ -104,6 +106,24 @@ make BUILD_DIR=build-no-large-cache CPPFLAGS='-D_GNU_SOURCE -Iinclude -DMEMCTL_L
 The `ALLOCATOR_SRC` build variable supports reproducing an earlier authored source
 in a separate build directory. Checkpoint 5 gives exact baseline and comparison
 commands; historical benchmark numbers are not automatically current scores.
+
+## Review package and demonstration
+
+Participant: Jashandeep Singh, solo, IMT2024022; see [AUTHOR.md](AUTHOR.md).
+
+```bash
+python3 scripts/package_review.py
+bash demo/run_demo.sh
+```
+
+The explicit `PACKAGE_CONTENTS.json` allowlist produces content-addressed ZIP/tar
+archives with per-file checksums under ignored `dist/`. A separately verified
+prebuilt input can be included with `--prebuilt PATH`; see checkpoint 6.
+The PDF report is [here](output/pdf/libmemctl-review.pdf); the preserved actual
+terminal run and its replay video are in [demo](demo/SPEAKER_NOTES.md).
+Report/video regeneration uses optional dependencies in `requirements-review.txt`,
+DejaVu fonts and ffmpeg; core builds and tests do not require them.
+The earlier authored baseline in `baselines/` enables offline comparisons.
 
 ## Contract and boundaries
 

@@ -1,0 +1,42 @@
+[
+  {
+    "command": [
+      "ldd",
+      "build/test_allocator"
+    ],
+    "exit": 0,
+    "stdout": "\tlinux-vdso.so.1 (0x00007ca592efc000)\n\tlibpthread.so.0 => /usr/lib/x86_64-linux-gnu/libpthread.so.0 (0x00007ca592ed8000)\n\tlibc.so.6 => /usr/lib/x86_64-linux-gnu/libc.so.6 (0x00007ca592c00000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007ca592efe000)\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "timeout",
+      "90s",
+      "build/test_allocator"
+    ],
+    "exit": 0,
+    "stdout": "PASS zero semantics, alignment and size-class/large boundaries\nPASS injected mapping failures, realloc preservation and overflow\nPASS large cache reuse/zeroing, miss failure atomicity, shared cap and live-safe trim\nPASS full-region exhaustion, holes, reuse and trim with live objects\nPASS cross-thread realloc/free after producer thread exit\nPASS 240000 seeded mixed operations; bounded cache; zero mappings after trim\nAll independent allocator tests passed.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "timeout",
+      "180s",
+      "build/soak",
+      "12500",
+      "20261109",
+      "128"
+    ],
+    "exit": 0,
+    "stdout": "PASS mixed full-pattern soak seed=20261109\nPASS synchronized ownership handoffs seed=20261109\nPASS 100000 mixed operations plus 65536 handoffs\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "build/large_lifetimes"
+    ],
+    "exit": 0,
+    "stdout": "{\"correct\":true,\"workers\":8,\"rss_source\":\"smaps_rollup\",\"snapshots\":[{\"cycle\":0,\"phase\":\"idle\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":68408,\"rss_kib\":2020,\"rss_rollup_kib\":2020,\"vm_peak_kib\":68408,\"vm_hwm_kib\":2020},{\"cycle\":1,\"phase\":\"burst\",\"live_bytes\":50070016,\"live_objects\":512,\"vm_kib\":135992,\"rss_kib\":52232,\"rss_rollup_kib\":52232,\"vm_peak_kib\":135992,\"vm_hwm_kib\":52232},{\"cycle\":1,\"phase\":\"sparse\",\"live_bytes\":6029376,\"live_objects\":64,\"vm_kib\":77912,\"rss_kib\":8744,\"rss_rollup_kib\":8744,\"vm_peak_kib\":135992,\"vm_hwm_kib\":51684},{\"cycle\":1,\"phase\":\"refill\",\"live_bytes\":50004480,\"live_objects\":512,\"vm_kib\":135992,\"rss_kib\":52232,\"rss_rollup_kib\":52232,\"vm_peak_kib\":135992,\"vm_hwm_kib\":52232},{\"cycle\":1,\"phase\":\"freed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":69464,\"rss_kib\":2600,\"rss_rollup_kib\":2600,\"vm_peak_kib\":135992,\"vm_hwm_kib\":51684},{\"cycle\":1,\"phase\":\"trimmed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":68408,\"rss_kib\":2056,\"rss_rollup_kib\":2056,\"vm_peak_kib\":135992,\"vm_hwm_kib\":51684},{\"cycle\":2,\"phase\":\"burst\",\"live_bytes\":50070016,\"live_objects\":512,\"vm_kib\":135992,\"rss_kib\":52232,\"rss_rollup_kib\":52232,\"vm_peak_kib\":135992,\"vm_hwm_kib\":52232},{\"cycle\":2,\"phase\":\"sparse\",\"live_bytes\":6029376,\"live_objects\":64,\"vm_kib\":77912,\"rss_kib\":8744,\"rss_rollup_kib\":8744,\"vm_peak_kib\":135992,\"vm_hwm_kib\":51760},{\"cycle\":2,\"phase\":\"refill\",\"live_bytes\":50004480,\"live_objects\":512,\"vm_kib\":135992,\"rss_kib\":52232,\"rss_rollup_kib\":52232,\"vm_peak_kib\":135992,\"vm_hwm_kib\":52232},{\"cycle\":2,\"phase\":\"freed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":69464,\"rss_kib\":2600,\"rss_rollup_kib\":2600,\"vm_peak_kib\":135992,\"vm_hwm_kib\":51760},{\"cycle\":2,\"phase\":\"trimmed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":68408,\"rss_kib\":2056,\"rss_rollup_kib\":2056,\"vm_peak_kib\":135992,\"vm_hwm_kib\":51760},{\"cycle\":3,\"phase\":\"burst\",\"live_bytes\":50070016,\"live_objects\":512,\"vm_kib\":135992,\"rss_kib\":52232,\"rss_rollup_kib\":52232,\"vm_peak_kib\":135992,\"vm_hwm_kib\":52232},{\"cycle\":3,\"phase\":\"sparse\",\"live_bytes\":6029376,\"live_objects\":64,\"vm_kib\":77912,\"rss_kib\":8744,\"rss_rollup_kib\":8744,\"vm_peak_kib\":135992,\"vm_hwm_kib\":51776},{\"cycle\":3,\"phase\":\"refill\",\"live_bytes\":50004480,\"live_objects\":512,\"vm_kib\":135992,\"rss_kib\":52232,\"rss_rollup_kib\":52232,\"vm_peak_kib\":135992,\"vm_hwm_kib\":52232},{\"cycle\":3,\"phase\":\"freed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":69464,\"rss_kib\":2600,\"rss_rollup_kib\":2600,\"vm_peak_kib\":135992,\"vm_hwm_kib\":51776},{\"cycle\":3,\"phase\":\"trimmed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":68408,\"rss_kib\":2056,\"rss_rollup_kib\":2056,\"vm_peak_kib\":135992,\"vm_hwm_kib\":51776}]}\n",
+    "stderr": ""
+  }
+]

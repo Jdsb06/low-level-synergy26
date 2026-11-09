@@ -10,17 +10,20 @@
 - [x] Prepare initial design note, live commands and technical report.
 - [x] Hidden-style fragmentation/soak tests; retain rejected policies and trade-offs.
 - [x] Checkpoint-2 GCC 9 build and allocated NHPC execution with matching source hash.
-- [ ] Current checkpoint-5 source compatibility verification on a separate environment.
+- [x] Current checkpoint-5 source: GCC 9.3.1 / glibc 2.17 NHPC allocated execution; GCC 13.4 native Ubuntu execution.
 - [x] Allocator sub-block ASan annotations, positive/negative controls and concurrent soak.
 - [x] Measured API latency and burst/sparse/refill space coverage; retain corrected baseline experiment.
 - [x] Capped large-object reuse, retained initial trial and longer common-workload confirmation.
 - [ ] Final performance and package review.
-- [ ] Final clean compatible Ubuntu/package reproduction.
-- [ ] Review final performance normalization targets and official form fields.
+- [x] Clean extracted ZIP/tar manifests, reproducible archives, tamper rejection and native/ASan/source-comparison checks on Ubuntu.
+- [x] Official form fields inspected read-only; optional YouTube field confirmed.
+- [ ] Final official normalization values remain unavailable in the reviewed statement.
 - [ ] Verify registered team roster, ownership, final deadline and repository access.
-- [ ] Reconcile general demo requirements; create required final recording/artifacts.
-- [ ] Review final sources/artifacts and exclude official materials/private data.
-- [ ] Create final package manifest/hashes and obtain approval for publication/upload.
+- [x] Read-only form/general demo review; report, actual terminal recording, replay and speaker notes prepared.
+- [ ] Participant presentation rehearsal and any chosen optional public video link.
+- [x] Review source/artifact inventory; official kits, private contacts and sibling competitions excluded.
+- [x] Create review-candidate manifests/checksums; verified optional prebuilt binaries included.
+- [ ] Approve exact final delivery/contact/access details and official submission action.
 - [ ] Record actual approved submission receipt. No submission has occurred.
 
 Local source, library and reports are not submission confirmation. Never submit,

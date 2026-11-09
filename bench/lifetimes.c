@@ -1,6 +1,7 @@
 #include "profile.h"
 
 #include <pthread.h>
+#include <limits.h>
 
 #define WORKERS 8U
 #ifdef MEMCTL_LARGE_LIFETIMES
@@ -20,6 +21,7 @@ static object objects[WORKERS][SLOTS];
 static pthread_barrier_t begin;
 static pthread_barrier_t end;
 static unsigned int command;
+static const char *rss_source;
 
 static size_t request_size(size_t index)
 {
@@ -102,12 +104,21 @@ static unsigned long resident_kib(void)
     FILE *file = fopen("/proc/self/smaps_rollup", "r");
     char line[256];
     unsigned long value = 0;
+    unsigned long part;
+    int rollup = file != NULL;
     int found = 0;
+    if (file == NULL && errno == ENOENT) {
+        /* Older Linux kernels lack rollup; sum the same Rss counters per VMA. */
+        file = fopen("/proc/self/smaps", "r");
+    }
     require(file != NULL);
+    rss_source = rollup ? "smaps_rollup" : "smaps_sum";
     while (fgets(line, sizeof(line), file) != NULL) {
-        if (sscanf(line, "Rss: %lu", &value) == 1) {
+        if (sscanf(line, "Rss: %lu", &part) == 1) {
+            require(value <= ULONG_MAX - part);
+            value += part;
             found = 1;
-            break;
+            if (rollup) break;
         }
     }
     require(fclose(file) == 0 && found);
@@ -151,7 +162,7 @@ int main(void)
         require(pthread_create(&threads[index], NULL, worker, &ids[index]) == 0);
     }
     phase(0);
-    fputs("{\"correct\":true,\"workers\":8,\"snapshots\":[", stdout);
+    printf("{\"correct\":true,\"workers\":8,\"rss_source\":\"%s\",\"snapshots\":[", rss_source);
     snapshot(0, "idle", 1);
     for (cycle = 1; cycle <= CYCLES; ++cycle) {
         phase(1);

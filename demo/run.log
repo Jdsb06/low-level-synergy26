@@ -1,0 +1,31 @@
+
+libmemctl | SYSPROG10 | Jashandeep Singh | solo | IMT2024022
+Reproducible C11 allocator - actual independent test run
+
+$ sha256sum src/allocator.c
+ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267  src/allocator.c
+
+$ make --silent CC=gcc-13 BUILD_DIR=build-demo check
+PASS forbidden allocation symbol check
+PASS zero semantics, alignment and size-class/large boundaries
+PASS injected mapping failures, realloc preservation and overflow
+PASS large cache reuse/zeroing, miss failure atomicity, shared cap and live-safe trim
+PASS full-region exhaustion, holes, reuse and trim with live objects
+PASS cross-thread realloc/free after producer thread exit
+PASS 240000 seeded mixed operations; bounded cache; zero mappings after trim
+All independent allocator tests passed.
+
+Design: 8 shards, 64 small size classes, reusable private anonymous mappings.
+Large reuse: >64 KiB through 1 MiB; all empty caches share a 2 MiB cap.
+Cross-thread frees use immutable region ownership; trim touches no live object.
+
+Recorded five-process comparison (shared laptop; not official scores):
+Large throughput, 8 threads (calls/s): 43663.450 -> 74036.324
+Large malloc p99, 8 threads (us): 1784.819 -> 1105.217
+Mixed throughput, 8 threads (M calls/s): 57.639 -> 51.240
+Cost: large burst VM rose 34.7%; mixed throughput median fell 11.1%.
+Limits: sparse survivors still pin regions; cache misses still have long tails.
+
+Review: ARCHITECTURE.md, CHECKPOINT5.md, CHECKPOINT6.md and raw results.
+AI assistance disclosed in AUTHOR.md; permission is user-reported SPOC approval.
+This review candidate has not been officially submitted.

@@ -1,0 +1,57 @@
+{
+  "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.43",
+  "os_release": "PRETTY_NAME=\"Ubuntu 26.04.1 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"26.04\"\nVERSION=\"26.04.1 LTS (Resolute Raccoon)\"\nVERSION_CODENAME=resolute\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=resolute\nLOGO=ubuntu-logo\n",
+  "compiler": "gcc-13 (Ubuntu 13.4.0-10ubuntu1) 13.4.0",
+  "source_sha256": "ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267",
+  "runs": [
+    {
+      "command": [
+        "make",
+        "CC=gcc-13",
+        "BUILD_DIR=build-gcc13",
+        "check",
+        "public-test",
+        "profiles",
+        "build-gcc13/soak"
+      ],
+      "exit": 0,
+      "stdout": "mkdir -p \"build-gcc13\"\ngcc-13 -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -c src/allocator.c -o build-gcc13/allocator.o\npython3 scripts/check_symbols.py build-gcc13/allocator.o\nPASS forbidden allocation symbol check\nar rcs build-gcc13/libmemctl.a build-gcc13/allocator.o\ngcc-13 -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/test_allocator.c build-gcc13/libmemctl.a -pthread \\\n  -Wl,--wrap=mmap -Wl,--wrap=munmap -o build-gcc13/test_allocator\ntimeout 90s build-gcc13/test_allocator\nPASS zero semantics, alignment and size-class/large boundaries\nPASS injected mapping failures, realloc preservation and overflow\nPASS large cache reuse/zeroing, miss failure atomicity, shared cap and live-safe trim\nPASS full-region exhaustion, holes, reuse and trim with live objects\nPASS cross-thread realloc/free after producer thread exit\nPASS 240000 seeded mixed operations; bounded cache; zero mappings after trim\nAll independent allocator tests passed.\ngcc-13 -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes \"../official/LLH-26/Systems Programming/SYSPROG10/tests/test_runner.c\" build-gcc13/libmemctl.a -pthread -o build-gcc13/public_tests\ntimeout 90s build-gcc13/public_tests\n[PASS] basic allocation, free, and max_align_t alignment\n[PASS] calloc zeroing and multiplication overflow\n[PASS] realloc growth, shrink, and failure preservation\n[PASS] allocation boundary and neighboring-block integrity\n[PASS] mixed-size fragmentation and reuse stress\n  threaded workload: 160000 operations in 0.081 s (1980305 ops/s)\n[PASS] multithreaded allocation contention\n\nSummary: 6 passed, 0 failed\ngcc-13 -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc bench/latency.c build-gcc13/libmemctl.a -pthread -o build-gcc13/latency\ngcc-13 -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc bench/lifetimes.c build-gcc13/libmemctl.a -pthread -o build-gcc13/lifetimes\ngcc-13 -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -DMEMCTL_LARGE_LIFETIMES bench/lifetimes.c build-gcc13/libmemctl.a -pthread -o build-gcc13/large_lifetimes\ngcc-13 -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/soak.c build-gcc13/libmemctl.a -pthread -o build-gcc13/soak\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "180s",
+        "build-gcc13/soak",
+        "125000",
+        "20261109",
+        "128"
+      ],
+      "exit": 0,
+      "stdout": "PASS mixed full-pattern soak seed=20261109\nPASS synchronized ownership handoffs seed=20261109\nPASS 1000000 mixed operations plus 65536 handoffs\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "build-gcc13/large_lifetimes"
+      ],
+      "exit": 0,
+      "stdout": "{\"correct\":true,\"workers\":8,\"rss_source\":\"smaps_rollup\",\"snapshots\":[{\"cycle\":0,\"phase\":\"idle\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":68388,\"rss_kib\":1996,\"rss_rollup_kib\":1996,\"vm_peak_kib\":68388,\"vm_hwm_kib\":1996},{\"cycle\":1,\"phase\":\"burst\",\"live_bytes\":50070016,\"live_objects\":512,\"vm_kib\":135972,\"rss_kib\":52208,\"rss_rollup_kib\":52208,\"vm_peak_kib\":135972,\"vm_hwm_kib\":52208},{\"cycle\":1,\"phase\":\"sparse\",\"live_bytes\":6029376,\"live_objects\":64,\"vm_kib\":77892,\"rss_kib\":8720,\"rss_rollup_kib\":8720,\"vm_peak_kib\":135972,\"vm_hwm_kib\":51672},{\"cycle\":1,\"phase\":\"refill\",\"live_bytes\":50004480,\"live_objects\":512,\"vm_kib\":135972,\"rss_kib\":52208,\"rss_rollup_kib\":52208,\"vm_peak_kib\":135972,\"vm_hwm_kib\":52208},{\"cycle\":1,\"phase\":\"freed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":69444,\"rss_kib\":2576,\"rss_rollup_kib\":2576,\"vm_peak_kib\":135972,\"vm_hwm_kib\":51680},{\"cycle\":1,\"phase\":\"trimmed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":68388,\"rss_kib\":2032,\"rss_rollup_kib\":2032,\"vm_peak_kib\":135972,\"vm_hwm_kib\":51680},{\"cycle\":2,\"phase\":\"burst\",\"live_bytes\":50070016,\"live_objects\":512,\"vm_kib\":135972,\"rss_kib\":52208,\"rss_rollup_kib\":52208,\"vm_peak_kib\":135972,\"vm_hwm_kib\":52208},{\"cycle\":2,\"phase\":\"sparse\",\"live_bytes\":6029376,\"live_objects\":64,\"vm_kib\":77892,\"rss_kib\":8720,\"rss_rollup_kib\":8720,\"vm_peak_kib\":135972,\"vm_hwm_kib\":51680},{\"cycle\":2,\"phase\":\"refill\",\"live_bytes\":50004480,\"live_objects\":512,\"vm_kib\":135972,\"rss_kib\":52208,\"rss_rollup_kib\":52208,\"vm_peak_kib\":135972,\"vm_hwm_kib\":52208},{\"cycle\":2,\"phase\":\"freed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":69444,\"rss_kib\":2576,\"rss_rollup_kib\":2576,\"vm_peak_kib\":135972,\"vm_hwm_kib\":51680},{\"cycle\":2,\"phase\":\"trimmed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":68388,\"rss_kib\":2032,\"rss_rollup_kib\":2032,\"vm_peak_kib\":135972,\"vm_hwm_kib\":51680},{\"cycle\":3,\"phase\":\"burst\",\"live_bytes\":50070016,\"live_objects\":512,\"vm_kib\":135972,\"rss_kib\":52208,\"rss_rollup_kib\":52208,\"vm_peak_kib\":135972,\"vm_hwm_kib\":52208},{\"cycle\":3,\"phase\":\"sparse\",\"live_bytes\":6029376,\"live_objects\":64,\"vm_kib\":77892,\"rss_kib\":8720,\"rss_rollup_kib\":8720,\"vm_peak_kib\":135972,\"vm_hwm_kib\":51716},{\"cycle\":3,\"phase\":\"refill\",\"live_bytes\":50004480,\"live_objects\":512,\"vm_kib\":135972,\"rss_kib\":52208,\"rss_rollup_kib\":52208,\"vm_peak_kib\":135972,\"vm_hwm_kib\":52208},{\"cycle\":3,\"phase\":\"freed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":69444,\"rss_kib\":2576,\"rss_rollup_kib\":2576,\"vm_peak_kib\":135972,\"vm_hwm_kib\":51716},{\"cycle\":3,\"phase\":\"trimmed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":68388,\"rss_kib\":2032,\"rss_rollup_kib\":2032,\"vm_peak_kib\":135972,\"vm_hwm_kib\":51716}]}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "make",
+        "CC=gcc-13",
+        "BUILD_DIR=build-gcc13-sanitize",
+        "CFLAGS=-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all",
+        "check",
+        "annotation-check",
+        "ANNOTATION_ARGS=--output results/checkpoint6-compatibility-2026-11-09/gcc13-annotations.json"
+      ],
+      "exit": 0,
+      "stdout": "mkdir -p \"build-gcc13-sanitize\"\ngcc-13 -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -c src/allocator.c -o build-gcc13-sanitize/allocator.o\npython3 scripts/check_symbols.py build-gcc13-sanitize/allocator.o\nPASS forbidden allocation symbol check\nar rcs build-gcc13-sanitize/libmemctl.a build-gcc13-sanitize/allocator.o\ngcc-13 -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/test_allocator.c build-gcc13-sanitize/libmemctl.a -pthread \\\n  -Wl,--wrap=mmap -Wl,--wrap=munmap -o build-gcc13-sanitize/test_allocator\ntimeout 90s build-gcc13-sanitize/test_allocator\nPASS zero semantics, alignment and size-class/large boundaries\nPASS injected mapping failures, realloc preservation and overflow\nPASS large cache reuse/zeroing, miss failure atomicity, shared cap and live-safe trim\nPASS full-region exhaustion, holes, reuse and trim with live objects\nPASS cross-thread realloc/free after producer thread exit\nPASS 240000 seeded mixed operations; bounded cache; zero mappings after trim\nAll independent allocator tests passed.\ngcc-13 -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/test_annotations.c build-gcc13-sanitize/libmemctl.a -pthread -o build-gcc13-sanitize/test_annotations\ngcc-13 -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/asan_negative.c build-gcc13-sanitize/libmemctl.a -pthread -o build-gcc13-sanitize/asan_negative\nASAN_OPTIONS=detect_leaks=0 timeout 30s build-gcc13-sanitize/test_annotations\nPASS: exact payload, protected headers/tails, realloc, cache/reuse shadow\npython3 scripts/check_annotations.py build-gcc13-sanitize/asan_negative --output results/checkpoint6-compatibility-2026-11-09/gcc13-annotations.json\nAnnotation controls: 59/59 passed (25 valid, 34 deliberate errors)\n",
+      "stderr": ""
+    }
+  ]
+}

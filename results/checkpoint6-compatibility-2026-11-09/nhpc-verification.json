@@ -1,0 +1,14 @@
+{
+  "job_id": "30373.master.local",
+  "source_sha256": "ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267",
+  "remote_directory": "/home/student4/IMT2024022/libmemctl-cp6-20261109-rLXzpj",
+  "toolchain": "Linux 3.10.0-693.el7.x86_64 x86_64\ngcc (GCC) 9.3.1 20200408 (Red Hat 9.3.1-2)\nPython 3.6.8\nldd (GNU libc) 2.17\n",
+  "stdout_sha256": "076255ea9203f5f7e23f858e683fdaef0be09c7109da8f0fd309cdc4b92f0414",
+  "stderr_empty": true,
+  "success": true,
+  "scope": "GCC9 login-host compilation, allocated compute-node correctness and full-touch memory probe; no cluster performance comparison",
+  "limitations": [
+    "The routed job success-marker file is not readable by student4; success is verified through captured stdout, pre-run input/binary hash checks and the matching retrieved source manifest.",
+    "First login inspection exited141 from head/pipefail before compilation; replaced head with consuming sed, no job ran in that failed attempt."
+  ]
+}
