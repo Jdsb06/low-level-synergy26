@@ -1,5 +1,8 @@
 # Checkpoint 2 — adversarial validation and compact regions
 
+> Archived development record. For the selected submission, start with
+> [the current report](../report.md) and [the project overview](../../README.md).
+
 Completed 9 November 2026. The exact allocator source is SHA-256
 `cf94b9332b0ad6078b4f61611673135495b0c5d4205244c0fb60ebb468a396d0`.
 The first checkpoint's results remain historical; this report describes the
@@ -43,7 +46,7 @@ The point estimates support a space/throughput trade-off, not a universal speed
 win or a statistically established improvement. No comparison against libc or
 official normalization is implied.
 
-![Recorded space and throughput comparison](results/checkpoint2.png)
+![Recorded space and throughput comparison](../../results/checkpoint2.png)
 
 ## Rejected experiments preserved
 
@@ -83,7 +86,7 @@ with **glibc 2.17**. The source hash printed remotely matches the current source
 above. Independent tests, **1,000,000 additional mixed operations plus 262,144
 handoffs**, and the sparse-region integrity/trim probe all passed.
 
-The [compute-node log](results/nhpc-checkpoint2/validation.txt) is the evidence.
+The [compute-node log](../../results/nhpc-checkpoint2/validation.txt) is the evidence.
 This is not a claim that compilation happened on the compute node, that the
 official runner was uploaded/run there, or that cluster performance was measured.
 Only authored source/tests were transferred; official materials stayed local.

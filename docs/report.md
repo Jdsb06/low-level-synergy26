@@ -38,13 +38,13 @@ successful allocation and preserves the requested prefix. Trim visits individual
 locks and releases only empty mappings; concurrent activity may refill an already
 visited bucket. ASan builds poison internal headers, excess capacity and freed
 cached payloads, exposing exactly the requested bytes on reuse. Release layouts
-and debug free-list handling are described in [ARCHITECTURE.md](ARCHITECTURE.md).
+and debug free-list handling are described in [ARCHITECTURE.md](architecture.md).
 
 ## Measurement method
 
 The selected change is compared against the exact authored checkpoint-4 allocator,
 SHA `521932e19106be195857014b44c2531e137c2b6e54cd33927f93cb138952e9a0`,
-included in [baselines/](baselines/README.md). Both use eight shards, GCC 15.2.0,
+included in [baselines/](../baselines/README.md). Both use eight shards, GCC 15.2.0,
 strict C11 `-O2 -g`, identical harnesses and pthreads on the same i3-1315U laptop
 (six physical cores/eight logical CPUs, glibc 2.43). Runs are sequential fresh
 processes in a fixed randomized order, with trace seed 12345. Workers can migrate
@@ -109,7 +109,7 @@ raw output also retains process VmPeak/VmHWM. The small/class trace still pins
 survivor fragmentation. Reuse is adopted for the repeatable improvement in a weak
 large path, accepting these space/mixed-throughput costs within the empty-cache cap.
 
-![Measured trade-off](results/checkpoint5.png)
+![Measured trade-off](../results/checkpoint5.png)
 
 ## Validation and compatibility
 
@@ -139,18 +139,18 @@ claim or support promise beyond the tested Linux x86-64 target.
 
 ## Reproduction and provenance
 
-Use the build and exact offline comparison commands in [README.md](README.md).
+Use the build and exact offline comparison commands in [the reproduction guide](reproduction.md).
 Full commands, environment, seeds, hashes, stdout/stderr and failures are preserved:
 
-- [Main 140-process comparison](results/checkpoint5-2026-11-09/raw.json) and
-  [summary](results/checkpoint5-2026-11-09/summary.csv).
-- [Longer common confirmation](results/checkpoint5-common-confirmation-2026-11-09/raw.json).
-- [Native/sanitizer/static validation](results/checkpoint5-validation-2026-11-09/final.json).
-- [Current-source compatibility evidence](CHECKPOINT6.md).
-- [Rejected initial trial](results/checkpoint5-inline-trial-2026-11-09/raw.json) and
-  [earlier experiment history](INITIAL_REPORT.md), kept separate from selected results.
+- [Main 140-process comparison](../results/checkpoint5-2026-11-09/raw.json) and
+  [summary](../results/checkpoint5-2026-11-09/summary.csv).
+- [Longer common confirmation](../results/checkpoint5-common-confirmation-2026-11-09/raw.json).
+- [Native/sanitizer/static validation](../results/checkpoint5-validation-2026-11-09/final.json).
+- [Current-source compatibility evidence](history/checkpoint-6.md).
+- [Rejected initial trial](../results/checkpoint5-inline-trial-2026-11-09/raw.json) and
+  [earlier experiment history](history/initial-report.md), kept separate from selected results.
 
-The statement and API provenance are pinned in [SOURCES.md](SOURCES.md); official
+The statement and API provenance are pinned in [SOURCES.md](sources.md); official
 attachments are not redistributed. AI assistance and the participant-reported
-permission are disclosed in [AUTHOR.md](AUTHOR.md). No official score, private-test
+permission are disclosed in [AUTHOR.md](author.md). No official score, private-test
 result, organizer endorsement or submission receipt is claimed.

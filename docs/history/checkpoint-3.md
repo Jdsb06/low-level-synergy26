@@ -1,5 +1,8 @@
 # Checkpoint 3 — allocator-aware AddressSanitizer checks
 
+> Archived development record. For the selected submission, start with
+> [the current report](../report.md) and [the project overview](../../README.md).
+
 Completed 9 November 2026. Allocator source SHA-256:
 `521932e19106be195857014b44c2531e137c2b6e54cd33927f93cb138952e9a0`.
 This development checkpoint was initially recorded locally, then published as
@@ -53,7 +56,7 @@ the release policy; debug guard overhead is not included in them.
 - Strict warnings, forbidden-symbol checks and GCC `-fanalyzer` passed.
 
 Raw diagnostics, commands, hashes and logs are in
-[results/checkpoint3-2026-11-09](results/checkpoint3-2026-11-09/verification.json).
+[results/checkpoint3-2026-11-09](../../results/checkpoint3-2026-11-09/verification.json).
 No dependency was installed and no NHPC job was run for this checkpoint. The
 separate-machine evidence in checkpoint 2 remains evidence for that earlier source.
 

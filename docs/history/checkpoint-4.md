@@ -1,5 +1,8 @@
 # Checkpoint 4 — latency tails and allocation lifetimes
 
+> Archived development record. For the selected submission, start with
+> [the current report](../report.md) and [the project overview](../../README.md).
+
 Completed 9 November 2026. **Measurement milestone; allocator policy unchanged.**
 Allocator SHA-256 remains
 `521932e19106be195857014b44c2531e137c2b6e54cd33927f93cb138952e9a0`.
@@ -94,7 +97,7 @@ authored source snapshots in `results/checkpoint4-warm-baseline-2026-11-09`, the
 reran all 105 profiles with the pre-allocation baseline above. Neither run was
 silently removed or mixed into the accepted medians.
 
-![Recorded latency and final-cycle space profiles](results/checkpoint4.png)
+![Recorded latency and final-cycle space profiles](../../results/checkpoint4.png)
 
 ## Validation and reproduction
 
@@ -106,7 +109,7 @@ LeakSanitizer remains disabled for the previously recorded host limitation.
 A clean archive of the staged standalone project also built both variants/libc
 harnesses, passed independent checks and completed 21/21 fresh-process smoke
 profiles without the official kit or parent workspace; see
-[clean reproduction](results/checkpoint4-validation-2026-11-09/clean-reproduction.json).
+[clean reproduction](../../results/checkpoint4-validation-2026-11-09/clean-reproduction.json).
 
 ```bash
 make check profiles build/latency_libc build/lifetimes_libc
@@ -116,9 +119,9 @@ python3 scripts/profile_workloads.py --repetitions 5 --operations 10000 --output
 MPLCONFIGDIR=/tmp/libmemctl-matplotlib python3 scripts/plot_checkpoint4.py
 ```
 
-Primary evidence: [raw profiles](results/checkpoint4-2026-11-09/raw.json),
-[summary](results/checkpoint4-2026-11-09/summary.csv), and
-[validation](results/checkpoint4-validation-2026-11-09/final.json).
+Primary evidence: [raw profiles](../../results/checkpoint4-2026-11-09/raw.json),
+[summary](../../results/checkpoint4-2026-11-09/summary.csv), and
+[validation](../../results/checkpoint4-validation-2026-11-09/final.json).
 Each run records commands, failures, output, source/binary hashes, affinity order,
 compiler/CPU/libc and relevant glibc environment settings. Jobs run sequentially in
 randomized order; each variant uses the same cpuset (physical cores first, then

@@ -1,5 +1,8 @@
 # Checkpoint 6 - compatibility and review delivery
 
+> Archived development record. For the selected submission, start with
+> [the current report](../report.md) and [the project overview](../../README.md).
+
 9 November 2026. Participant-confirmed author: **Jashandeep Singh**, solo, IMT2024022.
 The allocator is unchanged from checkpoint 5, SHA-256
 `ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267`.
@@ -36,10 +39,10 @@ passed. A separately labeled optional prebuilt package component contains that
 static library and those testable Linux x86-64 executables. It bundles no system
 runtime or official kit and makes no claim about every architecture/distribution.
 
-Evidence: [Ubuntu GCC 13](results/checkpoint6-compatibility-2026-11-09/ubuntu-gcc13.json),
-[NHPC validation](results/checkpoint6-compatibility-2026-11-09/nhpc-validation.txt),
-[NHPC provenance](results/checkpoint6-compatibility-2026-11-09/nhpc-verification.json),
-and [prebuilt execution on Ubuntu](results/checkpoint6-compatibility-2026-11-09/prebuilt-on-ubuntu.json).
+Evidence: [Ubuntu GCC 13](../../results/checkpoint6-compatibility-2026-11-09/ubuntu-gcc13.json),
+[NHPC validation](../../results/checkpoint6-compatibility-2026-11-09/nhpc-validation.txt),
+[NHPC provenance](../../results/checkpoint6-compatibility-2026-11-09/nhpc-verification.json),
+and [prebuilt execution on Ubuntu](../../results/checkpoint6-compatibility-2026-11-09/prebuilt-on-ubuntu.json).
 
 ## Compatibility issue found and resolved
 

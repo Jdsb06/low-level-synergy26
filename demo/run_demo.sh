@@ -35,6 +35,6 @@ PY
 printf 'Cost: large burst VM rose 34.7%%; mixed throughput median fell 11.1%%.\n'
 printf 'Limits: sparse survivors still pin regions; cache misses still have long tails.\n'
 sleep 4
-printf '\nReview: ARCHITECTURE.md, CHECKPOINT5.md, CHECKPOINT6.md and raw results.\n'
-printf 'AI assistance disclosed in AUTHOR.md; permission is user-reported SPOC approval.\n'
+printf '\nReview: docs/architecture.md, docs/report.md and raw results.\n'
+printf 'AI assistance disclosed in docs/author.md; permission is user-reported SPOC approval.\n'
 printf 'This review candidate has not been officially submitted.\n'

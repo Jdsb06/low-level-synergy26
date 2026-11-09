@@ -100,14 +100,14 @@ An ASan-only header union holds free links, avoiding accessible freed payload by
 Metadata initialization/free/realloc temporarily exposes the affected header;
 mapping reclamation clears shadow state. Strides preserve separate shadow granules
 for adjacent blocks. Release and TSan builds retain the original layout and code.
-See [checkpoint 3](CHECKPOINT3.md) for executed positive/negative controls and limits:
+See [checkpoint 3](history/checkpoint-3.md) for executed positive/negative controls and limits:
 there is no temporal quarantine, and address reuse can hide stale-pointer access.
-[Checkpoint 5](CHECKPOINT5.md) adopts capped large-object reuse with measured
+[Checkpoint 5](history/checkpoint-5.md) adopts capped large-object reuse with measured
 throughput/latency gains and higher held VM; eight-thread mixed throughput has
 a lower median. `MEMCTL_LARGE_CACHE=0` disables it for comparison.
-[Checkpoint 4](CHECKPOINT4.md) measures per-API tails and three burst/drain/refill
+[Checkpoint 4](history/checkpoint-4.md) measures per-API tails and three burst/drain/refill
 cycles. Repeated large mappings have high concurrent tails; learned regions can
 retain substantial VM while sparse survivors remain. Empty-cache bounds do not
 bound live-region fragmentation. Current-source compatibility, clean-package and
-actual demo checks are recorded in [checkpoint 6](CHECKPOINT6.md); the final
-deliverable map and owner delivery steps are in [SUBMISSION.md](SUBMISSION.md).
+actual demo checks are recorded in [checkpoint 6](history/checkpoint-6.md); the final
+deliverable map and owner delivery steps are in [SUBMISSION.md](submission.md).

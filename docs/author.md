@@ -11,7 +11,7 @@ source, explain its invariants and reproduce the reported trade-offs before deli
 
 The four API declarations and required semantics come from the official SYSPROG10
 kit. The implementation, independent tests, benchmark traces and review documents
-were authored during the permitted window. See SOURCES.md for pinned provenance.
+were authored during the permitted window. See [sources](sources.md) for pinned provenance.
 No third-party allocator implementation, official starter copies or private kit
 files are redistributed in the review package.
 

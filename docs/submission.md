@@ -8,15 +8,15 @@
 
 | Deliverable | Location |
 | --- | --- |
-| Implementation and four-function interface | [src/allocator.c](src/allocator.c), [include/libmemctl.h](include/libmemctl.h) |
-| Build and run instructions | [README.md](README.md), [Makefile](Makefile) |
-| Design note and invariants | [ARCHITECTURE.md](ARCHITECTURE.md) |
-| Current measurements, trade-offs and coverage | [TECHNICAL_REPORT.md](TECHNICAL_REPORT.md) |
-| Concise report | [Three-page PDF](output/pdf/libmemctl-review.pdf) |
-| Testable Linux output | [Prebuilt library/executables and provenance](prebuilt/README.md) |
-| Actual demonstration | [Replay MP4](demo/terminal-replay.mp4), [original terminal cast](demo/terminal.cast), [speaker notes](demo/SPEAKER_NOTES.md) |
-| Raw single/multithread benchmark evidence | [Main comparison](results/checkpoint5-2026-11-09/raw.json), [longer common confirmation](results/checkpoint5-common-confirmation-2026-11-09/raw.json) |
-| Attribution and selected source identity | [AUTHOR.md](AUTHOR.md), [SOURCES.md](SOURCES.md), [SUBMISSION.json](SUBMISSION.json) |
+| Implementation and four-function interface | [src/allocator.c](../src/allocator.c), [include/libmemctl.h](../include/libmemctl.h) |
+| Build and run instructions | [README.md](../README.md), [Makefile](../Makefile) |
+| Design note and invariants | [Architecture](architecture.md) |
+| Current measurements, trade-offs and coverage | [Technical report](report.md) |
+| Concise report | [Three-page PDF](../output/pdf/libmemctl-review.pdf) |
+| Testable Linux output | [Prebuilt library/executables and provenance](../prebuilt/README.md) |
+| Actual demonstration | [Replay MP4](../demo/terminal-replay.mp4), [original terminal cast](../demo/terminal.cast), [speaker notes](../demo/SPEAKER_NOTES.md) |
+| Raw single/multithread benchmark evidence | [Main comparison](../results/checkpoint5-2026-11-09/raw.json), [longer common confirmation](../results/checkpoint5-common-confirmation-2026-11-09/raw.json) |
+| Attribution and selected source identity | [Participant](author.md), [sources](sources.md), [source manifest](submission.json) |
 
 The selected build input is `src/allocator.c`. Historical baseline/trial sources
 are evidence and are never compiled by the default build. Earlier checkpoint
@@ -32,15 +32,15 @@ make sanitize
 bash demo/run_demo.sh
 ```
 
-No official kit, account or network is needed. The sanitizer run deliberately
+Run these commands from the project root. No official kit, account or network is needed. The sanitizer run deliberately
 launches invalid accesses in child processes; success means every expected error
-was detected and every valid-access control passed. See README for the separately
+was detected and every valid-access control passed. See the [reproduction guide](reproduction.md) for the separately
 obtained official public tests and for longer stress/comparison commands.
 
 For an archive rather than Git, run `python3 scripts/package_review.py`. Verify the
 generated outer checksums, extract the ZIP or tar, then run `sha256sum -c MANIFEST.sha256`
 from its `libmemctl-review/` directory. All source, documentation, recorded media
-and labeled prebuilt files are included by the explicit `PACKAGE_CONTENTS.json`.
+and labeled prebuilt files are included by the explicit `scripts/package-contents.json`.
 
 ## Owner's final delivery steps
 
@@ -58,7 +58,7 @@ repository. Rehearse the explanation using the speaker notes before a live demo.
 The reviewed organizer listing gives 13 November 2026, 23:59 IST, subject to change;
 recheck announcements immediately before delivery. No final scoring normalization
 constants are available in the reviewed statement, so no official score is invented.
-The participant reports SPOC permission for AI-assisted coding; see AUTHOR.md.
+The participant reports SPOC permission for AI-assisted coding; see [attribution](author.md).
 
 Only after the participant submits the form and receives a receipt can official
 submission be marked complete. No form has been filled/submitted by this project,

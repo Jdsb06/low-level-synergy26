@@ -1,5 +1,8 @@
 # Checkpoint 5 — capped large-object reuse
 
+> Archived development record. For the selected submission, start with
+> [the current report](../report.md) and [the project overview](../../README.md).
+
 Completed 9 November 2026. **Adopted with an explicit throughput/space trade-off.**
 Current allocator SHA-256:
 `ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267`.
@@ -99,7 +102,7 @@ some virtual-space fit and mixed-workload throughput for repeatable improvements
 on the previously weak large-object path, within an unchanged empty-cache bound.
 That is the reason for adopting it, subject to final compatibility/package review.
 
-![Recorded large-cache trade-off](results/checkpoint5.png)
+![Recorded large-cache trade-off](../../results/checkpoint5.png)
 
 ## Preserved experiments and limitations
 
@@ -133,14 +136,14 @@ by 2 MiB. The added bucket descriptors also have a small fixed metadata cost.
   warnings, forbidden-symbol checks, disabled-cache build/checks and GCC static
   analysis passed. LeakSanitizer remains disabled for the recorded host limitation.
 
-Commands, outputs and source hashes: [final validation](results/checkpoint5-validation-2026-11-09/final.json).
-Measurements: [main comparison](results/checkpoint5-2026-11-09/raw.json),
-[longer common confirmation](results/checkpoint5-common-confirmation-2026-11-09/raw.json).
+Commands, outputs and source hashes: [final validation](../../results/checkpoint5-validation-2026-11-09/final.json).
+Measurements: [main comparison](../../results/checkpoint5-2026-11-09/raw.json),
+[longer common confirmation](../../results/checkpoint5-common-confirmation-2026-11-09/raw.json).
 A clean standalone archive passed native checks, all 59 ASan controls, current
 and historical-baseline builds, and 28/28 reduced comparison profiles without
 the official kit or parent workspace. The earlier authored baseline source was
 provided explicitly to that offline copy; see
-[clean reproduction](results/checkpoint5-validation-2026-11-09/clean-reproduction.json).
+[clean reproduction](../../results/checkpoint5-validation-2026-11-09/clean-reproduction.json).
 This is current-host reproduction, not an older Ubuntu/container certification.
 NHPC evidence remains scoped to checkpoint 2; no remote job was run here.
 

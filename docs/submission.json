@@ -15,12 +15,12 @@
   "delivery_state": "Repository prepared; owner controls public visibility and official form submission",
   "required_paths": [
     "README.md",
-    "SUBMISSION.md",
-    "TECHNICAL_REPORT.md",
-    "ARCHITECTURE.md",
-    "AUTHOR.md",
-    "SOURCES.md",
-    "SUBMISSION_CHECKLIST.md",
+    "docs/submission.md",
+    "docs/report.md",
+    "docs/architecture.md",
+    "docs/author.md",
+    "docs/sources.md",
+    "docs/delivery-checklist.md",
     "Makefile",
     "src/allocator.c",
     "include/libmemctl.h",
@@ -45,7 +45,10 @@
     "demo/terminal-replay.mp4",
     "demo/video.json",
     "results/checkpoint5-2026-11-09/raw.json",
-    "results/checkpoint5-common-confirmation-2026-11-09/raw.json"
+    "results/checkpoint5-common-confirmation-2026-11-09/raw.json",
+    "examples/basic.c",
+    "docs/assets/overview.svg",
+    "docs/reproduction.md"
   ],
   "artifacts": {
     "output/pdf/libmemctl-review.pdf": "3c81c11b5e7a13a3cb519bc1296748a2173fc3040dfb7485a39d5c526e2e669b",

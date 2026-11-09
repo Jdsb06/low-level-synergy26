@@ -28,13 +28,13 @@ do not show private SSH configuration, credentials or other students' directorie
    ./build/benchmark_candidate space
    ```
 
-5. Show the recorded longer five-process comparison and explain one trade-off:
-   eight shards improved the local eight-thread mixed trace but lost about 3% at
-   one thread. Cite the machine and method before quoting numbers. Close with the
-   current cache trade-off in CHECKPOINT5.md: large throughput/tails improved,
-   with more VM and lower eight-thread mixed throughput. State the remaining
-   survivor-fragmentation and current-source compatibility/package checks; do not
-   claim an official score.
+5. Show the results table in `README.md` and the method in `docs/report.md`.
+   Explain the selected large-reuse decision: eight-thread large throughput rose
+   69.6% and malloc p99 fell 38.1% on the recorded shared-laptop trace. The costs
+   are 34.7% more large-burst virtual-memory growth and an 11.1% lower mixed
+   throughput median. Sparse live objects still pin regions; no official score
+   or universal speedup is claimed. Source compatibility and clean-package
+   execution are already verified, with coverage limits in the report.
 
 The official selected statement requires source/build instructions, a design note
 and benchmark results; the general listing also calls for functional demonstration.

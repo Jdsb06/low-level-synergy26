@@ -51,13 +51,13 @@ def check_manifest(root, name, expected):
 
 def verify(root=ROOT):
     root = root.resolve()
-    spec = json.loads(checked_path(root, "SUBMISSION.json").read_text())
+    spec = json.loads(checked_path(root, "docs/submission.json").read_text())
     if (spec["format_version"] != 1 or spec["question_id"] != "SYSPROG10"
             or spec["track"] != "Systems Programming"):
         raise ValueError("Wrong submission identity")
     if sha(checked_path(root, "src/allocator.c")) != spec["source_sha256"]:
         raise ValueError("Selected allocator source hash mismatch")
-    required = set(spec["required_paths"]) | {"SUBMISSION.json", "PACKAGE_CONTENTS.json"}
+    required = set(spec["required_paths"]) | {"docs/submission.json", "scripts/package-contents.json"}
     for name in required:
         checked_path(root, name)
     for name, digest in spec["artifacts"].items():
@@ -89,7 +89,7 @@ def verify(root=ROOT):
             or video["video_sha256"] != sha(root / "demo/terminal-replay.mp4")):
         raise ValueError("Video and original recording do not match provenance")
 
-    package = json.loads(checked_path(root, "PACKAGE_CONTENTS.json").read_text())["files"]
+    package = json.loads(checked_path(root, "scripts/package-contents.json").read_text())["files"]
     if len(package) != len(set(package)):
         raise ValueError("Duplicate package input")
     if not (required | PREBUILT_FILES | BUILD_INPUTS).issubset(set(package)):
@@ -99,7 +99,7 @@ def verify(root=ROOT):
 
     # Judge-facing links must also work in a standalone clone/extracted package.
     links = 0
-    for name in ["README.md", "SUBMISSION.md", "TECHNICAL_REPORT.md", "REVIEW_GUIDE.md", "prebuilt/README.md"]:
+    for name in sorted(name for name in package if name.endswith(".md")):
         for link in re.findall(r"\[[^\]]*\]\(([^)]+)\)", (root / name).read_text()):
             target = urlsplit(link.strip("<>"))
             if target.scheme or target.netloc or not target.path:

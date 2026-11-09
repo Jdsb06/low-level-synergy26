@@ -1,5 +1,8 @@
 # Initial engineering report — 9 November 2026
 
+> Archived development record. For the selected submission, start with
+> [the current report](../report.md) and [the project overview](../../README.md).
+
 ## Result
 
 A working original C11 allocator passes the six unchanged official SYSPROG10

@@ -1,107 +1,116 @@
-# libmemctl — SYSPROG10
+# libmemctl
 
-A C11 memory allocator for the Synergy '26 Low-Level Hackathon, Systems Programming
-track. **Jashandeep Singh · solo · IMT2024022.** It implements `my_malloc`, `my_free`,
-`my_realloc` and `my_calloc` using private anonymous Linux mappings and pthread
-mutexes. The allocator never forwards to the system heap allocator.
+**A thread-safe C11 memory allocator built on Linux mappings.**
 
-The repository contains the complete source, independent tests, measured design
-trade-offs, a report, an actual terminal demonstration and verified Linux binaries.
-Start with [the submission guide](SUBMISSION.md) or [the current technical report](TECHNICAL_REPORT.md).
+![Memory requests flow through eight shards into reusable blocks, with a shared 2 MiB empty-cache cap.](docs/assets/overview.svg)
 
-## Build and verify
+Programs request bytes; Linux provides pages. **libmemctl bridges that gap** by
+turning anonymous mappings into reusable, aligned blocks. It implements
+`my_malloc`, `my_calloc`, `my_realloc` and `my_free` without forwarding to the system
+heap, with checked size arithmetic and safe cross-thread ownership.
 
-Linux x86-64; GCC or another C11 compiler, Make, binutils, pthreads, coreutils and
-Python 3.9+ for all verification scripts. The core build and tests need no downloads
-or third-party Python packages. GCC 9.3.1 and 13.4 builds have been executed on
-Linux 3.10/glibc 2.17 and Ubuntu 26.04.1/glibc 2.43 respectively.
+**Synergy '26 · Systems Programming · SYSPROG10**<br>
+Jashandeep Singh · solo · IMT2024022
+
+[Design](docs/architecture.md) · [Results & methodology](docs/report.md) ·
+[PDF report](output/pdf/libmemctl-review.pdf) · [Demo video](demo/terminal-replay.mp4) ·
+[Submission guide](docs/submission.md)
+
+## Start here
+
+| To… | Open or run |
+| --- | --- |
+| Understand the design | [Architecture and invariants](docs/architecture.md) |
+| Check the implementation | [Allocator source](src/allocator.c) and [public interface](include/libmemctl.h) |
+| Run the correctness suite | `make check` |
+| See the measured trade-off | [The results below](#measured-results) and [full report](docs/report.md) |
+| Watch it working | [Actual terminal replay](demo/terminal-replay.mp4) or `bash demo/run_demo.sh` |
+
+## Run it
+
+On **Linux x86-64**, use a C11 compiler, Make, binutils, pthreads, coreutils and
+Python 3.9+. No downloads or third-party Python packages are needed for these steps.
 
 ```bash
-python3 scripts/verify_submission.py
 make check
-make sanitize
-make soak profiles benchmark
-bash demo/run_demo.sh
+cc -std=c11 -Wall -Wextra -Werror -Iinclude examples/basic.c build/libmemctl.a -pthread -o build/example
+./build/example
 ```
 
-`make check` checks forbidden allocator symbols and exercises alignment, zero-size
-semantics, overflow, failed mapping/reallocation, reuse, cross-thread ownership,
-240,000 seeded mixed operations, the 2 MiB empty-cache limit and complete reclamation.
-`make sanitize` runs ASan/UBSan plus 59 positive/negative annotation controls;
-LeakSanitizer is disabled. These tests do not require the official kit.
+The [example](examples/basic.c) allocates zeroed storage, writes values, grows the
+buffer while checking that those values survive, then frees and trims it:
 
-For a testable precompiled build:
+```text
+calloc: 8 zeroed items
+realloc: 8 values preserved in a 32-item buffer
+free + trim: example complete
+```
+
+For a precompiled test, run `prebuilt/bin/test_allocator`.
+The [shipped library and executables](prebuilt/README.md) were tested on Linux
+3.10/glibc 2.17 and Ubuntu 26.04.1/glibc 2.43; rebuild for another target.
+
+## How it works
+
+- **Reuse small blocks.** 64 size classes through 64 KiB share multi-block regions;
+  compact starter regions grow after demonstrated demand.
+- **Spread contention.** Eight shards and per-class locks protect metadata. Free
+  follows the original owner even across threads and after the producer exits.
+- **Bound empty retention.** Small caches and eligible large mappings share a
+  **2 MiB cap**, including mapping overhead. Requests above 1 MiB are uncached.
+- **Return unused memory.** `memctl_trim()` releases empty cached mappings while
+  leaving live objects valid. No allocator path holds two locks at once.
+
+The contract includes max alignment, distinct freeable zero-size allocations,
+checked overflow, zeroed calloc storage and preservation of the old object when
+realloc fails. [Read the design](docs/architecture.md) for layouts and invariants.
+
+## Measured results
+
+We measured bounded large-object reuse against our exact earlier implementation,
+using identical traces on the same i3-1315U Linux laptop. **Five-process medians:**
+
+| Measurement | Earlier implementation | Selected implementation | Change |
+| --- | ---: | ---: | ---: |
+| Large throughput, 8 threads | 43,663 calls/s | 74,036 calls/s | **+69.6%** |
+| Large malloc p99, 8 threads | 1,784.819 µs | 1,105.217 µs | **−38.1%** |
+| Large-burst virtual-memory growth | 50,176 KiB | 67,584 KiB | +34.7% |
+| Mixed throughput, 8 threads, longer trace | 57.639 M calls/s | 51.240 M calls/s | −11.1% |
+
+Large-object reuse improves that workload while consuming more virtual space and
+lowering the mixed-workload median. Mixed-run ranges overlap; sparse live objects
+can still pin regions. These are shared-laptop measurements, not an official score
+or a universal speedup. [Full methodology, ranges and raw evidence](docs/report.md)
+explain the decision; [reproduction commands](docs/reproduction.md) rerun it offline.
+
+## Correctness before speed
+
+**Executed validation:** six unchanged official tests, independent failure/overflow/
+reuse/concurrency cases, **59 ASan controls** (25 valid, 34 detected errors),
+ASan/UBSan and TSan stress, and GCC static analysis. GCC 9.3.1 and GCC 13.4 builds
+have also executed successfully on the two Linux environments above.
 
 ```bash
-sha256sum -c prebuilt/SHA256SUMS
-prebuilt/bin/test_allocator
-prebuilt/bin/soak 12500 20261109 128
-prebuilt/bin/large_lifetimes
+python3 scripts/verify_submission.py  # Source, binary, media and document integrity
+make sanitize                        # ASan/UBSan + expected-error controls
 ```
 
-See [prebuilt provenance and compatibility](prebuilt/README.md). Rebuild from source
-for another target. The library is `build/libmemctl.a` (or `prebuilt/lib/libmemctl.a`)
-and its public header is [include/libmemctl.h](include/libmemctl.h). Compile callers
-with `-Iinclude`, the library path and `-pthread`; there is no libc symbol interposition.
+[Coverage and limitations](docs/report.md#validation-and-compatibility) include
+LeakSanitizer being disabled, address-reuse detection limits and the supported
+concurrency contract. Invalid/double frees, signal safety and fork-time lock repair
+are outside the supported contract.
 
-The unchanged official test suite is deliberately obtained separately:
+<details>
+<summary><strong>More: official tests, benchmarks, archives and project history</strong></summary>
 
-```bash
-make public-test OFFICIAL_DIR='/path/to/LLH-26/Systems Programming/SYSPROG10'
-```
+- [Reproduction guide](docs/reproduction.md): official-suite path, stress, latency,
+  memory profiles, exact comparison commands and deterministic packaging.
+- [Submission guide](docs/submission.md): required deliverables and final owner steps.
+- [Sources](docs/sources.md) and [participant / AI attribution](docs/author.md).
+- [Development history](docs/history/README.md): earlier milestones and rejected
+  experiments, preserved separately from the selected submission.
 
-## Design and measured result
+`make` builds only `src/allocator.c`; baseline/trial sources are never selected
+implicitly. No official kit, credentials or other competitions are redistributed.
 
-Eight shards reduce lock contention. Small size classes use compact starter regions
-and grow after demand; larger requests use dedicated mappings, with bounded reuse
-above 64 KiB through 1 MiB. Small and large empty caches share an exact 2 MiB mapping
-budget. `memctl_trim()` releases empty mappings; live allocations remain valid.
-See [architecture and invariants](ARCHITECTURE.md).
-
-Compared with the exact previous authored implementation on identical laptop traces,
-eight-thread large-object throughput rose **69.6%** and malloc p99 fell **38.1%**.
-The cost was **34.7% more virtual memory** during the large burst and an **11.1%
-lower median** on the longer eight-thread mixed trace. These are local measurements,
-with overlapping mixed-workload ranges, rather than an official score or universal
-speedup. [Current report](TECHNICAL_REPORT.md) explains methods, raw data and limits.
-
-To reproduce that comparison without an official kit or Git history:
-
-```bash
-make profiles benchmark
-mkdir -p build-checkpoint4
-cp baselines/checkpoint4_allocator.c build-checkpoint4/allocator.c
-make BUILD_DIR=build-checkpoint4 ALLOCATOR_SRC=build-checkpoint4/allocator.c profiles benchmark
-python3 scripts/compare_large_cache.py --repetitions 5 --output results/new-cache-comparison
-python3 scripts/compare_large_cache.py --repetitions 5 --throughput-operations 5000000 --common-throughput-only --output results/new-common-confirmation
-```
-
-These comparisons require eight available logical CPUs. Disable large reuse with
-`make BUILD_DIR=build-no-large-cache CPPFLAGS='-D_GNU_SOURCE -Iinclude -DMEMCTL_LARGE_CACHE=0' check`.
-The historical experiments, including rejected trials, remain in `results/` and
-[checkpoint reports](CHECKPOINT5.md). [INITIAL_REPORT.md](INITIAL_REPORT.md) describes
-the first implementation and is retained as history.
-
-## Report, demo and package
-
-- [Current technical report](TECHNICAL_REPORT.md) and [three-page PDF](output/pdf/libmemctl-review.pdf).
-- [Terminal replay video](demo/terminal-replay.mp4), [original event recording](demo/terminal.cast)
-  and [speaker notes](demo/SPEAKER_NOTES.md). The video replays a real successful test
-  run; it is not a desktop screen recording.
-- [Participant and AI attribution](AUTHOR.md), [sources](SOURCES.md) and
-  [delivery checklist](SUBMISSION_CHECKLIST.md).
-
-```bash
-python3 scripts/package_review.py
-```
-
-This verifies the deliverables and creates reproducible ZIP/tar archives in `dist/`,
-including the committed prebuilt library/executables, per-file manifests and outer
-checksums. No official kit, credentials or other competitions are included. Optional
-report/plot/video regeneration dependencies are pinned separately in
-`requirements-review.txt` and `requirements-plots.txt`; they are unnecessary for use.
-
-Invalid/double frees and simultaneous unsynchronized access to one object are outside
-the API contract. Signal safety, fork-time lock repair, arbitrary-platform support
-and general-purpose malloc replacement are not provided. The exact selected source
-and artifact provenance are recorded in [SUBMISSION.json](SUBMISSION.json).
+</details>

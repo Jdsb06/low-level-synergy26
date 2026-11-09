@@ -34,7 +34,7 @@ def main():
                         help="optional NHPC input directory to cross-check against the committed binaries")
     args = parser.parse_args()
     verification = verify(ROOT)
-    spec = json.loads((ROOT / "PACKAGE_CONTENTS.json").read_text())
+    spec = json.loads((ROOT / "scripts/package-contents.json").read_text())
     files = spec["files"]
     if len(files) != len(set(files)):
         raise ValueError("Duplicate package path")
@@ -93,8 +93,8 @@ def main():
             name = "prebuilt/" + target
             if payloads.get(name) != read_relative(source):
                 raise ValueError("External prebuilt differs from reviewed committed artifact: " + name)
-    for required in ["Makefile", "src/allocator.c", "include/libmemctl.h", "README.md", "AUTHOR.md",
-                     "ARCHITECTURE.md", "REVIEW_GUIDE.md", "output/pdf/libmemctl-review.pdf"]:
+    for required in ["Makefile", "src/allocator.c", "include/libmemctl.h", "README.md", "docs/author.md",
+                     "docs/architecture.md", "docs/review-guide.md", "output/pdf/libmemctl-review.pdf"]:
         if required not in payloads:
             raise ValueError("Required review input omitted: " + required)
     manifest = "".join(hashlib.sha256(data).hexdigest() + "  " + name + "\n"
