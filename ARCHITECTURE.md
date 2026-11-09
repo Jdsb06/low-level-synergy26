@@ -85,7 +85,12 @@ large-object syscall costs and no in-place physical region growth. Cache reserva
 may also contend in repeated completely-empty-region workloads. The measured
 one-thread loss from eight shards is preserved rather than hidden.
 
-The public suite and our tests check requested-byte patterns. ASan on mmap-backed
-regions does not automatically know each sub-block's requested boundary. Debug
-redzones/poison annotations, longer hidden-style fragmentation traces and further
-cross-machine measurements are future work, not completed features.
+ASan builds explicitly poison headers, unused payload capacity, 16-byte tail guards
+and cached free blocks. Only requested payload bytes (one for zero-size) are exposed.
+An ASan-only header union holds free links, avoiding accessible freed payload bytes.
+Metadata initialization/free/realloc temporarily exposes the affected header;
+mapping reclamation clears shadow state. Strides preserve separate shadow granules
+for adjacent blocks. Release and TSan builds retain the original layout and code.
+See [checkpoint 3](CHECKPOINT3.md) for executed positive/negative controls and limits:
+there is no temporal quarantine, and address reuse can hide stale-pointer access.
+Longer latency/space evaluation and final compatible-package checks remain future work.

@@ -13,7 +13,7 @@ LIB = $(BUILD_DIR)/libmemctl.a
 OBJ = $(BUILD_DIR)/allocator.o
 TEST = $(BUILD_DIR)/test_allocator
 
-.PHONY: all check check-symbols public-test sanitize benchmark reference clean soak fragmentation
+.PHONY: all check check-symbols public-test sanitize annotation-check benchmark reference clean soak fragmentation
 all: $(LIB) $(TEST)
 
 $(BUILD_DIR):
@@ -41,7 +41,18 @@ public-test: $(LIB)
 
 sanitize:
 	ASAN_OPTIONS=detect_leaks=0 $(MAKE) BUILD_DIR=build-sanitize \
-	  CFLAGS='-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all' check
+	  CFLAGS='-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all' check annotation-check
+
+$(BUILD_DIR)/test_annotations: tests/test_annotations.c $(LIB)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $< $(LIB) $(LDLIBS) -o $@
+
+$(BUILD_DIR)/asan_negative: tests/asan_negative.c $(LIB)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $< $(LIB) $(LDLIBS) -o $@
+
+# Internal target: invoke through `make sanitize` so all objects use ASan.
+annotation-check: $(BUILD_DIR)/test_annotations $(BUILD_DIR)/asan_negative
+	ASAN_OPTIONS=detect_leaks=0 timeout 30s $(BUILD_DIR)/test_annotations
+	$(PYTHON) scripts/check_annotations.py $(BUILD_DIR)/asan_negative $(ANNOTATION_ARGS)
 
 benchmark: $(BUILD_DIR)/benchmark_candidate
 
@@ -68,3 +79,4 @@ clean:
 	rm -f -- $(OBJ) $(LIB) $(TEST) $(BUILD_DIR)/public_tests \
 	  $(BUILD_DIR)/reference.o $(BUILD_DIR)/benchmark_reference $(BUILD_DIR)/benchmark_candidate \
 	  $(BUILD_DIR)/soak $(BUILD_DIR)/fragmentation
+	rm -f -- $(BUILD_DIR)/test_annotations $(BUILD_DIR)/asan_negative

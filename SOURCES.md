@@ -30,3 +30,11 @@ The coding window is 9 Nov 2026, 09:00 IST through 13 Nov, 23:59 IST in the even
 listing and released common OS kit. Check subsequent organizer updates before
 submission. Final normalization targets and submission/demo details remain subject
 to final review; no official score or winning probability is claimed.
+
+Allocator-aware sanitizer annotations use the public ASan poisoning interface,
+reviewed 9 November 2026 in the installed GCC 15 header and the primary references:
+[LLVM interface](https://github.com/llvm/llvm-project/blob/main/compiler-rt/include/sanitizer/asan_interface.h)
+and [Clang ASan documentation](https://clang.llvm.org/docs/AddressSanitizer.html).
+Their alignment and overlapping-region restrictions informed the guarded stride
+and locking design. The implementation and annotation-control tests are authored
+here; no third-party allocator implementation was copied.

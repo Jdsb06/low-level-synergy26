@@ -1,0 +1,573 @@
+{
+  "environment": "Linux-7.0.0-42-generic-x86_64-with-glibc2.43",
+  "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "asan_options": "detect_leaks=0:halt_on_error=1:abort_on_error=0:exitcode=86",
+  "binary_sha256": "1d210d210d678bcf1e5276b570008ae78b3917d8d9a36a06e506d77e99b88f29",
+  "source_sha256": {
+    "src/allocator.c": "521932e19106be195857014b44c2531e137c2b6e54cd33927f93cb138952e9a0",
+    "tests/asan_negative.c": "7baf387f0ca4e73906b9f0dffffeb43a3231e963204d487fae6661c148183a7d"
+  },
+  "cases": [
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "0"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "1"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "7"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "8"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "15"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "16"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "17"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "31"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "32"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "33"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "255"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "256"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "257"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "1024"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "1025"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "4096"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "4097"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "16384"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "16385"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "65536"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "65537"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "69616"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "valid",
+        "69617"
+      ],
+      "exit": 0,
+      "passed": true,
+      "stdout": "PASS: valid control\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "0"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "1"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "7"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "8"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "15"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "16"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "17"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "31"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "32"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "33"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "255"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "256"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "257"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "1024"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "1025"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "4096"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "4097"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "16384"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "16385"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "65536"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "65537"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "69616"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "overrun",
+        "69617"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "underflow",
+        "33"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "underflow",
+        "65537"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "freed",
+        "33"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "shrink",
+        "48"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    },
+    {
+      "command": [
+        "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/build/asan_negative",
+        "grow",
+        "33"
+      ],
+      "exit": 0,
+      "passed": false,
+      "stdout": "",
+      "stderr": "FAIL: invalid access escaped detection\n"
+    }
+  ]
+}

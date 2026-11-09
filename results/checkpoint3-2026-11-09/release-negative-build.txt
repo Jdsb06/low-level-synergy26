@@ -1,0 +1,1 @@
+cc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/asan_negative.c build/libmemctl.a -pthread -o build/asan_negative

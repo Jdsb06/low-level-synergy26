@@ -4,9 +4,10 @@ An original C11 memory allocator for the released Synergy '26 problem. It implem
 `my_malloc`, `my_free`, `my_realloc` and `my_calloc` using Linux anonymous private
 mappings, reusable size-class regions and POSIX mutexes. No standard heap allocator
 is called by the implementation. The optional `memctl_trim()` releases cached empty
-regions. **Checkpoint 2 is complete:** sparse-region growth, multi-million-operation
-stress tests and a GCC 9 build/compute-node execution on NHPC are verified. Read
-[CHECKPOINT2.md](CHECKPOINT2.md) for current evidence and trade-offs. This remains
+regions. **Checkpoint 3 is complete:** allocator-aware ASan guards and 51 detection controls
+are verified alongside native and concurrent sanitizer tests. Read
+[CHECKPOINT3.md](CHECKPOINT3.md) for current evidence and limits;
+[CHECKPOINT2.md](CHECKPOINT2.md) records region-policy measurements and NHPC validation. This remains
 a development checkpoint, not a final submission.
 
 ## Build, tests and demo
@@ -17,7 +18,7 @@ checks (Python 3.9+ for the full benchmark evidence runner):
 ```bash
 make
 make check
-make sanitize
+make sanitize  # Python 3.9+ for the annotation-control runner
 make soak fragmentation
 ```
 
@@ -81,7 +82,8 @@ Invalid/double frees and accesses beyond requested bounds are outside the offici
 contract. This allocator is not async-signal-safe, does not provide fork-time lock
 repair, and is not a general production malloc replacement. ASan/UBSan and TSan
 were executed successfully on independent tests, but that does not prove absence
-of bugs. Suballocation boundaries are not automatically visible to ASan.
+of bugs. ASan builds explicitly protect suballocation boundaries and cached freed
+blocks; address reuse and unmapped-memory faults retain the limits in checkpoint 3.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md), [submission checklist](SUBMISSION_CHECKLIST.md)
 and [source attribution](SOURCES.md). Cluster validation is separate from the local
