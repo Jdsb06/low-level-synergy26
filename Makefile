@@ -13,7 +13,7 @@ LIB = $(BUILD_DIR)/libmemctl.a
 OBJ = $(BUILD_DIR)/allocator.o
 TEST = $(BUILD_DIR)/test_allocator
 
-.PHONY: all check check-symbols public-test sanitize benchmark reference clean
+.PHONY: all check check-symbols public-test sanitize benchmark reference clean soak fragmentation
 all: $(LIB) $(TEST)
 
 $(BUILD_DIR):
@@ -48,10 +48,23 @@ benchmark: $(BUILD_DIR)/benchmark_candidate
 $(BUILD_DIR)/benchmark_candidate: bench/benchmark.c $(LIB)
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $< $(LIB) $(LDLIBS) -o $@
 
+$(BUILD_DIR)/soak: tests/soak.c $(LIB)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $< $(LIB) $(LDLIBS) -o $@
+
+soak: $(BUILD_DIR)/soak
+	timeout 180s $(BUILD_DIR)/soak
+
+$(BUILD_DIR)/fragmentation: bench/fragmentation.c $(LIB)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $< $(LIB) $(LDLIBS) -o $@
+
+fragmentation: $(BUILD_DIR)/fragmentation
+	$(BUILD_DIR)/fragmentation
+
 reference: | $(BUILD_DIR)
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $(NO_ALLOC) -c "$(OFFICIAL_DIR)/src/allocator.c" -o $(BUILD_DIR)/reference.o
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) -DMEMCTL_REFERENCE bench/benchmark.c $(BUILD_DIR)/reference.o $(LDLIBS) -o $(BUILD_DIR)/benchmark_reference
 
 clean:
 	rm -f -- $(OBJ) $(LIB) $(TEST) $(BUILD_DIR)/public_tests \
-	  $(BUILD_DIR)/reference.o $(BUILD_DIR)/benchmark_reference $(BUILD_DIR)/benchmark_candidate
+	  $(BUILD_DIR)/reference.o $(BUILD_DIR)/benchmark_reference $(BUILD_DIR)/benchmark_candidate \
+	  $(BUILD_DIR)/soak $(BUILD_DIR)/fragmentation

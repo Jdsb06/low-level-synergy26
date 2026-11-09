@@ -4,16 +4,21 @@ An original C11 memory allocator for the released Synergy '26 problem. It implem
 `my_malloc`, `my_free`, `my_realloc` and `my_calloc` using Linux anonymous private
 mappings, reusable size-class regions and POSIX mutexes. No standard heap allocator
 is called by the implementation. The optional `memctl_trim()` releases cached empty
-regions. This is an initial tested implementation, not a final submission.
+regions. **Checkpoint 2 is complete:** sparse-region growth, multi-million-operation
+stress tests and a GCC 9 build/compute-node execution on NHPC are verified. Read
+[CHECKPOINT2.md](CHECKPOINT2.md) for current evidence and trade-offs. This remains
+a development checkpoint, not a final submission.
 
 ## Build, tests and demo
 
-On Linux with a C11 compiler, Make, binutils, pthreads and Python 3:
+On Linux with a C11 compiler, Make, binutils, pthreads and Python 3.6+ for symbol
+checks (Python 3.9+ for the full benchmark evidence runner):
 
 ```bash
 make
 make check
 make sanitize
+make soak fragmentation
 ```
 
 `make check` runs the forbidden-symbol check and independent tests, with a timeout.
@@ -60,7 +65,7 @@ python3 scripts/plot_results.py
 Recorded local results: [report](TECHNICAL_REPORT.md),
 [longer comparison](results/sharding-confirmation-2026-11-09/summary.csv),
 [exploratory sweep](results/local-2026-11-09/summary.csv).
-The longer comparison found 3.39× the throughput of the one-shard variant at eight
+The checkpoint-1 comparison found 3.39× the throughput of the one-shard variant at eight
 threads, with about a 3% loss at one thread. These are laptop development results;
 no official score or advantage over libc is claimed.
 
@@ -79,6 +84,6 @@ were executed successfully on independent tests, but that does not prove absence
 of bugs. Suballocation boundaries are not automatically visible to ASan.
 
 See [ARCHITECTURE.md](ARCHITECTURE.md), [submission checklist](SUBMISSION_CHECKLIST.md)
-and [selection evidence](../docs/PROBLEM_SELECTION.md). Keep all future NHPC project
-files under `/home/student4/IMT2024022`; the current results are local, not cluster
-measurements. Publishing a repository or submitting still requires user approval.
+and [source attribution](SOURCES.md). Cluster validation is separate from the local
+performance measurements. Official submission still requires approval and an actual
+receipt; publishing a development checkpoint is not submitting an entry.

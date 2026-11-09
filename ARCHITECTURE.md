@@ -15,7 +15,14 @@ four public my_* entry points
 requested size. Payload space holds the free-list link only while the block is
 free. The compile-time alignment assertion rejects incompatible header layouts.
 
-Regions are page-rounded, at least 64 KiB, and contain at least 32 blocks. The
+Regions are page-rounded and start at a 16 KiB minimum with a four-block target.
+Once a bin exhausts its starter region, it remembers that demand and targets 32
+blocks in future mappings, including after quiescence. Undersized starter regions
+are no longer refilled in a busy bin: existing objects drain naturally before
+unmapping. This prevents small-region churn while keeping sparse classes compact.
+The bin's region count is overflow-checked and updated under its mutex. On the
+verified targets, packed count/state fields keep bins cache-line sized; the array
+base is aligned to 64 bytes. The
 region header stores capacity, free/total counts, free-list head, mapping length
 and available-list links. A region is owned by exactly one shard/class bin.
 Completely full regions are absent from the available list. Allocation takes the

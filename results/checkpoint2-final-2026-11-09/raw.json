@@ -1,0 +1,1320 @@
+{
+  "started_utc": "2026-11-09T09:20:39.286144+00:00",
+  "scope": "local development comparison, shared laptop, no fixed clock",
+  "baseline_source_sha256": "1ae80e8c7eafe120799baea261af29714dcb05da063cb16c908bc959095af3fd",
+  "candidate_source_sha256": "cf94b9332b0ad6078b4f61611673135495b0c5d4205244c0fb60ebb468a396d0",
+  "binaries": {
+    "checkpoint1": {
+      "fragmentation": "4edf6328e78a633a61032033e484531bbfae0cc76f7b82048c9089275388dc7e",
+      "benchmark_candidate": "e33b907d9ba48e4252495368790069198e9551accdff7b75bf93e5f54b2592e7"
+    },
+    "compact_growth": {
+      "fragmentation": "0c5ad3fe3cb9c8fe5782dd90762262592ff5c5d8d325da2c3285e52bf7961e8a",
+      "benchmark_candidate": "307d96fae957b3f7e9702f5a3ba0c36da10d05930c5804eceedbed50fa0d10f3"
+    }
+  },
+  "runs": [
+    {
+      "repeat": 1,
+      "variant": "checkpoint1",
+      "workload": "small",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.064987237,\"ops_per_second\":61550547.225,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.064987237,
+        "ops_per_second": 61550547.225,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 3,
+      "variant": "checkpoint1",
+      "workload": "mixed",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build-checkpoint1/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.015605624,\"ops_per_second\":32039731.317,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.015605624,
+        "ops_per_second": 32039731.317,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 4,
+      "variant": "checkpoint1",
+      "workload": "small",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.063608668,\"ops_per_second\":62884511.274,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.063608668,
+        "ops_per_second": 62884511.274,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "compact_growth",
+      "workload": "fragmentation",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/fragmentation"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":5500928,\"idle_vm_kib\":35592,\"held_vm_kib\":61672,\"trimmed_vm_kib\":35592,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 5500928,
+        "idle_vm_kib": 35592,
+        "held_vm_kib": 61672,
+        "trimmed_vm_kib": 35592,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "compact_growth",
+      "workload": "fragmentation",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/fragmentation"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":5500928,\"idle_vm_kib\":35592,\"held_vm_kib\":61672,\"trimmed_vm_kib\":35592,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 5500928,
+        "idle_vm_kib": 35592,
+        "held_vm_kib": 61672,
+        "trimmed_vm_kib": 35592,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 4,
+      "variant": "checkpoint1",
+      "workload": "small",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build-checkpoint1/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.011948885,\"ops_per_second\":41844908.542,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.011948885,
+        "ops_per_second": 41844908.542,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 3,
+      "variant": "checkpoint1",
+      "workload": "fragmentation",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/fragmentation"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":5500928,\"idle_vm_kib\":35588,\"held_vm_kib\":220708,\"trimmed_vm_kib\":35588,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 5500928,
+        "idle_vm_kib": 35588,
+        "held_vm_kib": 220708,
+        "trimmed_vm_kib": 35588,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "compact_growth",
+      "workload": "small",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.012433802,\"ops_per_second\":40212961.410,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.012433802,
+        "ops_per_second": 40212961.41,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "compact_growth",
+      "workload": "mixed",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.015716569,\"ops_per_second\":31813559.308,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.015716569,
+        "ops_per_second": 31813559.308,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 4,
+      "variant": "compact_growth",
+      "workload": "small",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.053376211,\"ops_per_second\":74939751.718,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.053376211,
+        "ops_per_second": 74939751.718,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 3,
+      "variant": "compact_growth",
+      "workload": "mixed",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.015364684,\"ops_per_second\":32542159.670,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.015364684,
+        "ops_per_second": 32542159.67,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "checkpoint1",
+      "workload": "fragmentation",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/fragmentation"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":5500928,\"idle_vm_kib\":35588,\"held_vm_kib\":220708,\"trimmed_vm_kib\":35588,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 5500928,
+        "idle_vm_kib": 35588,
+        "held_vm_kib": 220708,
+        "trimmed_vm_kib": 35588,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "checkpoint1",
+      "workload": "mixed",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build-checkpoint1/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.016282752,\"ops_per_second\":30707339.889,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.016282752,
+        "ops_per_second": 30707339.889,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 4,
+      "variant": "compact_growth",
+      "workload": "mixed",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.091059504,\"ops_per_second\":43927320.316,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.091059504,
+        "ops_per_second": 43927320.316,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "compact_growth",
+      "workload": "mixed",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.015575182,\"ops_per_second\":32102353.603,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.015575182,
+        "ops_per_second": 32102353.603,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "compact_growth",
+      "workload": "small",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.061245299,\"ops_per_second\":65311135.145,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.061245299,
+        "ops_per_second": 65311135.145,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 4,
+      "variant": "compact_growth",
+      "workload": "fragmentation",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/fragmentation"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":5500928,\"idle_vm_kib\":35592,\"held_vm_kib\":61672,\"trimmed_vm_kib\":35592,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 5500928,
+        "idle_vm_kib": 35592,
+        "held_vm_kib": 61672,
+        "trimmed_vm_kib": 35592,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "checkpoint1",
+      "workload": "mixed",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build-checkpoint1/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.015695435,\"ops_per_second\":31856396.462,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.015695435,
+        "ops_per_second": 31856396.462,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "compact_growth",
+      "workload": "small",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.012146382,\"ops_per_second\":41164521.254,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.012146382,
+        "ops_per_second": 41164521.254,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "checkpoint1",
+      "workload": "small",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build-checkpoint1/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.011975760,\"ops_per_second\":41751003.694,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.01197576,
+        "ops_per_second": 41751003.694,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 4,
+      "variant": "compact_growth",
+      "workload": "small",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.012220480,\"ops_per_second\":40914923.145,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.01222048,
+        "ops_per_second": 40914923.145,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "checkpoint1",
+      "workload": "mixed",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build-checkpoint1/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.015222507,\"ops_per_second\":32846100.843,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.015222507,
+        "ops_per_second": 32846100.843,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "checkpoint1",
+      "workload": "mixed",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.067339807,\"ops_per_second\":59400229.644,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.067339807,
+        "ops_per_second": 59400229.644,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "compact_growth",
+      "workload": "fragmentation",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/fragmentation"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":5500928,\"idle_vm_kib\":35592,\"held_vm_kib\":61672,\"trimmed_vm_kib\":35592,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 5500928,
+        "idle_vm_kib": 35592,
+        "held_vm_kib": 61672,
+        "trimmed_vm_kib": 35592,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "checkpoint1",
+      "workload": "fragmentation",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/fragmentation"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":5500928,\"idle_vm_kib\":35588,\"held_vm_kib\":220708,\"trimmed_vm_kib\":35588,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 5500928,
+        "idle_vm_kib": 35588,
+        "held_vm_kib": 220708,
+        "trimmed_vm_kib": 35588,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "compact_growth",
+      "workload": "mixed",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.102525372,\"ops_per_second\":39014732.860,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.102525372,
+        "ops_per_second": 39014732.86,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 4,
+      "variant": "checkpoint1",
+      "workload": "fragmentation",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/fragmentation"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":5500928,\"idle_vm_kib\":35588,\"held_vm_kib\":220708,\"trimmed_vm_kib\":35588,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 5500928,
+        "idle_vm_kib": 35588,
+        "held_vm_kib": 220708,
+        "trimmed_vm_kib": 35588,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 3,
+      "variant": "compact_growth",
+      "workload": "fragmentation",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/fragmentation"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":5500928,\"idle_vm_kib\":35592,\"held_vm_kib\":61672,\"trimmed_vm_kib\":35592,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 5500928,
+        "idle_vm_kib": 35592,
+        "held_vm_kib": 61672,
+        "trimmed_vm_kib": 35592,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "checkpoint1",
+      "workload": "small",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.087842350,\"ops_per_second\":45536122.383,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.08784235,
+        "ops_per_second": 45536122.383,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "checkpoint1",
+      "workload": "small",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build-checkpoint1/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.011478901,\"ops_per_second\":43558176.867,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.011478901,
+        "ops_per_second": 43558176.867,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 3,
+      "variant": "compact_growth",
+      "workload": "small",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.011968960,\"ops_per_second\":41774723.953,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.01196896,
+        "ops_per_second": 41774723.953,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "checkpoint1",
+      "workload": "small",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.056173902,\"ops_per_second\":71207444.340,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.056173902,
+        "ops_per_second": 71207444.34,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "compact_growth",
+      "workload": "small",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.055231560,\"ops_per_second\":72422361.418,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.05523156,
+        "ops_per_second": 72422361.418,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "compact_growth",
+      "workload": "small",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.066208760,\"ops_per_second\":60414966.237,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.06620876,
+        "ops_per_second": 60414966.237,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 3,
+      "variant": "checkpoint1",
+      "workload": "small",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build-checkpoint1/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.011608843,\"ops_per_second\":43070614.358,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.011608843,
+        "ops_per_second": 43070614.358,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "compact_growth",
+      "workload": "mixed",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.068876955,\"ops_per_second\":58074576.613,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.068876955,
+        "ops_per_second": 58074576.613,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 4,
+      "variant": "compact_growth",
+      "workload": "mixed",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.015980719,\"ops_per_second\":31287703.638,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.015980719,
+        "ops_per_second": 31287703.638,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "compact_growth",
+      "workload": "mixed",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.052237881,\"ops_per_second\":76572784.413,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.052237881,
+        "ops_per_second": 76572784.413,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 4,
+      "variant": "checkpoint1",
+      "workload": "mixed",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build-checkpoint1/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.015315654,\"ops_per_second\":32646336.879,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.015315654,
+        "ops_per_second": 32646336.879,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 4,
+      "variant": "checkpoint1",
+      "workload": "mixed",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.065806538,\"ops_per_second\":60784233.931,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.065806538,
+        "ops_per_second": 60784233.931,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 3,
+      "variant": "checkpoint1",
+      "workload": "small",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.064938098,\"ops_per_second\":61597122.848,\"maxrss_kib\":22380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.064938098,
+        "ops_per_second": 61597122.848,
+        "maxrss_kib": 22380,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "compact_growth",
+      "workload": "small",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.011874417,\"ops_per_second\":42107330.406,\"maxrss_kib\":22508,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.011874417,
+        "ops_per_second": 42107330.406,
+        "maxrss_kib": 22508,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "checkpoint1",
+      "workload": "small",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build-checkpoint1/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.011751121,\"ops_per_second\":42549132.121,\"maxrss_kib\":22508,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.011751121,
+        "ops_per_second": 42549132.121,
+        "maxrss_kib": 22508,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "checkpoint1",
+      "workload": "mixed",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.061669055,\"ops_per_second\":64862352.763,\"maxrss_kib\":22508,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.061669055,
+        "ops_per_second": 64862352.763,
+        "maxrss_kib": 22508,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 3,
+      "variant": "checkpoint1",
+      "workload": "mixed",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.074904974,\"ops_per_second\":53400993.104,\"maxrss_kib\":22508,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.074904974,
+        "ops_per_second": 53400993.104,
+        "maxrss_kib": 22508,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 3,
+      "variant": "compact_growth",
+      "workload": "small",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "small"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.056946036,\"ops_per_second\":70241939.228,\"maxrss_kib\":22508,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.056946036,
+        "ops_per_second": 70241939.228,
+        "maxrss_kib": 22508,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "compact_growth",
+      "workload": "mixed",
+      "workers": 1,
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "build/benchmark_candidate",
+        "1",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":500000,\"seconds\":0.015625003,\"ops_per_second\":31999993.856,\"maxrss_kib\":22508,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 500000,
+        "seconds": 0.015625003,
+        "ops_per_second": 31999993.856,
+        "maxrss_kib": 22508,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "checkpoint1",
+      "workload": "mixed",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.062122610,\"ops_per_second\":64388794.998,\"maxrss_kib\":22508,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.06212261,
+        "ops_per_second": 64388794.998,
+        "maxrss_kib": 22508,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 3,
+      "variant": "compact_growth",
+      "workload": "mixed",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build/benchmark_candidate",
+        "8",
+        "500000",
+        "12345",
+        "mixed"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":4000000,\"seconds\":0.070711287,\"ops_per_second\":56568055.394,\"maxrss_kib\":22508,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 4000000,
+        "seconds": 0.070711287,
+        "ops_per_second": 56568055.394,
+        "maxrss_kib": 22508,
+        "correct": true
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "checkpoint1",
+      "workload": "fragmentation",
+      "workers": 8,
+      "command": [
+        "taskset",
+        "-c",
+        "0,1,2,3,4,5,6,7",
+        "build-checkpoint1/fragmentation"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":5500928,\"idle_vm_kib\":35588,\"held_vm_kib\":220708,\"trimmed_vm_kib\":35588,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 5500928,
+        "idle_vm_kib": 35588,
+        "held_vm_kib": 220708,
+        "trimmed_vm_kib": 35588,
+        "correct": true
+      }
+    }
+  ],
+  "order_seed": 7919,
+  "finished_utc": "2026-11-09T09:20:41.397245+00:00"
+}

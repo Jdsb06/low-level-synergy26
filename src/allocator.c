@@ -1,6 +1,7 @@
 #include "libmemctl.h"
 
 #include <errno.h>
+#include <limits.h>
 #include <pthread.h>
 #include <stdatomic.h>
 #include <stdint.h>
@@ -13,7 +14,12 @@
 #endif
 #define CLASS_COUNT 64U
 #define SMALL_LIMIT 65536U
-#define REGION_MIN 65536U
+#ifndef MEMCTL_REGION_MIN
+#define MEMCTL_REGION_MIN 16384U
+#endif
+#ifndef MEMCTL_INITIAL_BLOCKS
+#define MEMCTL_INITIAL_BLOCKS 4U
+#endif
 #define CACHE_LIMIT (2U * 1024U * 1024U)
 #define CACHE_REGION_LIMIT 65536U
 
@@ -40,13 +46,17 @@ struct bin {
     pthread_mutex_t lock;
     region *available;
     region *cached;
+    unsigned int region_count;
+    unsigned int busy;
 };
 
 _Static_assert(MEMCTL_SHARDS > 0U, "at least one shard required");
+_Static_assert(MEMCTL_INITIAL_BLOCKS > 0U && MEMCTL_INITIAL_BLOCKS <= 32U,
+               "initial block target must be in 1..32");
 _Static_assert(sizeof(block_header) % _Alignof(max_align_t) == 0U,
                "block header must preserve max alignment on this target");
 
-static bin bins[MEMCTL_SHARDS][CLASS_COUNT];
+static _Alignas(64) bin bins[MEMCTL_SHARDS][CLASS_COUNT];
 static pthread_once_t once = PTHREAD_ONCE_INIT;
 static size_t page_size;
 static int init_error;
@@ -151,15 +161,24 @@ static region *new_region(bin *owner, size_t capacity)
 {
     const size_t stride = sizeof(block_header) + capacity;
     const size_t offset = region_offset();
+    size_t blocks = MEMCTL_INITIAL_BLOCKS;
     size_t bytes;
     size_t index;
     region *item;
-    /* Both factors are bounded by SMALL_LIMIT + header and 32 respectively. */
-    if (mapping_size(stride * 32U, offset, &bytes) != 0) {
+    if (owner->region_count == UINT_MAX) {
+        errno = ENOMEM;
         return NULL;
     }
-    if (bytes < REGION_MIN) {
-        bytes = align_up(REGION_MIN, page_size);
+    /* Start compact for sparse classes. Once an existing region fills, remember
+       the demonstrated demand even after quiescence, avoiding repeated small
+       mapping churn in hot classes. No timing or workload fingerprint is used. */
+    if (owner->region_count != 0U) owner->busy = 1;
+    if (owner->busy) blocks = 32U;
+    if (mapping_size(stride * blocks, offset, &bytes) != 0) {
+        return NULL;
+    }
+    if (bytes < MEMCTL_REGION_MIN) {
+        bytes = align_up(MEMCTL_REGION_MIN, page_size);
     }
     item = mmap(NULL, bytes, PROT_READ | PROT_WRITE,
                 MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
@@ -172,6 +191,7 @@ static region *new_region(bin *owner, size_t capacity)
     item->total_count = (bytes - offset) / stride;
     item->free_count = item->total_count;
     item->free_head = NULL;
+    ++owner->region_count;
     for (index = 0U; index < item->total_count; ++index) {
         block_header *header = (block_header *)((unsigned char *)item + offset + index * stride);
         header->owner = item;
@@ -237,6 +257,9 @@ void *my_malloc(size_t size)
     owner = &bins[thread_shard][index];
     (void)pthread_mutex_lock(&owner->lock);
     item = owner->available;
+    /* A bin creates at most one undersized starter region. Once it is busy,
+       stop refilling that region so its live objects can drain naturally. */
+    if (item != NULL && owner->busy && item->total_count < 32U) item = item->next;
     if (item == NULL) {
         item = new_region(owner, capacity);
         if (item == NULL) {
@@ -287,11 +310,13 @@ void my_free(void *ptr)
     item->free_head = header;
     ++item->free_count;
     if (item->free_count == item->total_count) {
-        if (owner->cached == NULL && item->mapping_bytes <= CACHE_REGION_LIMIT &&
+        if (owner->cached == NULL && (!owner->busy || item->total_count >= 32U) &&
+            item->mapping_bytes <= CACHE_REGION_LIMIT &&
             reserve_cache(item->mapping_bytes)) {
             owner->cached = item;
         } else {
             remove_available(owner, item);
+            --owner->region_count;
             (void)munmap(item, item->mapping_bytes);
         }
     }
@@ -361,6 +386,7 @@ void memctl_trim(void)
             if (item != NULL) {
                 remove_available(owner, item);
                 owner->cached = NULL;
+                --owner->region_count;
                 (void)atomic_fetch_sub_explicit(&cached_bytes, item->mapping_bytes,
                                                 memory_order_relaxed);
                 (void)munmap(item, item->mapping_bytes);

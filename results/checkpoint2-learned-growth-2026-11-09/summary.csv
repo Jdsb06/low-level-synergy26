@@ -1,0 +1,11 @@
+variant,workload,workers,repetitions,metric,median,min,max
+checkpoint1,small,1,5,api_calls_per_second,42299115.999,41892105.542,43802118.498
+checkpoint1,small,8,5,api_calls_per_second,59872493.741,48297922.062,97810899.157
+checkpoint1,mixed,1,5,api_calls_per_second,32750039.84,31434979.135,33184677.042
+checkpoint1,mixed,8,5,api_calls_per_second,56336698.306,54106303.927,58941572.913
+checkpoint1,fragmentation,8,5,held_vm_growth_kib,185120,185120,185120
+compact_growth,small,1,5,api_calls_per_second,42169605.987,41506351.842,43061181.499
+compact_growth,small,8,5,api_calls_per_second,62955705.861,51431427.93,67493589.121
+compact_growth,mixed,1,5,api_calls_per_second,14189817.069,14074659.538,14362215.653
+compact_growth,mixed,8,5,api_calls_per_second,29496912.532,20540196.381,30867239.716
+compact_growth,fragmentation,8,5,held_vm_growth_kib,26080,26080,26080

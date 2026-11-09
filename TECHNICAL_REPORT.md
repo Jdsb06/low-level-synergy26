@@ -102,4 +102,4 @@ MPI/InfiniBand result is claimed.
 
 Raw evidence and exact commands: `results/*/raw.json`, `results/*/summary.csv`,
 and the competition experiment log. The public kit is pinned in
-`../docs/PROBLEM_SELECTION.md`. Figure generation reads those real measurements.
+`SOURCES.md`. Figure generation reads those real measurements.

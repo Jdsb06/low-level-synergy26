@@ -8,8 +8,10 @@
 - [x] Execute ASan/UBSan and TSan with documented coverage limits.
 - [x] Record reproducible local benchmark commands, raw results, hashes and trade-offs.
 - [x] Prepare initial design note, live commands and technical report.
-- [ ] Long hidden-style fragmentation/soak tests and allocator debug annotations.
-- [ ] Reproduce from a clean checkout on compatible Ubuntu/second machine.
+- [x] Hidden-style fragmentation/soak tests; retain rejected policies and trade-offs.
+- [x] Separate-machine GCC 9 build and allocated NHPC execution with matching source hash.
+- [ ] Allocator sub-block debug annotations and further adversarial coverage.
+- [ ] Final clean compatible Ubuntu/package reproduction.
 - [ ] Review final performance normalization targets and official form fields.
 - [ ] Verify registered team roster, ownership, final deadline and repository access.
 - [ ] Reconcile general demo requirements; create required final recording/artifacts.

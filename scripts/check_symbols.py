@@ -7,7 +7,8 @@ forbidden = {
     "malloc", "free", "calloc", "realloc", "aligned_alloc", "posix_memalign",
     "memalign", "valloc", "pvalloc", "strdup", "sbrk",
 }
-result = subprocess.run(["nm", "-u", sys.argv[1]], text=True, capture_output=True, check=True)
+result = subprocess.run(["nm", "-u", sys.argv[1]], universal_newlines=True,
+                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
 symbols = {line.split()[-1].split("@")[0] for line in result.stdout.splitlines() if line.split()}
 bad = sorted(forbidden & symbols)
 if bad:
