@@ -1,0 +1,98 @@
+[
+  {
+    "command": [
+      "make",
+      "profiles",
+      "build/latency_libc",
+      "build/lifetimes_libc"
+    ],
+    "exit": 0,
+    "stdout": "cc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc bench/latency.c build/libmemctl.a -pthread -o build/latency\ncc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -DMEMCTL_LIBC bench/latency.c -pthread -o build/latency_libc\nmake: 'build/lifetimes_libc' is up to date.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "make",
+      "BUILD_DIR=build-single",
+      "CPPFLAGS=-D_GNU_SOURCE -Iinclude -DMEMCTL_SHARDS=1",
+      "profiles"
+    ],
+    "exit": 0,
+    "stdout": "cc -D_GNU_SOURCE -Iinclude -DMEMCTL_SHARDS=1 -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc bench/latency.c build-single/libmemctl.a -pthread -o build-single/latency\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "make",
+      "BUILD_DIR=build-sanitize",
+      "CFLAGS=-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all",
+      "profiles"
+    ],
+    "exit": 0,
+    "stdout": "cc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc bench/latency.c build-sanitize/libmemctl.a -pthread -o build-sanitize/latency\ncc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc bench/lifetimes.c build-sanitize/libmemctl.a -pthread -o build-sanitize/lifetimes\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_leaks=0",
+      "timeout",
+      "90s",
+      "build-sanitize/latency",
+      "8",
+      "2000",
+      "12345",
+      "mixed"
+    ],
+    "exit": 0,
+    "stdout": "{\"correct\":true,\"threads\":8,\"samples\":16000,\"clock_pair_p50_ns\":155,\"clock_pair_p99_ns\":383,\"apis\":{\"malloc\":{\"count\":3597,\"p50_ns\":956,\"p95_ns\":49308,\"p99_ns\":664798,\"p999_ns\":4059660,\"max_ns\":5468798},\"free\":{\"count\":6610,\"p50_ns\":673,\"p95_ns\":64132,\"p99_ns\":549034,\"p999_ns\":2324185,\"max_ns\":5188402},\"realloc\":{\"count\":2215,\"p50_ns\":2502,\"p95_ns\":271196,\"p99_ns\":1193725,\"p999_ns\":2938855,\"max_ns\":4233033},\"calloc\":{\"count\":3578,\"p50_ns\":1819,\"p95_ns\":321516,\"p99_ns\":1305761,\"p999_ns\":4269850,\"max_ns\":5506740}}}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_leaks=0",
+      "timeout",
+      "90s",
+      "build-sanitize/lifetimes"
+    ],
+    "exit": 0,
+    "stdout": "{\"correct\":true,\"workers\":8,\"snapshots\":[{\"cycle\":0,\"phase\":\"idle\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":21475051284,\"rss_kib\":9052,\"rss_rollup_kib\":9032,\"vm_peak_kib\":21475051412,\"vm_hwm_kib\":8992},{\"cycle\":1,\"phase\":\"burst\",\"live_bytes\":44007424,\"live_objects\":4096,\"vm_kib\":21475246612,\"rss_kib\":109872,\"rss_rollup_kib\":109848,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":109804},{\"cycle\":1,\"phase\":\"sparse\",\"live_bytes\":5500928,\"live_objects\":512,\"vm_kib\":21475142420,\"rss_kib\":64452,\"rss_rollup_kib\":64436,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":109512},{\"cycle\":1,\"phase\":\"refill\",\"live_bytes\":44007424,\"live_objects\":4096,\"vm_kib\":21475236788,\"rss_kib\":115404,\"rss_rollup_kib\":115384,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":115336},{\"cycle\":1,\"phase\":\"freed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":21475053332,\"rss_kib\":20928,\"rss_rollup_kib\":20900,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":114972},{\"cycle\":1,\"phase\":\"trimmed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":21475051284,\"rss_kib\":18964,\"rss_rollup_kib\":18948,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":114972},{\"cycle\":2,\"phase\":\"burst\",\"live_bytes\":44007424,\"live_objects\":4096,\"vm_kib\":21475224500,\"rss_kib\":104480,\"rss_rollup_kib\":104472,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":114972},{\"cycle\":2,\"phase\":\"sparse\",\"live_bytes\":5500928,\"live_objects\":512,\"vm_kib\":21475224500,\"rss_kib\":104768,\"rss_rollup_kib\":104760,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":114972},{\"cycle\":2,\"phase\":\"refill\",\"live_bytes\":44007424,\"live_objects\":4096,\"vm_kib\":21475224500,\"rss_kib\":105312,\"rss_rollup_kib\":105308,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":114972},{\"cycle\":2,\"phase\":\"freed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":21475053332,\"rss_kib\":20660,\"rss_rollup_kib\":20656,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":114972},{\"cycle\":2,\"phase\":\"trimmed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":21475051284,\"rss_kib\":18644,\"rss_rollup_kib\":18640,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":114972},{\"cycle\":3,\"phase\":\"burst\",\"live_bytes\":44007424,\"live_objects\":4096,\"vm_kib\":21475224500,\"rss_kib\":106292,\"rss_rollup_kib\":106284,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":114972},{\"cycle\":3,\"phase\":\"sparse\",\"live_bytes\":5500928,\"live_objects\":512,\"vm_kib\":21475224500,\"rss_kib\":106580,\"rss_rollup_kib\":106576,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":114972},{\"cycle\":3,\"phase\":\"refill\",\"live_bytes\":44007424,\"live_objects\":4096,\"vm_kib\":21475224500,\"rss_kib\":107124,\"rss_rollup_kib\":107112,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":114972},{\"cycle\":3,\"phase\":\"freed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":21475053332,\"rss_kib\":22472,\"rss_rollup_kib\":22468,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":114972},{\"cycle\":3,\"phase\":\"trimmed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":21475051284,\"rss_kib\":20460,\"rss_rollup_kib\":20448,\"vm_peak_kib\":21475246612,\"vm_hwm_kib\":114972}]}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "make",
+      "BUILD_DIR=build-tsan",
+      "CFLAGS=-O1 -g -fsanitize=thread -fno-omit-frame-pointer",
+      "profiles"
+    ],
+    "exit": 0,
+    "stdout": "cc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=thread -fno-omit-frame-pointer -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc bench/latency.c build-tsan/libmemctl.a -pthread -o build-tsan/latency\ncc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=thread -fno-omit-frame-pointer -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc bench/lifetimes.c build-tsan/libmemctl.a -pthread -o build-tsan/lifetimes\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "timeout",
+      "90s",
+      "build-tsan/latency",
+      "8",
+      "2000",
+      "12345",
+      "mixed"
+    ],
+    "exit": 0,
+    "stdout": "{\"correct\":true,\"threads\":8,\"samples\":16000,\"clock_pair_p50_ns\":100,\"clock_pair_p99_ns\":303,\"apis\":{\"malloc\":{\"count\":3597,\"p50_ns\":2544,\"p95_ns\":85213,\"p99_ns\":903604,\"p999_ns\":2942698,\"max_ns\":4821917},\"free\":{\"count\":6610,\"p50_ns\":1708,\"p95_ns\":187915,\"p99_ns\":924392,\"p999_ns\":2675157,\"max_ns\":3341325},\"realloc\":{\"count\":2215,\"p50_ns\":9170,\"p95_ns\":511621,\"p99_ns\":1446125,\"p999_ns\":3146584,\"max_ns\":3923000},\"calloc\":{\"count\":3578,\"p50_ns\":9944,\"p95_ns\":905354,\"p99_ns\":1828761,\"p999_ns\":4693827,\"max_ns\":6039571}}}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "timeout",
+      "90s",
+      "build-tsan/lifetimes"
+    ],
+    "exit": 0,
+    "stdout": "{\"correct\":true,\"workers\":8,\"snapshots\":[{\"cycle\":0,\"phase\":\"idle\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":123480453208,\"rss_kib\":21652,\"rss_rollup_kib\":21636,\"vm_peak_kib\":123480453576,\"vm_hwm_kib\":21600},{\"cycle\":1,\"phase\":\"burst\",\"live_bytes\":44007424,\"live_objects\":4096,\"vm_kib\":123480648536,\"rss_kib\":223436,\"rss_rollup_kib\":223424,\"vm_peak_kib\":123480648536,\"vm_hwm_kib\":223384},{\"cycle\":1,\"phase\":\"sparse\",\"live_bytes\":5500928,\"live_objects\":512,\"vm_kib\":123480548440,\"rss_kib\":133208,\"rss_rollup_kib\":133192,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":227636},{\"cycle\":1,\"phase\":\"refill\",\"live_bytes\":44007424,\"live_objects\":4096,\"vm_kib\":123480643064,\"rss_kib\":246692,\"rss_rollup_kib\":246676,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246640},{\"cycle\":1,\"phase\":\"freed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":123480459608,\"rss_kib\":34544,\"rss_rollup_kib\":34528,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246260},{\"cycle\":1,\"phase\":\"trimmed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":123480457560,\"rss_kib\":28472,\"rss_rollup_kib\":28460,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246260},{\"cycle\":2,\"phase\":\"burst\",\"live_bytes\":44007424,\"live_objects\":4096,\"vm_kib\":123480630776,\"rss_kib\":217832,\"rss_rollup_kib\":217832,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246260},{\"cycle\":2,\"phase\":\"sparse\",\"live_bytes\":5500928,\"live_objects\":512,\"vm_kib\":123480630776,\"rss_kib\":217832,\"rss_rollup_kib\":217832,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246260},{\"cycle\":2,\"phase\":\"refill\",\"live_bytes\":44007424,\"live_objects\":4096,\"vm_kib\":123480630776,\"rss_kib\":217832,\"rss_rollup_kib\":217832,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246260},{\"cycle\":2,\"phase\":\"freed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":123480459608,\"rss_kib\":34632,\"rss_rollup_kib\":34632,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246260},{\"cycle\":2,\"phase\":\"trimmed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":123480457560,\"rss_kib\":28488,\"rss_rollup_kib\":28488,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246260},{\"cycle\":3,\"phase\":\"burst\",\"live_bytes\":44007424,\"live_objects\":4096,\"vm_kib\":123480631032,\"rss_kib\":217876,\"rss_rollup_kib\":217876,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246260},{\"cycle\":3,\"phase\":\"sparse\",\"live_bytes\":5500928,\"live_objects\":512,\"vm_kib\":123480631032,\"rss_kib\":217952,\"rss_rollup_kib\":217952,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246260},{\"cycle\":3,\"phase\":\"refill\",\"live_bytes\":44007424,\"live_objects\":4096,\"vm_kib\":123480631032,\"rss_kib\":218028,\"rss_rollup_kib\":218028,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246260},{\"cycle\":3,\"phase\":\"freed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":123480459864,\"rss_kib\":34888,\"rss_rollup_kib\":34888,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246260},{\"cycle\":3,\"phase\":\"trimmed\",\"live_bytes\":0,\"live_objects\":0,\"vm_kib\":123480457816,\"rss_kib\":28744,\"rss_rollup_kib\":28744,\"vm_peak_kib\":123480652632,\"vm_hwm_kib\":246260}]}\n",
+    "stderr": ""
+  }
+]

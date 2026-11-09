@@ -11,7 +11,8 @@
 - [x] Hidden-style fragmentation/soak tests; retain rejected policies and trade-offs.
 - [x] Separate-machine GCC 9 build and allocated NHPC execution with matching source hash.
 - [x] Allocator sub-block ASan annotations, positive/negative controls and concurrent soak.
-- [ ] Further measured latency/space coverage and final performance review.
+- [x] Measured API latency and burst/sparse/refill space coverage; retain corrected baseline experiment.
+- [ ] Bounded large-object reuse experiment and final performance review.
 - [ ] Final clean compatible Ubuntu/package reproduction.
 - [ ] Review final performance normalization targets and official form fields.
 - [ ] Verify registered team roster, ownership, final deadline and repository access.

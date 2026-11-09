@@ -93,4 +93,8 @@ mapping reclamation clears shadow state. Strides preserve separate shadow granul
 for adjacent blocks. Release and TSan builds retain the original layout and code.
 See [checkpoint 3](CHECKPOINT3.md) for executed positive/negative controls and limits:
 there is no temporal quarantine, and address reuse can hide stale-pointer access.
-Longer latency/space evaluation and final compatible-package checks remain future work.
+[Checkpoint 4](CHECKPOINT4.md) measures per-API tails and three burst/drain/refill
+cycles. Repeated large mappings have high concurrent tails; learned regions can
+retain substantial VM while sparse survivors remain. Empty-cache bounds do not
+bound live-region fragmentation. A bounded large-object reuse experiment and
+final compatible-package checks remain future work.

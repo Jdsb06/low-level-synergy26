@@ -4,9 +4,10 @@ An original C11 memory allocator for the released Synergy '26 problem. It implem
 `my_malloc`, `my_free`, `my_realloc` and `my_calloc` using Linux anonymous private
 mappings, reusable size-class regions and POSIX mutexes. No standard heap allocator
 is called by the implementation. The optional `memctl_trim()` releases cached empty
-regions. **Checkpoint 3 is complete:** allocator-aware ASan guards and 51 detection controls
-are verified alongside native and concurrent sanitizer tests. Read
-[CHECKPOINT3.md](CHECKPOINT3.md) for current evidence and limits;
+regions. **Checkpoint 4 is complete:** 105 accepted latency/lifetime profiles compare eight
+shards, one shard and glibc, exposing large-object tails and survivor fragmentation.
+Read [CHECKPOINT4.md](CHECKPOINT4.md) for current measurements and limits.
+[CHECKPOINT3.md](CHECKPOINT3.md) records allocator-aware ASan guards and 51 controls;
 [CHECKPOINT2.md](CHECKPOINT2.md) records region-policy measurements and NHPC validation. This remains
 a development checkpoint, not a final submission.
 
@@ -20,6 +21,7 @@ make
 make check
 make sanitize  # Python 3.9+ for the annotation-control runner
 make soak fragmentation
+make profiles build/latency_libc build/lifetimes_libc
 ```
 
 `make check` runs the forbidden-symbol check and independent tests, with a timeout.
@@ -69,6 +71,23 @@ Recorded local results: [report](TECHNICAL_REPORT.md),
 The checkpoint-1 comparison found 3.39× the throughput of the one-shard variant at eight
 threads, with about a 3% loss at one thread. These are laptop development results;
 no official score or advantage over libc is claimed.
+
+## Latency and lifetime profiles
+
+```bash
+make profiles build/latency_libc build/lifetimes_libc
+make BUILD_DIR=build-single CPPFLAGS='-D_GNU_SOURCE -Iinclude -DMEMCTL_SHARDS=1' profiles
+python3 scripts/profile_workloads.py --repetitions 5 --operations 10000 --output results/new-profile
+```
+
+The runner compares the same traces in fresh processes, preserves failures and
+records per-API percentiles, calibration, source/binary hashes and phase memory
+samples. The eight-thread hot trace benefits from sharding; mixed/large tails are
+substantially higher than glibc here. After prior bursts, sparse survivors pin
+large regions. Read checkpoint 4 before generalizing earlier cold sparse results.
+Optional plot: `MPLCONFIGDIR=/tmp/libmemctl-matplotlib python3 scripts/plot_checkpoint4.py`.
+The user authorized regular reviewed development pushes; official upload remains
+separate.
 
 ## Contract and boundaries
 

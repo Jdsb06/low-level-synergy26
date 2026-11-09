@@ -2,8 +2,9 @@
 
 Completed 9 November 2026. Allocator source SHA-256:
 `521932e19106be195857014b44c2531e137c2b6e54cd33927f93cb138952e9a0`.
-This is a local development checkpoint; GitHub remains at checkpoint 2 and no
-official submission has occurred.
+This development checkpoint was initially recorded locally, then published as
+GitHub commit `94d9df0901b6ed9cff7ac49d6e297c2e75b24e37` after the user's standing
+checkpoint-push instruction. No official submission has occurred.
 
 ## Change and purpose
 
@@ -82,5 +83,5 @@ for the documented host tracing limitation, and sanitizers do not prove correctn
 
 Next bounded milestone: measured allocation-latency and adversarial space coverage,
 then a clean compatible Ubuntu/package/demo review. Final normalization/form/roster
-and recording requirements remain unresolved. New publication and official upload
-are separate actions requiring approval.
+and recording requirements remain unresolved. The user subsequently authorized regular reviewed development-checkpoint pushes.
+Official upload remains a separate action requiring approval.

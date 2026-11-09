@@ -13,7 +13,7 @@ LIB = $(BUILD_DIR)/libmemctl.a
 OBJ = $(BUILD_DIR)/allocator.o
 TEST = $(BUILD_DIR)/test_allocator
 
-.PHONY: all check check-symbols public-test sanitize annotation-check benchmark reference clean soak fragmentation
+.PHONY: all check check-symbols public-test sanitize annotation-check benchmark reference clean soak fragmentation profiles
 all: $(LIB) $(TEST)
 
 $(BUILD_DIR):
@@ -71,6 +71,20 @@ $(BUILD_DIR)/fragmentation: bench/fragmentation.c $(LIB)
 fragmentation: $(BUILD_DIR)/fragmentation
 	$(BUILD_DIR)/fragmentation
 
+profiles: $(BUILD_DIR)/latency $(BUILD_DIR)/lifetimes
+
+$(BUILD_DIR)/latency: bench/latency.c bench/profile.h $(LIB)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $(NO_ALLOC) $< $(LIB) $(LDLIBS) -o $@
+
+$(BUILD_DIR)/lifetimes: bench/lifetimes.c bench/profile.h $(LIB)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $(NO_ALLOC) $< $(LIB) $(LDLIBS) -o $@
+
+$(BUILD_DIR)/latency_libc: bench/latency.c bench/profile.h | $(BUILD_DIR)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $(NO_ALLOC) -DMEMCTL_LIBC $< $(LDLIBS) -o $@
+
+$(BUILD_DIR)/lifetimes_libc: bench/lifetimes.c bench/profile.h | $(BUILD_DIR)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $(NO_ALLOC) -DMEMCTL_LIBC $< $(LDLIBS) -o $@
+
 reference: | $(BUILD_DIR)
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $(NO_ALLOC) -c "$(OFFICIAL_DIR)/src/allocator.c" -o $(BUILD_DIR)/reference.o
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) -DMEMCTL_REFERENCE bench/benchmark.c $(BUILD_DIR)/reference.o $(LDLIBS) -o $(BUILD_DIR)/benchmark_reference
@@ -80,3 +94,4 @@ clean:
 	  $(BUILD_DIR)/reference.o $(BUILD_DIR)/benchmark_reference $(BUILD_DIR)/benchmark_candidate \
 	  $(BUILD_DIR)/soak $(BUILD_DIR)/fragmentation
 	rm -f -- $(BUILD_DIR)/test_annotations $(BUILD_DIR)/asan_negative
+	rm -f -- $(BUILD_DIR)/latency $(BUILD_DIR)/lifetimes $(BUILD_DIR)/latency_libc $(BUILD_DIR)/lifetimes_libc
