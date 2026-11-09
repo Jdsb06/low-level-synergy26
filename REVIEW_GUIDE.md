@@ -1,20 +1,21 @@
-# libmemctl review candidate
+# libmemctl review guide
 
 Participant: Jashandeep Singh, solo, IMT2024022. Problem: SYSPROG10, Systems Programming.
-This is a review candidate. Its archives, report and test recording are not a
-submission receipt. The allocator policy is the tested checkpoint-5 implementation.
+Start with SUBMISSION.md for the deliverable map and owner delivery steps.
+The allocator policy is the tested checkpoint-5 implementation; later milestones
+verify compatibility and package the same source. Preparation is not a submission receipt.
 
 ## Review order
 
 1. README.md: build and independent checks, without the official kit.
 2. ARCHITECTURE.md: region ownership, locks, cache accounting and reclamation.
-3. CHECKPOINT5.md: current measured improvement and its costs, with raw evidence.
+3. TECHNICAL_REPORT.md: current measured improvement and its costs, with raw evidence.
 4. CHECKPOINT6.md: current-source compatibility and package verification.
 5. output/pdf/libmemctl-review.pdf: concise reviewer-facing report.
 6. demo/: executable CLI walk-through, actual terminal recording and speaker notes.
 7. AUTHOR.md, SOURCES.md and SUBMISSION_CHECKLIST.md: attribution and delivery limits.
 
-The initial TECHNICAL_REPORT.md and earlier checkpoint reports are historical.
+INITIAL_REPORT.md and earlier checkpoint reports are historical.
 Do not present their old measurements as newly measured current-source results.
 
 ## Verify the downloaded package
@@ -24,6 +25,7 @@ After extracting an archive and entering its libmemctl-review directory:
 
 ```bash
 sha256sum -c MANIFEST.sha256
+python3 scripts/verify_submission.py
 make check
 make sanitize
 bash demo/run_demo.sh
@@ -33,7 +35,7 @@ Only the separately obtained official kit is needed for `make public-test`.
 The package contains complete authored source/headers, independent tests, build
 instructions, architecture note, benchmark evidence and reproducible comparison
 scripts. Intermediate build products, official material, credentials and other competitions
-are excluded. When built with the explicit --prebuilt input, a labeled prebuilt/
+are excluded. The committed and packaged prebuilt/
 folder contains the verified GCC 9 Linux x86-64 library and testable executables;
 the source and each executable are covered by the package manifest. Old authored trial sources are evidence, not the selected build input;
 the default Makefile compiles only src/allocator.c.
@@ -59,6 +61,7 @@ video of it is a terminal replay, not a claim of an unedited desktop screen capt
 Narration/presentation and an optional public video link remain the participant's
 choice. Publishing development checkpoints does not authorize official submission.
 
-Signed-out GitHub access was checked on 9 November and returned 404 despite
-working authenticated Git access. Establish judge access before submission;
-repository visibility/sharing has not been changed automatically.
+The participant confirms that the repository is intentionally private and will
+make it public once ready. Its signed-out 404 is therefore expected. Confirm
+signed-out access after that owner-controlled change; visibility is never changed
+automatically by the project workflow.

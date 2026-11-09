@@ -1,30 +1,33 @@
-# SYSPROG10 submission checklist
+# SYSPROG10 delivery checklist
 
-- [x] Read full selected problem, API, starter and public tests; pin official commit.
-- [x] Work began after 9 Nov 2026, 09:00 IST; user reports SPOC AI permission.
-- [x] Implement the four functions in C11 with private anonymous mappings.
-- [x] Check forbidden references, including a rejecting negative control.
-- [x] Execute official tests and independent edge/failure/concurrency tests.
-- [x] Execute ASan/UBSan and TSan with documented coverage limits.
-- [x] Record reproducible local benchmark commands, raw results, hashes and trade-offs.
-- [x] Prepare initial design note, live commands and technical report.
-- [x] Hidden-style fragmentation/soak tests; retain rejected policies and trade-offs.
-- [x] Checkpoint-2 GCC 9 build and allocated NHPC execution with matching source hash.
-- [x] Current checkpoint-5 source: GCC 9.3.1 / glibc 2.17 NHPC allocated execution; GCC 13.4 native Ubuntu execution.
-- [x] Allocator sub-block ASan annotations, positive/negative controls and concurrent soak.
-- [x] Measured API latency and burst/sparse/refill space coverage; retain corrected baseline experiment.
-- [x] Capped large-object reuse, retained initial trial and longer common-workload confirmation.
-- [ ] Final performance and package review.
-- [x] Clean extracted ZIP/tar manifests, reproducible archives, tamper rejection and native/ASan/source-comparison checks on Ubuntu.
-- [x] Official form fields inspected read-only; optional YouTube field confirmed.
-- [ ] Final official normalization values remain unavailable in the reviewed statement.
-- [ ] Verify registered team roster, ownership, final deadline and repository access.
-- [x] Read-only form/general demo review; report, actual terminal recording, replay and speaker notes prepared.
-- [ ] Participant presentation rehearsal and any chosen optional public video link.
-- [x] Review source/artifact inventory; official kits, private contacts and sibling competitions excluded.
-- [x] Create review-candidate manifests/checksums; verified optional prebuilt binaries included.
-- [ ] Approve exact final delivery/contact/access details and official submission action.
-- [ ] Record actual approved submission receipt. No submission has occurred.
+## Completed repository deliverables
 
-Local source, library and reports are not submission confirmation. Never submit,
-contact organizers, share a private repository or publish without user approval.
+- [x] Full selected statement/API/starter/public tests reviewed; official commit pinned.
+- [x] Implementation began after 9 Nov 09:00 IST; AI assistance and user-reported permission attributed.
+- [x] Four C11 functions, private anonymous mappings, max alignment and required edge semantics implemented.
+- [x] Forbidden allocator references checked, including a rejecting negative control.
+- [x] Six public tests and independent failure, overflow, reuse, cache and concurrency cases passed.
+- [x] ASan/UBSan, 59 annotation controls, TSan, stress and static-analysis evidence retained with limitations.
+- [x] Exact-source GCC9/Linux3.10/glibc2.17 and GCC13/Ubuntu execution verified.
+- [x] Reproducible single/multithread benchmarks, raw results and measured gains/costs included.
+- [x] Current design/report/README and historical experiments clearly distinguished.
+- [x] Solo identity confirmed by participant: Jashandeep Singh, IMT2024022.
+- [x] PDF, actual terminal recording/replay and live-demo commands included.
+- [x] Verified prebuilt Linux executables/library committed with matching source and binary hashes.
+- [x] Explicit package inventory, integrity checks and reproducible archive generation included.
+- [x] Fresh-copy build, sanitizer, prebuilt and archive checks recorded in final readiness evidence.
+- [x] Repository inventory reviewed: official kits, credentials, private contacts and other competitions excluded.
+- [x] Official form inspected read-only; known track/question/repo values documented; YouTube field is optional.
+
+## Participant's final actions
+
+- [ ] Review/rehearse the design and demo using the included notes.
+- [ ] Make the currently private repository public when ready and verify signed-out access.
+- [ ] Enter/confirm institute, phone, email and other personal form details; registration receipt remains uninspected.
+- [ ] Recheck final announcements/deadline before delivery (reviewed listing: 13 Nov 23:59 IST, subject to change).
+- [ ] Submit the official form and retain its receipt. No official submission has occurred.
+
+Unavailable final scoring normalization constants are an organizer-side unknown,
+not a missing repository deliverable. No official score or hidden-test result is
+claimed. Optional YouTube publication is the participant's choice. The repository
+stays private until the participant changes it; no form is submitted automatically.

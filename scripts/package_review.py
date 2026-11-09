@@ -10,6 +10,8 @@ import stat
 import tarfile
 import zipfile
 
+from verify_submission import verify
+
 ROOT = Path(__file__).resolve().parents[1]
 SECRET_PATTERNS = [rb"-----BEGIN (?:OPENSSH |RSA |EC )?PRIVATE KEY-----",
                    rb"gh[pousr]_[A-Za-z0-9]{30,}", rb"github_pat_[A-Za-z0-9_]{30,}",
@@ -29,8 +31,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=ROOT / "dist")
     parser.add_argument("--prebuilt", type=Path,
-                        help="verified NHPC input directory; include explicitly labeled Linux binaries")
+                        help="optional NHPC input directory to cross-check against the committed binaries")
     args = parser.parse_args()
+    verification = verify(ROOT)
     spec = json.loads((ROOT / "PACKAGE_CONTENTS.json").read_text())
     files = spec["files"]
     if len(files) != len(set(files)):
@@ -87,18 +90,9 @@ def main():
                                "build/soak": "bin/soak", "build/large_lifetimes": "bin/large_lifetimes",
                                "include/libmemctl.h": "include/libmemctl.h", "build-toolchain.txt": "BUILD_INFO.txt",
                                "INPUT_SHA256": "BUILD_INPUTS.sha256"}.items():
-            payloads["prebuilt/" + target] = read_relative(source)
-        payloads["prebuilt/README.txt"] = b"""Linux x86-64 review binaries, GCC 9.3.1 / glibc 2.17 build.
-Executed successfully on NHPC Linux 3.10 and Ubuntu 26.04.1 / glibc 2.43.
-These are not ASan builds and not a promise of compatibility with every system.
-From the package root: prebuilt/bin/test_allocator
-Optional stress: prebuilt/bin/soak 12500 20261109 128
-Optional full-touch probe: prebuilt/bin/large_lifetimes
-The .a archive is the authored allocator static library; rebuild from source for another target.
-BUILD_INPUTS.sha256 describes the corresponding source files at the package root.
-Core source hash and all binary hashes are covered by the root MANIFEST.sha256.
-No official kit or system runtime libraries are bundled.
-"""
+            name = "prebuilt/" + target
+            if payloads.get(name) != read_relative(source):
+                raise ValueError("External prebuilt differs from reviewed committed artifact: " + name)
     for required in ["Makefile", "src/allocator.c", "include/libmemctl.h", "README.md", "AUTHOR.md",
                      "ARCHITECTURE.md", "REVIEW_GUIDE.md", "output/pdf/libmemctl-review.pdf"]:
         if required not in payloads:
@@ -107,9 +101,10 @@ No official kit or system runtime libraries are bundled.
                        for name, data in sorted(payloads.items())).encode()
     digest = hashlib.sha256(manifest).hexdigest()
     payloads["PACKAGE_INFO.json"] = (json.dumps(dict(format_version=1,
-        purpose="Local review candidate; not an official submission receipt",
+        purpose="Submission-ready repository package; not an official submission receipt",
         source_sha256=hashlib.sha256(payloads["src/allocator.c"]).hexdigest(),
-        content_manifest_sha256=digest, input_files=len(payloads), prebuilt_included=bool(args.prebuilt)), indent=2) + "\n").encode()
+        content_manifest_sha256=digest, input_files=len(payloads), prebuilt_included=True,
+        integrity_verification=verification["status"]), indent=2) + "\n").encode()
     # Include package metadata in the integrity check, without a self-hash cycle.
     manifest += hashlib.sha256(payloads["PACKAGE_INFO.json"]).hexdigest().encode() + b"  PACKAGE_INFO.json\n"
     payloads["MANIFEST.sha256"] = manifest

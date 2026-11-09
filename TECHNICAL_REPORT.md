@@ -1,105 +1,156 @@
-# Initial engineering report — 9 November 2026
+# libmemctl — design, validation and measured trade-offs
 
-## Result
+Jashandeep Singh · solo · IMT2024022 · SYSPROG10 · 9 November 2026.
+Selected allocator SHA-256:
+`ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267`.
 
-A working original C11 allocator passes the six unchanged official SYSPROG10
-public tests plus the independently authored suite. The latter also passed under
-ASan/UBSan and ThreadSanitizer. This is a tested initial milestone with a measured
-sharding improvement; it is not a final competitive score or submission package.
+## Result and contract
 
-## Environment and method
+The four required functions are implemented in C11 using private anonymous mmap
+and pthread mutexes, without calls or forwarding to malloc, calloc, realloc or free.
+All returned pointers satisfy `_Alignof(max_align_t)`. Zero-size allocations are
+distinct and freeable; arithmetic overflow is rejected; failed realloc preserves
+the old object. Reused calloc storage is explicitly cleared. Different objects can
+be owned/freed by different threads, including after the allocating thread exits.
+`memctl_trim()` is an optional reclamation extension.
 
-Local Ubuntu/Linux x86-64, Intel i3-1315U, six physical cores/eight visible logical
-CPUs; GCC 15.2.0. Both reference and candidates used `-O2 -g -std=c11`, identical
-strict warning flags and pthreads. The one-shard build differs only in
-`-DMEMCTL_SHARDS=1`. No dependencies or cloud services were installed/used.
+All six unchanged public tests and our independent tests passed. This establishes
+tested behavior, not a hidden-test result or a calculated official score. No final
+normalization constants were provided in the reviewed statement.
 
-The runner restricts each process to a declared CPU set, choosing one hardware
-thread per physical core before SMT siblings. Workers may migrate within that
-set. It does not enforce a performance governor, fixed clock, thermal state or
-desktop isolation. These limits make the results local development evidence.
+## Design
 
-The initial sweep ran 180 timing processes: three algorithms × four thread counts
-× three workloads × five repetitions. Each worker performed 20,000 measured API
-calls after 2,000 warmup calls. Some fast-candidate cells lasted less than one
-millisecond, so their speedup ratios are exploratory and are not headline claims.
+Eight static shards contain 64 small size classes through 64 KiB. Class locks guard
+region lists and free blocks; 16-byte block headers and 64-byte region metadata
+support alignment and ownership. A compact initial region fits the larger of
+16 KiB or four blocks; active bins grow to 32 blocks and drain undersized starters.
+TLS stores only a shard number, so it does not leave dead thread-local caches.
 
-A follow-up ran 20 timing processes using 500,000 calls per worker, two shard
-counts, one/eight threads and five repetitions. The workload selects mixed sizes
-from 1 byte through 16,385 bytes, holds up to 128 objects per worker and uses malloc,
-free and realloc. Calls per second count public API invocations, including realloc
-as one call. Init/warmup/thread creation/final cleanup are excluded; start/finish
-barrier overhead is included. Endpoint checks run identically in each benchmark;
-separate correctness tests verify complete payloads. Workload order is randomized
-with a fixed recorded seed; runs have identical traces and fresh processes.
+Requests above 64 KiB use dedicated mappings. Through 1 MiB they are rounded into
+64-KiB capacity bands, each with one reusable mapping per shard; larger requests
+are uncached. Small empty regions and large cached mappings share one atomic
+**2 MiB budget of actual mapping bytes**, including headers and page rounding.
+If a slot/budget is unavailable, the mapping is unmapped. On a hit the reservation
+is removed before reuse. No allocator path holds two locks simultaneously.
 
-## Longer sharding comparison
+Free returns to the immutable original owner. Realloc grows/copies only after
+successful allocation and preserves the requested prefix. Trim visits individual
+locks and releases only empty mappings; concurrent activity may refill an already
+visited bucket. ASan builds poison internal headers, excess capacity and freed
+cached payloads, exposing exactly the requested bytes on reuse. Release layouts
+and debug free-list handling are described in [ARCHITECTURE.md](ARCHITECTURE.md).
 
-Million API calls per second; median of five processes, min–max in parentheses:
+## Measurement method
 
-| Workers | One shard | Eight shards | Eight/one throughput |
-| --- | ---: | ---: | ---: |
-| 1 | 33.156 (32.432–33.211) | 32.192 (31.759–32.965) | 0.971×, about 3% lower |
-| 8 | 15.962 (15.855–16.422) | 54.134 (53.105–64.431) | 3.391× |
+The selected change is compared against the exact authored checkpoint-4 allocator,
+SHA `521932e19106be195857014b44c2531e137c2b6e54cd33927f93cb138952e9a0`,
+included in [baselines/](baselines/README.md). Both use eight shards, GCC 15.2.0,
+strict C11 `-O2 -g`, identical harnesses and pthreads on the same i3-1315U laptop
+(six physical cores/eight logical CPUs, glibc 2.43). Runs are sequential fresh
+processes in a fixed randomized order, with trace seed 12345. Workers can migrate
+within the same physical-core-first CPU set; clocks, thermals and background work
+are not controlled.
 
-This supports eight shards for this concurrent development trace. It does not
-establish universal superiority, linear scaling, or performance versus libc.
-The API and region policy remain identical between these two variants.
+The main comparison has 140 processes: 60 throughput, 60 latency and 20 lifetime
+runs. A separate 40-process confirmation lengthened small/mixed throughput to
+5,000,000 API calls per worker. Large throughput uses 25,000 calls per worker and
+65,537–196,608-byte requests. Latency uses 10,000 calls after 2,000 warmup calls,
+with large requests 65,537–131,072 bytes. A realloc counts as one API call. Init,
+warmup, thread creation and final cleanup are outside throughput timing; barriers
+and endpoint checks are included. Separate tests check complete payloads.
 
-## Space experiment
+## Throughput and latency
 
-25 separate space experiments were also recorded across the two sweeps. Each
-holds 4,096 allocations with identical requested sizes and fully touches all
-requested bytes (14,504,946 bytes total). It samples `/proc/self/status` before,
-while all objects are held, after free and after optional trim. Five-process
-medians from the initial sweep:
+Million API calls/s; medians of five fresh processes:
 
-| Metric | Supplied reference | Eight-shard allocator |
+| Workload | Workers | Previous | Selected | Change |
+| --- | ---: | ---: | ---: | ---: |
+| Small, longer confirmation | 1 | 38.277 | 37.293 | −2.6% |
+| Small, longer confirmation | 8 | 60.753 | 59.870 | −1.5% |
+| Mixed, longer confirmation | 1 | 29.486 | 30.650 | +3.9% |
+| Mixed, longer confirmation | 8 | 57.639 | 51.240 | −11.1% |
+| Large | 1 | 0.1647 | 0.2346 | +42.5% |
+| Large | 8 | 0.0437 | 0.0740 | +69.6% |
+
+Eight-thread large ranges are 40,907–50,018 versus 70,521–74,862 calls/s. Mixed
+ranges overlap: 49.936–63.310 versus 48.473–63.044 million calls/s. The lower mixed
+median remains a cost rather than a claim about every execution.
+
+Large malloc latency, microseconds, medians of five process percentiles:
+
+| Workers | Previous p50 | Selected p50 | Previous p99 | Selected p99 |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 1.502 | 0.288 | 7.415 | 8.034 |
+| 8 | 19.086 | 6.145 | 1,784.819 | 1,105.217 |
+
+Eight-thread p99 fell 38.1%; one-thread p99 increased 8.3%. Percentiles are nearest
+rank within each process, pooling its workers, then medians across processes.
+Clock bracketing and scheduling remain included. Cache misses still enter the
+kernel, so this is no tail-latency guarantee or universal advantage over libc.
+
+## Space and adoption decision
+
+The full-touch large lifetime trace holds 512 objects/50,070,016 requested bytes,
+drains to 64 survivors/6,029,376 bytes, refills with shifted sizes, frees and trims.
+Eight workers remain alive for three cycles. Third-cycle medians, KiB above
+pre-allocation idle (VM / RSS):
+
+| Phase | Previous | Selected |
 | --- | ---: | ---: |
-| VmSize growth while objects are held | 29,124 KiB | 18,332 KiB |
-| VmRSS growth while objects are held | 29,124 KiB | 17,604 KiB |
-| VmSize retained after free | 0 KiB | 320 KiB |
-| VmSize retained after trim | 0 KiB | 0 KiB |
+| Burst | 50,176 / 50,208 | 67,584 / 50,212 |
+| Sparse survivors | 6,144 / 6,176 | 9,504 / 6,724 |
+| All freed | 0 / 32 | 1,056 / 580 |
+| Trimmed | 0 / 32 | 0 / 36 |
 
-Virtual-memory growth is about **37.1% lower** on this trace. Counter sampling
-includes process/runtime noise and is not a universal peak-space score. The
-retention/trim distinction is deliberate: caching buys reuse speed at a memory
-cost. Dedicated large mappings and excess empty regions are returned immediately.
-Mapping interception in the independent tests separately confirms no allocator
-mappings remain after trim, while the main tests require the cache to stay within
-2 MiB before trim.
+Band rounding costs 34.7% additional held VM in the burst. RSS is almost unchanged
+because slack is not fully touched. Phase samples are not exact transient peaks;
+raw output also retains process VmPeak/VmHWM. The small/class trace still pins
+173,216 KiB of VM in its third sparse phase: large reuse does not fix small-object
+survivor fragmentation. Reuse is adopted for the repeatable improvement in a weak
+large path, accepting these space/mixed-throughput costs within the empty-cache cap.
 
-## Verification actually executed
+![Measured trade-off](results/checkpoint5.png)
 
-- Strict warning-clean native build; forbidden-symbol checker, with a negative
-  control object that calls malloc correctly rejected.
-- Six official tests against both supplied reference and candidate; both 6/6.
-- Independent suite on eight-shard and one-shard builds: zero-size uniqueness,
-  class/large boundaries, alignment, calloc zeroing, overflow, mapping failures,
-  failed-realloc preservation, cross-thread ownership and 240,000 mixed operations.
-- Same independent suite under ASan/UBSan and TSan: exited 0, no diagnostics.
-  LeakSanitizer was explicitly disabled because of the host tracing limitation;
-  ASan sub-block-boundary coverage is limited without allocator annotations.
-- GCC `-fanalyzer`: compilation exited 0 with strict warnings and no diagnostics.
-- All 200 timed development runs exited 0 with endpoint checks reporting correct;
-  this is not a substitute for the full correctness suites or hidden tests.
+## Validation and compatibility
 
-The official Makefile initially built successfully but could not execute its
-test when given an absolute BUILD_DIR: it prepended `./`. We preserved the source
-and invoked the generated binary directly with a timeout; all six tests passed.
-The first official-kit clone failed because restricted shell DNS was unavailable;
-the authorized network retry succeeded. These failures are retained in the log.
+- Six unchanged official public tests; expanded independent overflow, alignment,
+  zero-size, size-boundary, injected mapping-failure, errno, calloc-reuse,
+  failed-realloc and concurrency cases passed.
+- Wrapped mapping accounting verified the shared 2 MiB cap, trim with live objects,
+  real cache hits and zero allocator mappings after quiescent trim.
+- All **59 ASan controls** passed: 25 valid accesses and 34 intentionally invalid
+  accesses detected, covering small and cached-large suballocation boundaries.
+- Native soak: 2,000,000 mixed operations and 262,144 ownership transfers;
+  ASan/UBSan: 1,000,000/65,536; TSan: 200,000/32,768. All passed. Concurrent trim,
+  post-producer-exit free, strict warnings, forbidden-symbol negative control,
+  disabled-cache checks and GCC static analysis also passed.
+- The same allocator source built with GCC 9.3.1 and ran on allocated NHPC
+  Linux 3.10/glibc 2.17, passing independent checks, one million operations,
+  131,072 transfers and the full-touch probe. GCC 13.4 on native Ubuntu 26.04.1
+  passed public/independent/sanitizer checks. The shipped GCC9 binaries also ran
+  on that Ubuntu host. This is execution evidence, not remote performance data.
 
-## Remaining work
+RSS uses smaps_rollup where available and a checked smaps sum on the older kernel.
+LeakSanitizer is disabled for the recorded host limitation. Sanitizers and static
+analysis do not prove bug absence; address reuse and already unmapped storage
+limit misuse detection. Invalid pointers/double frees and unsynchronized access to
+the same object are outside the contract. There is no signal-safety/fork-repair
+claim or support promise beyond the tested Linux x86-64 target.
 
-Longer adversarial fragmentation and ownership-transfer workloads, per-block
-debug annotations, clean Ubuntu/second-machine reproduction, clearer measurements
-of allocator-attributable peak memory and workload-dependent contention remain.
-Final normalization baselines/targets and registered team details are not verified.
-The final demo recording, submission form review, local packaging and authorized
-repository publication/submission have not happened. No NHPC performance run or
-MPI/InfiniBand result is claimed.
+## Reproduction and provenance
 
-Raw evidence and exact commands: `results/*/raw.json`, `results/*/summary.csv`,
-and the competition experiment log. The public kit is pinned in
-`SOURCES.md`. Figure generation reads those real measurements.
+Use the build and exact offline comparison commands in [README.md](README.md).
+Full commands, environment, seeds, hashes, stdout/stderr and failures are preserved:
+
+- [Main 140-process comparison](results/checkpoint5-2026-11-09/raw.json) and
+  [summary](results/checkpoint5-2026-11-09/summary.csv).
+- [Longer common confirmation](results/checkpoint5-common-confirmation-2026-11-09/raw.json).
+- [Native/sanitizer/static validation](results/checkpoint5-validation-2026-11-09/final.json).
+- [Current-source compatibility evidence](CHECKPOINT6.md).
+- [Rejected initial trial](results/checkpoint5-inline-trial-2026-11-09/raw.json) and
+  [earlier experiment history](INITIAL_REPORT.md), kept separate from selected results.
+
+The statement and API provenance are pinned in [SOURCES.md](SOURCES.md); official
+attachments are not redistributed. AI assistance and the participant-reported
+permission are disclosed in [AUTHOR.md](AUTHOR.md). No official score, private-test
+result, organizer endorsement or submission receipt is claimed.

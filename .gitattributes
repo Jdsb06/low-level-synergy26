@@ -11,3 +11,6 @@ demo/run.log binary
 *.mp4 binary
 
 *.pdf binary
+
+*.a binary
+prebuilt/bin/* binary

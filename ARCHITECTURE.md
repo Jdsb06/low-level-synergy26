@@ -108,4 +108,6 @@ a lower median. `MEMCTL_LARGE_CACHE=0` disables it for comparison.
 [Checkpoint 4](CHECKPOINT4.md) measures per-API tails and three burst/drain/refill
 cycles. Repeated large mappings have high concurrent tails; learned regions can
 retain substantial VM while sparse survivors remain. Empty-cache bounds do not
-bound live-region fragmentation. Final compatible-package and demo checks remain future work.
+bound live-region fragmentation. Current-source compatibility, clean-package and
+actual demo checks are recorded in [checkpoint 6](CHECKPOINT6.md); the final
+deliverable map and owner delivery steps are in [SUBMISSION.md](SUBMISSION.md).
