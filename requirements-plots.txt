@@ -1,0 +1,2 @@
+# Optional figure generation only; not needed for allocator, tests or benchmarks.
+matplotlib==3.11.1
