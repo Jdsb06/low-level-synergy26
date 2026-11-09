@@ -4,9 +4,10 @@ An original C11 memory allocator for the released Synergy '26 problem. It implem
 `my_malloc`, `my_free`, `my_realloc` and `my_calloc` using Linux anonymous private
 mappings, reusable size-class regions and POSIX mutexes. No standard heap allocator
 is called by the implementation. The optional `memctl_trim()` releases cached empty
-regions. **Checkpoint 4 is complete:** 105 accepted latency/lifetime profiles compare eight
-shards, one shard and glibc, exposing large-object tails and survivor fragmentation.
-Read [CHECKPOINT4.md](CHECKPOINT4.md) for current measurements and limits.
+regions. **Checkpoint 5 is complete:** capped large-object reuse improves the measured large
+trace at the cost of more held VM and a lower eight-thread mixed-throughput median.
+Read [CHECKPOINT5.md](CHECKPOINT5.md) for the current policy, evidence and limits.
+[CHECKPOINT4.md](CHECKPOINT4.md) established the earlier latency/lifetime baseline.
 [CHECKPOINT3.md](CHECKPOINT3.md) records allocator-aware ASan guards and 51 controls;
 [CHECKPOINT2.md](CHECKPOINT2.md) records region-policy measurements and NHPC validation. This remains
 a development checkpoint, not a final submission.
@@ -88,6 +89,21 @@ large regions. Read checkpoint 4 before generalizing earlier cold sparse results
 Optional plot: `MPLCONFIGDIR=/tmp/libmemctl-matplotlib python3 scripts/plot_checkpoint4.py`.
 The user authorized regular reviewed development pushes; official upload remains
 separate.
+
+## Capped large-object reuse comparison
+
+Requests above 64 KiB through 1 MiB can reuse dedicated mappings; the shared empty
+cache remains capped at 2 MiB. The current large trace is faster with more held VM;
+eight-thread mixed throughput has a lower median. See checkpoint 5 for complete
+ranges, short-run variability and the longer confirmation. Disable reuse with:
+
+```bash
+make BUILD_DIR=build-no-large-cache CPPFLAGS='-D_GNU_SOURCE -Iinclude -DMEMCTL_LARGE_CACHE=0' check
+```
+
+The `ALLOCATOR_SRC` build variable supports reproducing an earlier authored source
+in a separate build directory. Checkpoint 5 gives exact baseline and comparison
+commands; historical benchmark numbers are not automatically current scores.
 
 ## Contract and boundaries
 

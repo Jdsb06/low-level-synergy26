@@ -45,9 +45,16 @@
 #endif
 #define CACHE_LIMIT (2U * 1024U * 1024U)
 #define CACHE_REGION_LIMIT 65536U
+#ifndef MEMCTL_LARGE_CACHE
+#define MEMCTL_LARGE_CACHE 1
+#endif
+#define LARGE_CACHE_LIMIT (1024U * 1024U)
+#define LARGE_QUANTUM 65536U
+#define LARGE_CLASSES (LARGE_CACHE_LIMIT / LARGE_QUANTUM - 1U)
 
 typedef struct region region;
 typedef struct bin bin;
+typedef struct large_bin large_bin;
 
 typedef struct block_header block_header;
 struct block_header {
@@ -85,7 +92,10 @@ struct region {
     bin *owner;
     region *prev;
     region *next;
-    block_header *free_head;
+    union {
+        block_header *free_head;
+        large_bin *large_owner; /* owner == NULL selects dedicated mapping state. */
+    };
     size_t mapping_bytes;
     size_t capacity;
     size_t free_count;
@@ -100,6 +110,11 @@ struct bin {
     unsigned int busy;
 };
 
+struct large_bin {
+    _Alignas(64) pthread_mutex_t lock;
+    region *cached;
+};
+
 _Static_assert(MEMCTL_SHARDS > 0U, "at least one shard required");
 _Static_assert(MEMCTL_INITIAL_BLOCKS > 0U && MEMCTL_INITIAL_BLOCKS <= 32U,
                "initial block target must be in 1..32");
@@ -107,6 +122,9 @@ _Static_assert(sizeof(block_header) % _Alignof(max_align_t) == 0U,
                "block header must preserve max alignment on this target");
 
 static _Alignas(64) bin bins[MEMCTL_SHARDS][CLASS_COUNT];
+#if MEMCTL_LARGE_CACHE
+static large_bin large_bins[MEMCTL_SHARDS][LARGE_CLASSES];
+#endif
 static pthread_once_t once = PTHREAD_ONCE_INIT;
 static size_t page_size;
 static int init_error;
@@ -133,8 +151,30 @@ static void initialize(void)
                 return;
             }
         }
+#if MEMCTL_LARGE_CACHE
+        for (index = 0U; index < LARGE_CLASSES; ++index) {
+            const int error = pthread_mutex_init(&large_bins[shard][index].lock, NULL);
+            if (error != 0) {
+                init_error = error;
+                return;
+            }
+        }
+#endif
     }
 }
+
+#if MEMCTL_LARGE_CACHE
+static unsigned int assigned_shard(void)
+{
+    if (!shard_assigned) {
+        thread_shard = atomic_fetch_add_explicit(&next_shard, 1U,
+                                                 memory_order_relaxed) % MEMCTL_SHARDS;
+        shard_assigned = 1;
+    }
+    return thread_shard;
+}
+
+#endif
 
 static size_t align_up(size_t value, size_t alignment)
 {
@@ -270,6 +310,61 @@ static int reserve_cache(size_t bytes)
     return 0;
 }
 
+/* Keep the expanded dedicated-mapping path out of the common small-call body.
+   The supported GCC/Clang toolchains honor this optional layout hint. */
+#if defined(__GNUC__)
+__attribute__((noinline))
+#endif
+static void *allocate_large(size_t size, size_t payload)
+{
+    region *item;
+    block_header *header;
+    size_t bytes;
+    size_t target = payload;
+    large_bin *cache = NULL;
+    const size_t overhead = region_offset() + sizeof(block_header) + DEBUG_GUARD;
+#if MEMCTL_LARGE_CACHE
+    if (payload <= LARGE_CACHE_LIMIT) {
+        /* Bounded arithmetic: eligible payload is at most 1 MiB. */
+        const size_t group = (payload - 1U) / LARGE_QUANTUM;
+        target = (group + 1U) * LARGE_QUANTUM;
+        cache = &large_bins[assigned_shard()][group - 1U];
+    }
+#endif
+    if (mapping_size(target, overhead, &bytes) != 0) {
+        return NULL;
+    }
+    item = NULL;
+    if (cache != NULL) {
+        (void)pthread_mutex_lock(&cache->lock);
+        item = cache->cached;
+        if (item != NULL) {
+            cache->cached = NULL;
+            (void)atomic_fetch_sub_explicit(&cached_bytes, item->mapping_bytes,
+                                            memory_order_relaxed);
+        }
+        (void)pthread_mutex_unlock(&cache->lock);
+    }
+    if (item == NULL) {
+        item = mmap(NULL, bytes, PROT_READ | PROT_WRITE,
+                    MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+        if (item == MAP_FAILED) {
+            return NULL;
+        }
+        UNPOISON(item, bytes);
+        item->owner = NULL;
+        item->mapping_bytes = bytes;
+        item->capacity = bytes - overhead;
+        item->large_owner = cache;
+    }
+    header = (block_header *)((unsigned char *)item + region_offset());
+    UNPOISON(header, sizeof(*header));
+    header->owner = item;
+    REQUESTED(header) = size;
+    ACTIVATE(header, item->capacity, size);
+    return header + 1;
+}
+
 void *my_malloc(size_t size)
 {
     const size_t payload = size == 0U ? 1U : size;
@@ -284,25 +379,7 @@ void *my_malloc(size_t size)
         return NULL;
     }
     if (payload > SMALL_LIMIT) {
-        size_t bytes;
-        const size_t overhead = region_offset() + sizeof(block_header) + DEBUG_GUARD;
-        if (mapping_size(payload, overhead, &bytes) != 0) {
-            return NULL;
-        }
-        item = mmap(NULL, bytes, PROT_READ | PROT_WRITE,
-                    MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-        if (item == MAP_FAILED) {
-            return NULL;
-        }
-        UNPOISON(item, bytes);
-        item->owner = NULL;
-        item->mapping_bytes = bytes;
-        item->capacity = bytes - overhead;
-        header = (block_header *)((unsigned char *)item + region_offset());
-        header->owner = item;
-        REQUESTED(header) = size;
-        ACTIVATE(header, item->capacity, size);
-        return header + 1;
+        return allocate_large(size, payload);
     }
     if (!shard_assigned) {
         thread_shard = atomic_fetch_add_explicit(&next_shard, 1U,
@@ -343,6 +420,28 @@ void *my_malloc(size_t size)
     return header + 1;
 }
 
+#if defined(__GNUC__)
+__attribute__((noinline))
+#endif
+static void release_large(region *item)
+{
+    large_bin *cache = item->large_owner;
+    if (cache != NULL) {
+        (void)pthread_mutex_lock(&cache->lock);
+        if (cache->cached == NULL && reserve_cache(item->mapping_bytes)) {
+            POISON((unsigned char *)item + region_offset(),
+                   sizeof(block_header) + item->capacity + DEBUG_GUARD);
+            cache->cached = item;
+            (void)pthread_mutex_unlock(&cache->lock);
+            return;
+        }
+        (void)pthread_mutex_unlock(&cache->lock);
+    }
+    UNPOISON(item, item->mapping_bytes);
+    (void)munmap(item, item->mapping_bytes);
+    return;
+}
+
 void my_free(void *ptr)
 {
     block_header *header;
@@ -357,8 +456,7 @@ void my_free(void *ptr)
     item = header->owner;
     owner = item->owner;
     if (owner == NULL) {
-        UNPOISON(item, item->mapping_bytes);
-        (void)munmap(item, item->mapping_bytes);
+        release_large(item);
         errno = saved;
         return;
     }
@@ -461,6 +559,21 @@ void memctl_trim(void)
             }
             (void)pthread_mutex_unlock(&owner->lock);
         }
+#if MEMCTL_LARGE_CACHE
+        for (index = 0U; index < LARGE_CLASSES; ++index) {
+            large_bin *cache = &large_bins[shard][index];
+            (void)pthread_mutex_lock(&cache->lock);
+            if (cache->cached != NULL) {
+                region *item = cache->cached;
+                cache->cached = NULL;
+                (void)atomic_fetch_sub_explicit(&cached_bytes, item->mapping_bytes,
+                                                memory_order_relaxed);
+                UNPOISON(item, item->mapping_bytes);
+                (void)munmap(item, item->mapping_bytes);
+            }
+            (void)pthread_mutex_unlock(&cache->lock);
+        }
+#endif
     }
     errno = saved;
 }

@@ -1,0 +1,62 @@
+[
+  {
+    "command": [
+      "make",
+      "profiles",
+      "benchmark"
+    ],
+    "exit": 0,
+    "stdout": "cc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc bench/latency.c build/libmemctl.a -pthread -o build/latency\ncc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc bench/lifetimes.c build/libmemctl.a -pthread -o build/lifetimes\ncc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -DMEMCTL_LARGE_LIFETIMES bench/lifetimes.c build/libmemctl.a -pthread -o build/large_lifetimes\ncc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes bench/benchmark.c build/libmemctl.a -pthread -o build/benchmark_candidate\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cc",
+      "-D_GNU_SOURCE",
+      "-Iinclude",
+      "-O2",
+      "-g",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Werror",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-fno-builtin-malloc",
+      "-fno-builtin-free",
+      "-fno-builtin-calloc",
+      "-fno-builtin-realloc",
+      "-c",
+      "build-checkpoint4/allocator.c",
+      "-o",
+      "build-checkpoint4/allocator.o"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "ar",
+      "rcs",
+      "build-checkpoint4/libmemctl.a",
+      "build-checkpoint4/allocator.o"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "make",
+      "BUILD_DIR=build-checkpoint4",
+      "profiles",
+      "benchmark"
+    ],
+    "exit": 0,
+    "stdout": "cc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc bench/latency.c build-checkpoint4/libmemctl.a -pthread -o build-checkpoint4/latency\ncc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc bench/lifetimes.c build-checkpoint4/libmemctl.a -pthread -o build-checkpoint4/lifetimes\ncc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -DMEMCTL_LARGE_LIFETIMES bench/lifetimes.c build-checkpoint4/libmemctl.a -pthread -o build-checkpoint4/large_lifetimes\ncc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes bench/benchmark.c build-checkpoint4/libmemctl.a -pthread -o build-checkpoint4/benchmark_candidate\n",
+    "stderr": ""
+  }
+]

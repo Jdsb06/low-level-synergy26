@@ -31,7 +31,10 @@ do not show private SSH configuration, credentials or other students' directorie
 5. Show the recorded longer five-process comparison and explain one trade-off:
    eight shards improved the local eight-thread mixed trace but lost about 3% at
    one thread. Cite the machine and method before quoting numbers. Close with the
-   remaining fragmentation/debug/second-machine work; do not claim an official score.
+   current cache trade-off in CHECKPOINT5.md: large throughput/tails improved,
+   with more VM and lower eight-thread mixed throughput. State the remaining
+   survivor-fragmentation and current-source compatibility/package checks; do not
+   claim an official score.
 
 The official selected statement requires source/build instructions, a design note
 and benchmark results. Any final video/demo requirements from the general event

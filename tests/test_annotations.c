@@ -58,9 +58,9 @@ int main(void)
     resized = my_realloc(ptr, 68000);
     assert(resized == ptr);
     check_live(resized, 68000);
-    resized = my_realloc(ptr, 66000);
+    resized = my_realloc(ptr, 67600);
     assert(resized == ptr);
-    check_live(resized, 66000);
+    check_live(resized, 67600);
     resized = my_realloc(ptr, 64);
     assert(resized != NULL && resized != ptr);
     for (index = 0; index < 64; ++index) assert(resized[index] == 0xa5);
@@ -84,6 +84,7 @@ int main(void)
         check_live(ptr, 65537);
         my_free(ptr);
     }
+    memctl_trim();
     puts("PASS: exact payload, protected headers/tails, realloc, cache/reuse shadow");
     return 0;
 }

@@ -1,0 +1,51 @@
+make: Entering directory '/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl'
+cc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -c src/allocator.c -o build/allocator.o
+python3 scripts/check_symbols.py build/allocator.o
+PASS forbidden allocation symbol check
+ar rcs build/libmemctl.a build/allocator.o
+cc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/test_allocator.c build/libmemctl.a -pthread \
+  -Wl,--wrap=mmap -Wl,--wrap=munmap -o build/test_allocator
+timeout 90s build/test_allocator
+PASS zero semantics, alignment and size-class/large boundaries
+PASS injected mapping failures, realloc preservation and overflow
+PASS large cache reuse/zeroing, miss failure atomicity, shared cap and live-safe trim
+PASS full-region exhaustion, holes, reuse and trim with live objects
+PASS cross-thread realloc/free after producer thread exit
+PASS 240000 seeded mixed operations; bounded cache; zero mappings after trim
+All independent allocator tests passed.
+cc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes "../official/LLH-26/Systems Programming/SYSPROG10/tests/test_runner.c" build/libmemctl.a -pthread -o build/public_tests
+timeout 90s build/public_tests
+[PASS] basic allocation, free, and max_align_t alignment
+[PASS] calloc zeroing and multiplication overflow
+[PASS] realloc growth, shrink, and failure preservation
+[PASS] allocation boundary and neighboring-block integrity
+[PASS] mixed-size fragmentation and reuse stress
+  threaded workload: 160000 operations in 0.085 s (1891480 ops/s)
+[PASS] multithreaded allocation contention
+
+Summary: 6 passed, 0 failed
+ASAN_OPTIONS=detect_leaks=0 make BUILD_DIR=build-sanitize \
+  CFLAGS='-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all' check annotation-check
+make[1]: Entering directory '/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl'
+cc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -c src/allocator.c -o build-sanitize/allocator.o
+python3 scripts/check_symbols.py build-sanitize/allocator.o
+PASS forbidden allocation symbol check
+ar rcs build-sanitize/libmemctl.a build-sanitize/allocator.o
+cc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/test_allocator.c build-sanitize/libmemctl.a -pthread \
+  -Wl,--wrap=mmap -Wl,--wrap=munmap -o build-sanitize/test_allocator
+timeout 90s build-sanitize/test_allocator
+PASS zero semantics, alignment and size-class/large boundaries
+PASS injected mapping failures, realloc preservation and overflow
+PASS large cache reuse/zeroing, miss failure atomicity, shared cap and live-safe trim
+PASS full-region exhaustion, holes, reuse and trim with live objects
+PASS cross-thread realloc/free after producer thread exit
+PASS 240000 seeded mixed operations; bounded cache; zero mappings after trim
+All independent allocator tests passed.
+cc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/test_annotations.c build-sanitize/libmemctl.a -pthread -o build-sanitize/test_annotations
+cc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/asan_negative.c build-sanitize/libmemctl.a -pthread -o build-sanitize/asan_negative
+ASAN_OPTIONS=detect_leaks=0 timeout 30s build-sanitize/test_annotations
+PASS: exact payload, protected headers/tails, realloc, cache/reuse shadow
+python3 scripts/check_annotations.py build-sanitize/asan_negative --output results/checkpoint5-validation-2026-11-09/annotation-controls.json
+Annotation controls: 53/53 passed (23 valid, 30 deliberate errors)
+make[1]: Leaving directory '/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl'
+make: Leaving directory '/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl'

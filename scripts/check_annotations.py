@@ -17,11 +17,13 @@ def main():
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     sizes = [0, 1, 7, 8, 15, 16, 17, 31, 32, 33, 255, 256, 257,
-             1024, 1025, 4096, 4097, 16384, 16385, 65536, 65537, 69616, 69617]
+             1024, 1025, 4096, 4097, 16384, 16385, 65536, 65537, 69616, 69617,
+             1048576, 1048577]
     cases = [("valid", n) for n in sizes]
     cases += [("overrun", n) for n in sizes]
     cases += [("underflow", 33), ("underflow", 65537), ("freed", 33),
-              ("shrink", 48), ("grow", 33)]
+              ("shrink", 48), ("grow", 33), ("freed", 65537), ("reused", 65537),
+              ("freed", 1048576), ("reused", 1048576)]
     env = dict(os.environ, ASAN_OPTIONS="detect_leaks=0:halt_on_error=1:abort_on_error=0:exitcode=86")
     records = []
     for case, size in cases:
@@ -48,8 +50,9 @@ def main():
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(result, indent=2) + "\n")
     failures = [r for r in records if not r["passed"]]
-    print("Annotation controls: {}/{} passed (23 valid, 28 deliberate errors)".format(
-        len(records) - len(failures), len(records)))
+    valid_count = sum(case == "valid" for case, _ in cases)
+    print("Annotation controls: {}/{} passed ({} valid, {} deliberate errors)".format(
+        len(records) - len(failures), len(records), valid_count, len(cases) - valid_count))
     for record in failures:
         print(json.dumps(record))
     return bool(failures)

@@ -8,6 +8,7 @@ WARNINGS = -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow \
 NO_ALLOC = -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc
 LDLIBS += -pthread
 BUILD_DIR ?= build
+ALLOCATOR_SRC ?= src/allocator.c
 OFFICIAL_DIR ?= ../official/LLH-26/Systems Programming/SYSPROG10
 LIB = $(BUILD_DIR)/libmemctl.a
 OBJ = $(BUILD_DIR)/allocator.o
@@ -19,7 +20,7 @@ all: $(LIB) $(TEST)
 $(BUILD_DIR):
 	mkdir -p "$@"
 
-$(OBJ): src/allocator.c include/libmemctl.h | $(BUILD_DIR)
+$(OBJ): $(ALLOCATOR_SRC) include/libmemctl.h | $(BUILD_DIR)
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $(NO_ALLOC) -c $< -o $@
 
 $(LIB): $(OBJ)
@@ -71,13 +72,16 @@ $(BUILD_DIR)/fragmentation: bench/fragmentation.c $(LIB)
 fragmentation: $(BUILD_DIR)/fragmentation
 	$(BUILD_DIR)/fragmentation
 
-profiles: $(BUILD_DIR)/latency $(BUILD_DIR)/lifetimes
+profiles: $(BUILD_DIR)/latency $(BUILD_DIR)/lifetimes $(BUILD_DIR)/large_lifetimes
 
 $(BUILD_DIR)/latency: bench/latency.c bench/profile.h $(LIB)
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $(NO_ALLOC) $< $(LIB) $(LDLIBS) -o $@
 
 $(BUILD_DIR)/lifetimes: bench/lifetimes.c bench/profile.h $(LIB)
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $(NO_ALLOC) $< $(LIB) $(LDLIBS) -o $@
+
+$(BUILD_DIR)/large_lifetimes: bench/lifetimes.c bench/profile.h $(LIB)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $(NO_ALLOC) -DMEMCTL_LARGE_LIFETIMES $< $(LIB) $(LDLIBS) -o $@
 
 $(BUILD_DIR)/latency_libc: bench/latency.c bench/profile.h | $(BUILD_DIR)
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(WARNINGS) $(NO_ALLOC) -DMEMCTL_LIBC $< $(LDLIBS) -o $@
@@ -95,3 +99,4 @@ clean:
 	  $(BUILD_DIR)/soak $(BUILD_DIR)/fragmentation
 	rm -f -- $(BUILD_DIR)/test_annotations $(BUILD_DIR)/asan_negative
 	rm -f -- $(BUILD_DIR)/latency $(BUILD_DIR)/lifetimes $(BUILD_DIR)/latency_libc $(BUILD_DIR)/lifetimes_libc
+	rm -f -- $(BUILD_DIR)/large_lifetimes

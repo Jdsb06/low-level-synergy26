@@ -1,0 +1,115 @@
+[
+  {
+    "command": [
+      "make",
+      "BUILD_DIR=build-tsan",
+      "CFLAGS=-O1 -g -fsanitize=thread -fno-omit-frame-pointer",
+      "check",
+      "build-tsan/soak"
+    ],
+    "exit": 0,
+    "stdout": "cc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=thread -fno-omit-frame-pointer -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -c src/allocator.c -o build-tsan/allocator.o\npython3 scripts/check_symbols.py build-tsan/allocator.o\nPASS forbidden allocation symbol check\nar rcs build-tsan/libmemctl.a build-tsan/allocator.o\ncc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=thread -fno-omit-frame-pointer -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/test_allocator.c build-tsan/libmemctl.a -pthread \\\n  -Wl,--wrap=mmap -Wl,--wrap=munmap -o build-tsan/test_allocator\ntimeout 90s build-tsan/test_allocator\nPASS zero semantics, alignment and size-class/large boundaries\nPASS injected mapping failures, realloc preservation and overflow\nPASS large cache reuse/zeroing, miss failure atomicity, shared cap and live-safe trim\nPASS full-region exhaustion, holes, reuse and trim with live objects\nPASS cross-thread realloc/free after producer thread exit\nPASS 240000 seeded mixed operations; bounded cache; zero mappings after trim\nAll independent allocator tests passed.\ncc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=thread -fno-omit-frame-pointer -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/soak.c build-tsan/libmemctl.a -pthread -o build-tsan/soak\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "timeout",
+      "180s",
+      "build-tsan/soak",
+      "25000",
+      "20261111",
+      "64"
+    ],
+    "exit": 0,
+    "stdout": "PASS mixed full-pattern soak seed=20261111\nPASS synchronized ownership handoffs seed=20261111\nPASS 200000 mixed operations plus 32768 handoffs\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "make",
+      "BUILD_DIR=build-sanitize",
+      "CFLAGS=-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all",
+      "build-sanitize/soak"
+    ],
+    "exit": 0,
+    "stdout": "cc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/soak.c build-sanitize/libmemctl.a -pthread -o build-sanitize/soak\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "env",
+      "ASAN_OPTIONS=detect_leaks=0",
+      "timeout",
+      "180s",
+      "build-sanitize/soak",
+      "125000",
+      "20261111",
+      "128"
+    ],
+    "exit": 0,
+    "stdout": "PASS mixed full-pattern soak seed=20261111\nPASS synchronized ownership handoffs seed=20261111\nPASS 1000000 mixed operations plus 65536 handoffs\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "make",
+      "build/soak"
+    ],
+    "exit": 0,
+    "stdout": "cc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/soak.c build/libmemctl.a -pthread -o build/soak\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "timeout",
+      "180s",
+      "build/soak",
+      "125000",
+      "20261111",
+      "256"
+    ],
+    "exit": 0,
+    "stdout": "PASS mixed full-pattern soak seed=20261111\nPASS synchronized ownership handoffs seed=20261111\nPASS 1000000 mixed operations plus 131072 handoffs\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "make",
+      "BUILD_DIR=build-no-large-cache",
+      "CPPFLAGS=-D_GNU_SOURCE -Iinclude -DMEMCTL_LARGE_CACHE=0",
+      "check"
+    ],
+    "exit": 0,
+    "stdout": "mkdir -p \"build-no-large-cache\"\ncc -D_GNU_SOURCE -Iinclude -DMEMCTL_LARGE_CACHE=0 -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -c src/allocator.c -o build-no-large-cache/allocator.o\npython3 scripts/check_symbols.py build-no-large-cache/allocator.o\nPASS forbidden allocation symbol check\nar rcs build-no-large-cache/libmemctl.a build-no-large-cache/allocator.o\ncc -D_GNU_SOURCE -Iinclude -DMEMCTL_LARGE_CACHE=0 -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/test_allocator.c build-no-large-cache/libmemctl.a -pthread \\\n  -Wl,--wrap=mmap -Wl,--wrap=munmap -o build-no-large-cache/test_allocator\ntimeout 90s build-no-large-cache/test_allocator\nPASS zero semantics, alignment and size-class/large boundaries\nPASS injected mapping failures, realloc preservation and overflow\nPASS full-region exhaustion, holes, reuse and trim with live objects\nPASS cross-thread realloc/free after producer thread exit\nPASS 240000 seeded mixed operations; bounded cache; zero mappings after trim\nAll independent allocator tests passed.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "cc",
+      "-D_GNU_SOURCE",
+      "-Iinclude",
+      "-O2",
+      "-g",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Werror",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-fanalyzer",
+      "-fno-builtin-malloc",
+      "-fno-builtin-free",
+      "-fno-builtin-calloc",
+      "-fno-builtin-realloc",
+      "-c",
+      "src/allocator.c",
+      "-o",
+      "build/allocator-analyzed.o"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

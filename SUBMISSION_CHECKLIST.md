@@ -9,10 +9,12 @@
 - [x] Record reproducible local benchmark commands, raw results, hashes and trade-offs.
 - [x] Prepare initial design note, live commands and technical report.
 - [x] Hidden-style fragmentation/soak tests; retain rejected policies and trade-offs.
-- [x] Separate-machine GCC 9 build and allocated NHPC execution with matching source hash.
+- [x] Checkpoint-2 GCC 9 build and allocated NHPC execution with matching source hash.
+- [ ] Current checkpoint-5 source compatibility verification on a separate environment.
 - [x] Allocator sub-block ASan annotations, positive/negative controls and concurrent soak.
 - [x] Measured API latency and burst/sparse/refill space coverage; retain corrected baseline experiment.
-- [ ] Bounded large-object reuse experiment and final performance review.
+- [x] Capped large-object reuse, retained initial trial and longer common-workload confirmation.
+- [ ] Final performance and package review.
 - [ ] Final clean compatible Ubuntu/package reproduction.
 - [ ] Review final performance normalization targets and official form fields.
 - [ ] Verify registered team roster, ownership, final deadline and repository access.

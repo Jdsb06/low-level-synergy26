@@ -5,7 +5,8 @@
 ```text
 four public my_* entry points
     size <= 64 KiB -> thread-assigned shard -> size-class mutex -> reusable region
-    larger size   -> dedicated mmap region -> direct munmap on free
+    64 KiB..1 MiB -> shard/band mutex -> capped dedicated-mapping reuse
+    above 1 MiB   -> dedicated mmap region -> direct munmap on free
 ```
 
 64 size classes use 16-byte steps through 256 bytes, 64-byte steps through 1 KiB,
@@ -30,8 +31,11 @@ first available region in constant time; there is no scan of all allocated block
 Initializing a new region touches its metadata and has linear cost in block count.
 
 Large allocations have one region and one block. Their size calculation checks
-header addition and page-rounding overflow before mapping. Large regions are
-unmapped on free. Realloc can retain a mapping when the new request fits and is at
+header addition and page-rounding overflow before mapping. Requests above 64 KiB
+through 1 MiB use 64-KiB capacity bands, with one cache slot per band/shard. A
+region-header union stores the immutable large-cache owner in the slot used for
+small-region free-list metadata; region/header sizes remain unchanged on the target.
+Uncached, over-budget and requests above 1 MiB are unmapped on free. Realloc can retain a mapping when the new request fits and is at
 least half its capacity; substantial shrink requests move to avoid retaining a
 large mapping unnecessarily. Allocation and copying complete before the old
 object is freed. Moving realloc has linear cost in preserved payload bytes.
@@ -53,13 +57,18 @@ synchronization under the official API contract.
 
 No operation holds two bin locks at once. Realloc allocates/copies before invoking
 free, with no bin lock held. Trim takes one bin lock at a time and can only remove
-fully empty cached regions. pthread_once initializes page size and mutexes.
+fully empty cached regions. Large buckets have their own mutexes, with the same
+no-nested-lock rule. Thread assignment remains a TLS shard number, not a pointer
+to thread-owned cache storage. pthread_once initializes page size and both mutex
+arrays. Large allocate/free helpers keep their extra logic outside small-call
+bodies using an optional GCC/Clang noinline hint.
 
 ## Reclamation
 
-An empty region can remain cached only if it is at most 64 KiB, its bin has no
-other empty cached region, and an atomic reservation stays within a **2 MiB
-global bound**. All other completely empty regions are removed and unmapped.
+A small empty region can be cached if it is at most 64 KiB and its bin has no
+other cached region. Eligible large dedicated mappings can fill one cache slot
+per shard/band. Both types must reserve their full mapping bytes within a shared
+**2 MiB global bound**. All other completely empty regions are removed and unmapped.
 Claiming a cached region for allocation subtracts its bytes under the bin lock.
 The global byte counter coordinates distinct bins without nesting their locks.
 `memctl_trim()` releases those cached mappings; it never touches live regions.
@@ -93,8 +102,10 @@ mapping reclamation clears shadow state. Strides preserve separate shadow granul
 for adjacent blocks. Release and TSan builds retain the original layout and code.
 See [checkpoint 3](CHECKPOINT3.md) for executed positive/negative controls and limits:
 there is no temporal quarantine, and address reuse can hide stale-pointer access.
+[Checkpoint 5](CHECKPOINT5.md) adopts capped large-object reuse with measured
+throughput/latency gains and higher held VM; eight-thread mixed throughput has
+a lower median. `MEMCTL_LARGE_CACHE=0` disables it for comparison.
 [Checkpoint 4](CHECKPOINT4.md) measures per-API tails and three burst/drain/refill
 cycles. Repeated large mappings have high concurrent tails; learned regions can
 retain substantial VM while sparse survivors remain. Empty-cache bounds do not
-bound live-region fragmentation. A bounded large-object reuse experiment and
-final compatible-package checks remain future work.
+bound live-region fragmentation. Final compatible-package and demo checks remain future work.

@@ -111,6 +111,7 @@ static void test_failure_atomicity(void)
     unsigned char *replacement;
     CHECK(ptr != NULL);
     (void)memset(ptr, 0xCD, 113U);
+    memctl_trim(); /* Require a real cache miss before injecting mapping failure. */
     atomic_store(&fail_mapping, 1);
     errno = 0;
     replacement = my_realloc(ptr, 8U * 1024U * 1024U);
@@ -197,6 +198,73 @@ static void *mixed_worker(void *argument)
 }
 
 static slot transferred[2048];
+
+#ifndef MEMCTL_LARGE_CACHE
+#define MEMCTL_LARGE_CACHE 1
+#endif
+#if MEMCTL_LARGE_CACHE
+static void test_large_reuse(void)
+{
+    unsigned char *ptr;
+    unsigned char *next;
+    void *objects[48];
+    size_t index;
+    size_t live_bytes;
+    memctl_trim();
+    CHECK(atomic_load(&live_mapping_bytes) == 0U);
+    ptr = my_malloc(65537U);
+    CHECK(ptr != NULL);
+    memset(ptr, 0xa7, 65537U);
+    live_bytes = atomic_load(&live_mapping_bytes);
+    errno = EDOM;
+    my_free(ptr);
+    CHECK(errno == EDOM && atomic_load(&live_mapping_bytes) == live_bytes);
+    atomic_store(&fail_mapping, 1);
+    next = my_calloc(1, 65537U);
+    CHECK(next == ptr); /* Reuse must work even when every new mapping fails. */
+    verify(next, 65537U, 0);
+    memset(next, 0xb3, 65537U);
+    errno = 0;
+    CHECK(my_realloc(next, 200000U) == NULL && errno == ENOMEM);
+    verify(next, 65537U, 0xb3);
+    atomic_store(&fail_mapping, 0);
+    ptr = my_realloc(next, 200000U);
+    CHECK(ptr != NULL);
+    verify(ptr, 65537U, 0xb3);
+    memctl_trim(); /* Must retain the live mapping and reclaim only cached ones. */
+    CHECK(atomic_load(&live_mapping_bytes) > 0U);
+    ptr[199999] = 0x77;
+    my_free(ptr);
+    memctl_trim();
+    CHECK(atomic_load(&live_mapping_bytes) == 0U);
+    for (index = 0; index < 48U; ++index) {
+        objects[index] = my_malloc(65537U + index * 32768U);
+        CHECK(objects[index] != NULL);
+        memset(objects[index], (int)index, 65537U + index * 32768U);
+    }
+    for (index = 0; index < 48U; ++index) {
+        verify(objects[index], 65537U + index * 32768U, (unsigned char)index);
+        my_free(objects[index]);
+    }
+    CHECK(atomic_load(&live_mapping_bytes) <= 2U * 1024U * 1024U);
+    memctl_trim();
+    CHECK(atomic_load(&live_mapping_bytes) == 0U);
+    ptr = my_malloc(4U * 1024U * 1024U);
+    CHECK(ptr != NULL);
+    my_free(ptr);
+    CHECK(atomic_load(&live_mapping_bytes) == 0U);
+    ptr = my_malloc(1024U * 1024U);
+    CHECK(ptr != NULL);
+    my_free(ptr);
+    CHECK(atomic_load(&live_mapping_bytes) > 0U);
+    memctl_trim();
+    ptr = my_malloc(1024U * 1024U + 1U);
+    CHECK(ptr != NULL);
+    my_free(ptr);
+    CHECK(atomic_load(&live_mapping_bytes) == 0U);
+    puts("PASS large cache reuse/zeroing, miss failure atomicity, shared cap and live-safe trim");
+}
+#endif
 
 static void test_region_exhaustion(void)
 {
@@ -311,6 +379,9 @@ int main(void)
 {
     test_zero_and_boundaries();
     test_failure_atomicity();
+#if MEMCTL_LARGE_CACHE
+    test_large_reuse();
+#endif
     test_region_exhaustion();
     test_threads_and_reclamation();
     (void)puts("All independent allocator tests passed.");

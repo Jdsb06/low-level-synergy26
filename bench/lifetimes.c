@@ -3,7 +3,11 @@
 #include <pthread.h>
 
 #define WORKERS 8U
+#ifdef MEMCTL_LARGE_LIFETIMES
+#define SLOTS 64U
+#else
 #define SLOTS 512U
+#endif
 #define CLASSES 64U
 #define CYCLES 3U
 
@@ -19,11 +23,15 @@ static unsigned int command;
 
 static size_t request_size(size_t index)
 {
+#ifdef MEMCTL_LARGE_LIFETIMES
+    return 65537U + index * 1024U;
+#else
     if (index < 16U) return (index + 1U) * 16U;
     if (index < 28U) return 256U + (index - 15U) * 64U;
     if (index < 40U) return 1024U + (index - 27U) * 256U;
     if (index < 52U) return 4096U + (index - 39U) * 1024U;
     return 16384U + (index - 51U) * 4096U;
+#endif
 }
 
 static void verify(const object *item, unsigned char tag)

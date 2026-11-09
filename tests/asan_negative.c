@@ -25,6 +25,12 @@ int main(int argc, char **argv)
     } else if (strcmp(argv[1], "freed") == 0) {
         my_free((void *)ptr);
         ptr[0] = 42;
+    } else if (strcmp(argv[1], "reused") == 0) {
+        void *resized;
+        my_free((void *)ptr);
+        resized = my_calloc(1, size);
+        assert(resized == (void *)ptr);
+        ptr[size] = 42;
     } else if (strcmp(argv[1], "shrink") == 0) {
         void *resized = my_realloc((void *)ptr, 33);
         assert(resized == (void *)ptr);
