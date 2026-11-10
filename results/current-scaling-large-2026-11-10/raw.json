@@ -1,0 +1,743 @@
+{
+  "started_ist": "2026-11-10T23:02:00.538751+05:30",
+  "scope": "local development benchmark; not official score or cluster result",
+  "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "cpu_order": [
+    0,
+    2,
+    4,
+    5,
+    6,
+    7,
+    1,
+    3
+  ],
+  "placement": "first hardware thread of each physical core first, then siblings; shared cpuset, no fixed worker pinning",
+  "versions": [
+    {
+      "argv": [
+        "cc",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout": "cc (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "lscpu",
+        "--json"
+      ],
+      "returncode": 0,
+      "stdout": "{\n   \"lscpu\": [\n      {\n         \"field\": \"Architecture:\",\n         \"data\": \"x86_64\"\n      },{\n         \"field\": \"CPU op-mode(s):\",\n         \"data\": \"32-bit, 64-bit\"\n      },{\n         \"field\": \"Address sizes:\",\n         \"data\": \"39 bits physical, 48 bits virtual\"\n      },{\n         \"field\": \"Byte Order:\",\n         \"data\": \"Little Endian\"\n      },{\n         \"field\": \"CPU(s):\",\n         \"data\": \"8\"\n      },{\n         \"field\": \"On-line CPU(s) list:\",\n         \"data\": \"0-7\"\n      },{\n         \"field\": \"Vendor ID:\",\n         \"data\": \"GenuineIntel\"\n      },{\n         \"field\": \"Model name:\",\n         \"data\": \"13th Gen Intel(R) Core(TM) i3-1315U\"\n      },{\n         \"field\": \"CPU family:\",\n         \"data\": \"6\"\n      },{\n         \"field\": \"Model:\",\n         \"data\": \"186\"\n      },{\n         \"field\": \"Thread(s) per core:\",\n         \"data\": \"2\"\n      },{\n         \"field\": \"Core(s) per socket:\",\n         \"data\": \"6\"\n      },{\n         \"field\": \"Socket(s):\",\n         \"data\": \"1\"\n      },{\n         \"field\": \"Stepping:\",\n         \"data\": \"3\"\n      },{\n         \"field\": \"CPU(s) scaling MHz:\",\n         \"data\": \"96%\"\n      },{\n         \"field\": \"CPU max MHz:\",\n         \"data\": \"4500.0000\"\n      },{\n         \"field\": \"CPU min MHz:\",\n         \"data\": \"400.0000\"\n      },{\n         \"field\": \"BogoMIPS:\",\n         \"data\": \"4992.00\"\n      },{\n         \"field\": \"Flags:\",\n         \"data\": \"fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsavec xgetbv1 xsaves split_lock_detect user_shstk avx_vnni dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req hfi vnmi umip pku ospke waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize arch_lbr ibt flush_l1d arch_capabilities\"\n      },{\n         \"field\": \"Virtualization:\",\n         \"data\": \"VT-x\"\n      },{\n         \"field\": \"L1d cache:\",\n         \"data\": \"224 KiB (6 instances)\"\n      },{\n         \"field\": \"L1i cache:\",\n         \"data\": \"320 KiB (6 instances)\"\n      },{\n         \"field\": \"L2 cache:\",\n         \"data\": \"4.5 MiB (3 instances)\"\n      },{\n         \"field\": \"L3 cache:\",\n         \"data\": \"10 MiB (1 instance)\"\n      },{\n         \"field\": \"NUMA node(s):\",\n         \"data\": \"1\"\n      },{\n         \"field\": \"NUMA node0 CPU(s):\",\n         \"data\": \"0-7\"\n      },{\n         \"field\": \"Vulnerability Gather data sampling:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Ghostwrite:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Indirect target selection:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Itlb multihit:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability L1tf:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Mds:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Meltdown:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Mmio stale data:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Old microcode:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Reg file data sampling:\",\n         \"data\": \"Mitigation; Clear Register File\"\n      },{\n         \"field\": \"Vulnerability Retbleed:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Spec rstack overflow:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Spec store bypass:\",\n         \"data\": \"Mitigation; Speculative Store Bypass disabled via prctl\"\n      },{\n         \"field\": \"Vulnerability Spectre v1:\",\n         \"data\": \"Mitigation; usercopy/swapgs barriers and __user pointer sanitization\"\n      },{\n         \"field\": \"Vulnerability Spectre v2:\",\n         \"data\": \"Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S\"\n      },{\n         \"field\": \"Vulnerability Srbds:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Tsa:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Tsx async abort:\",\n         \"data\": \"Not affected\"\n      },{\n         \"field\": \"Vulnerability Vmscape:\",\n         \"data\": \"Mitigation; IBPB before exit to userspace\"\n      }\n   ]\n}\n",
+      "stderr": ""
+    }
+  ],
+  "binary_sha256": {
+    "eight_shards": "be7882d5d78946ae9f3b0daffa093dd973a5f511f4b05587b7a8a6bd3c98131b"
+  },
+  "source_sha256": "ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267",
+  "flags": "-O2 -g -std=c11 with strict warnings; one_shard additionally -DMEMCTL_SHARDS=1",
+  "trace_seed": 12345,
+  "order_seed": 20261109,
+  "warmup_operations_per_worker": 2000,
+  "limitations": [
+    "Laptop shared with desktop workloads; governor, fixed frequency and thermal isolation not controlled.",
+    "Eight threads include SMT siblings on this six-core/eight-logical-CPU host.",
+    "Timed loop checks payload endpoints; independent tests check complete payloads.",
+    "Timing includes start/finish barrier overhead, excludes thread creation, warmup and final live-object cleanup.",
+    "Reported maxrss is whole-process high-water RSS, not allocator-attributable memory.",
+    "No libc allocator comparison, official normalization target or hidden test score."
+  ],
+  "runs": [
+    {
+      "repeat": 2,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 8,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2,4,5,6,7,1,3",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "8",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":200000,\"seconds\":0.812861859,\"ops_per_second\":246044.267,\"maxrss_kib\":41380,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 200000,
+        "seconds": 0.812861859,
+        "ops_per_second": 246044.267,
+        "maxrss_kib": 41380,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.9000459759990918
+    },
+    {
+      "repeat": 4,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 2,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "2",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":2,\"operations\":50000,\"seconds\":0.189160605,\"ops_per_second\":264325.651,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 2,
+        "operations": 50000,
+        "seconds": 0.189160605,
+        "ops_per_second": 264325.651,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.2089758050024102
+    },
+    {
+      "repeat": 2,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 1,
+      "argv": [
+        "taskset",
+        "-c",
+        "0",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "1",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":25000,\"seconds\":0.109540440,\"ops_per_second\":228226.215,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 25000,
+        "seconds": 0.10954044,
+        "ops_per_second": 228226.215,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.12370466499851318
+    },
+    {
+      "repeat": 3,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 2,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "2",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":2,\"operations\":50000,\"seconds\":0.160980411,\"ops_per_second\":310596.797,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 2,
+        "operations": 50000,
+        "seconds": 0.160980411,
+        "ops_per_second": 310596.797,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.17926169800193748
+    },
+    {
+      "repeat": 3,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 4,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2,4,5",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "4",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":4,\"operations\":100000,\"seconds\":0.661956897,\"ops_per_second\":151067.238,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 4,
+        "operations": 100000,
+        "seconds": 0.661956897,
+        "ops_per_second": 151067.238,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.7080062729983183
+    },
+    {
+      "repeat": 3,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 1,
+      "argv": [
+        "taskset",
+        "-c",
+        "0",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "1",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":25000,\"seconds\":0.125457903,\"ops_per_second\":199270.029,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 25000,
+        "seconds": 0.125457903,
+        "ops_per_second": 199270.029,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.1478042760027165
+    },
+    {
+      "repeat": 4,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 1,
+      "argv": [
+        "taskset",
+        "-c",
+        "0",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "1",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":25000,\"seconds\":0.089475581,\"ops_per_second\":279405.841,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 25000,
+        "seconds": 0.089475581,
+        "ops_per_second": 279405.841,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.1017664569990302
+    },
+    {
+      "repeat": 2,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 4,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2,4,5",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "4",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":4,\"operations\":100000,\"seconds\":0.377443949,\"ops_per_second\":264940.000,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 4,
+        "operations": 100000,
+        "seconds": 0.377443949,
+        "ops_per_second": 264940.0,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.4117299540012027
+    },
+    {
+      "repeat": 0,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 8,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2,4,5,6,7,1,3",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "8",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":200000,\"seconds\":0.857359215,\"ops_per_second\":233274.451,\"maxrss_kib\":41576,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 200000,
+        "seconds": 0.857359215,
+        "ops_per_second": 233274.451,
+        "maxrss_kib": 41576,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.941759211000317
+    },
+    {
+      "repeat": 4,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 4,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2,4,5",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "4",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":4,\"operations\":100000,\"seconds\":0.349068174,\"ops_per_second\":286476.991,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 4,
+        "operations": 100000,
+        "seconds": 0.349068174,
+        "ops_per_second": 286476.991,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.38413776400193456
+    },
+    {
+      "repeat": 1,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 8,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2,4,5,6,7,1,3",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "8",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":200000,\"seconds\":0.934623005,\"ops_per_second\":213990.025,\"maxrss_kib\":40944,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 200000,
+        "seconds": 0.934623005,
+        "ops_per_second": 213990.025,
+        "maxrss_kib": 40944,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 1.0348673280022922
+    },
+    {
+      "repeat": 0,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 1,
+      "argv": [
+        "taskset",
+        "-c",
+        "0",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "1",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":25000,\"seconds\":0.133086065,\"ops_per_second\":187848.367,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 25000,
+        "seconds": 0.133086065,
+        "ops_per_second": 187848.367,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.15561306499876082
+    },
+    {
+      "repeat": 0,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 4,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2,4,5",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "4",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":4,\"operations\":100000,\"seconds\":0.551706017,\"ops_per_second\":181255.953,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 4,
+        "operations": 100000,
+        "seconds": 0.551706017,
+        "ops_per_second": 181255.953,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.6062800740000966
+    },
+    {
+      "repeat": 4,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 8,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2,4,5,6,7,1,3",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "8",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":200000,\"seconds\":0.921602252,\"ops_per_second\":217013.359,\"maxrss_kib\":40956,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 200000,
+        "seconds": 0.921602252,
+        "ops_per_second": 217013.359,
+        "maxrss_kib": 40956,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 1.0190507959996467
+    },
+    {
+      "repeat": 1,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 4,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2,4,5",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "4",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":4,\"operations\":100000,\"seconds\":0.372359564,\"ops_per_second\":268557.625,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 4,
+        "operations": 100000,
+        "seconds": 0.372359564,
+        "ops_per_second": 268557.625,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.4137885919990367
+    },
+    {
+      "repeat": 1,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 1,
+      "argv": [
+        "taskset",
+        "-c",
+        "0",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "1",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":1,\"operations\":25000,\"seconds\":0.101806613,\"ops_per_second\":245563.616,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 1,
+        "operations": 25000,
+        "seconds": 0.101806613,
+        "ops_per_second": 245563.616,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.11317907299962826
+    },
+    {
+      "repeat": 2,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 2,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "2",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":2,\"operations\":50000,\"seconds\":0.145110563,\"ops_per_second\":344564.854,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 2,
+        "operations": 50000,
+        "seconds": 0.145110563,
+        "ops_per_second": 344564.854,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.15960136800276814
+    },
+    {
+      "repeat": 3,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 8,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2,4,5,6,7,1,3",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "8",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":8,\"operations\":200000,\"seconds\":0.812063114,\"ops_per_second\":246286.276,\"maxrss_kib\":40824,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 8,
+        "operations": 200000,
+        "seconds": 0.812063114,
+        "ops_per_second": 246286.276,
+        "maxrss_kib": 40824,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.9080248120008036
+    },
+    {
+      "repeat": 0,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 2,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "2",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":2,\"operations\":50000,\"seconds\":0.132185837,\"ops_per_second\":378255.350,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 2,
+        "operations": 50000,
+        "seconds": 0.132185837,
+        "ops_per_second": 378255.35,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.15109946600205149
+    },
+    {
+      "repeat": 1,
+      "algorithm": "eight_shards",
+      "workload": "large",
+      "threads": 2,
+      "argv": [
+        "taskset",
+        "-c",
+        "0,2",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "2",
+        "25000",
+        "12345",
+        "large"
+      ],
+      "returncode": 0,
+      "stdout": "{\"threads\":2,\"operations\":50000,\"seconds\":0.344841870,\"ops_per_second\":144993.994,\"maxrss_kib\":22988,\"correct\":true}\n",
+      "stderr": "",
+      "metrics": {
+        "threads": 2,
+        "operations": 50000,
+        "seconds": 0.34484187,
+        "ops_per_second": 144993.994,
+        "maxrss_kib": 22988,
+        "correct": true
+      },
+      "wall_seconds_including_startup": 0.3839922649967775
+    }
+  ],
+  "space_runs": [
+    {
+      "repeat": 0,
+      "algorithm": "eight_shards",
+      "argv": [
+        "taskset",
+        "-c",
+        "0",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "space"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":14504946,\"before_vm_kib\":2812,\"before_rss_kib\":1920,\"held_vm_kib\":21220,\"held_rss_kib\":19500,\"freed_vm_kib\":2904,\"freed_rss_kib\":2012,\"trimmed_vm_kib\":2812,\"trimmed_rss_kib\":1920}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 14504946,
+        "before_vm_kib": 2812,
+        "before_rss_kib": 1920,
+        "held_vm_kib": 21220,
+        "held_rss_kib": 19500,
+        "freed_vm_kib": 2904,
+        "freed_rss_kib": 2012,
+        "trimmed_vm_kib": 2812,
+        "trimmed_rss_kib": 1920
+      }
+    },
+    {
+      "repeat": 1,
+      "algorithm": "eight_shards",
+      "argv": [
+        "taskset",
+        "-c",
+        "0",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "space"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":14504946,\"before_vm_kib\":2812,\"before_rss_kib\":1924,\"held_vm_kib\":21220,\"held_rss_kib\":19504,\"freed_vm_kib\":2904,\"freed_rss_kib\":2016,\"trimmed_vm_kib\":2812,\"trimmed_rss_kib\":1924}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 14504946,
+        "before_vm_kib": 2812,
+        "before_rss_kib": 1924,
+        "held_vm_kib": 21220,
+        "held_rss_kib": 19504,
+        "freed_vm_kib": 2904,
+        "freed_rss_kib": 2016,
+        "trimmed_vm_kib": 2812,
+        "trimmed_rss_kib": 1924
+      }
+    },
+    {
+      "repeat": 2,
+      "algorithm": "eight_shards",
+      "argv": [
+        "taskset",
+        "-c",
+        "0",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "space"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":14504946,\"before_vm_kib\":2812,\"before_rss_kib\":1920,\"held_vm_kib\":21220,\"held_rss_kib\":19500,\"freed_vm_kib\":2904,\"freed_rss_kib\":2012,\"trimmed_vm_kib\":2812,\"trimmed_rss_kib\":1920}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 14504946,
+        "before_vm_kib": 2812,
+        "before_rss_kib": 1920,
+        "held_vm_kib": 21220,
+        "held_rss_kib": 19500,
+        "freed_vm_kib": 2904,
+        "freed_rss_kib": 2012,
+        "trimmed_vm_kib": 2812,
+        "trimmed_rss_kib": 1920
+      }
+    },
+    {
+      "repeat": 3,
+      "algorithm": "eight_shards",
+      "argv": [
+        "taskset",
+        "-c",
+        "0",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "space"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":14504946,\"before_vm_kib\":2812,\"before_rss_kib\":1920,\"held_vm_kib\":21220,\"held_rss_kib\":19500,\"freed_vm_kib\":2904,\"freed_rss_kib\":2012,\"trimmed_vm_kib\":2812,\"trimmed_rss_kib\":1920}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 14504946,
+        "before_vm_kib": 2812,
+        "before_rss_kib": 1920,
+        "held_vm_kib": 21220,
+        "held_rss_kib": 19500,
+        "freed_vm_kib": 2904,
+        "freed_rss_kib": 2012,
+        "trimmed_vm_kib": 2812,
+        "trimmed_rss_kib": 1920
+      }
+    },
+    {
+      "repeat": 4,
+      "algorithm": "eight_shards",
+      "argv": [
+        "taskset",
+        "-c",
+        "0",
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build/benchmark_candidate",
+        "space"
+      ],
+      "returncode": 0,
+      "stdout": "{\"payload_bytes\":14504946,\"before_vm_kib\":2812,\"before_rss_kib\":1920,\"held_vm_kib\":21220,\"held_rss_kib\":19500,\"freed_vm_kib\":2904,\"freed_rss_kib\":2012,\"trimmed_vm_kib\":2812,\"trimmed_rss_kib\":1920}\n",
+      "stderr": "",
+      "metrics": {
+        "payload_bytes": 14504946,
+        "before_vm_kib": 2812,
+        "before_rss_kib": 1920,
+        "held_vm_kib": 21220,
+        "held_rss_kib": 19500,
+        "freed_vm_kib": 2904,
+        "freed_rss_kib": 2012,
+        "trimmed_vm_kib": 2812,
+        "trimmed_rss_kib": 1920
+      }
+    }
+  ],
+  "finished_ist": "2026-11-10T23:02:09.684839+05:30"
+}

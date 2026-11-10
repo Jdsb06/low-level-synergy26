@@ -1,0 +1,5 @@
+algorithm,threads,workload,repetitions,median_ops_per_second,min_ops_per_second,max_ops_per_second
+eight_shards,1,large,5,228226.215,187848.367,279405.841
+eight_shards,2,large,5,310596.797,144993.994,378255.35
+eight_shards,4,large,5,264940.0,151067.238,286476.991
+eight_shards,8,large,5,233274.451,213990.025,246286.276

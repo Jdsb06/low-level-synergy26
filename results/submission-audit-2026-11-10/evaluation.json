@@ -1,0 +1,123 @@
+{
+  "started_utc": "2026-11-10T17:31:35.264533+00:00",
+  "status": "PASS",
+  "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.43",
+  "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "compiler": [
+    "cc"
+  ],
+  "source_sha256": "ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267",
+  "options": {
+    "sanitizers": true,
+    "official_dir": "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/official/recheck-2026-11-10/Systems Programming/SYSPROG10"
+  },
+  "steps": [
+    {
+      "label": "Compiler version",
+      "command": [
+        "cc",
+        "--version"
+      ],
+      "cwd": "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review",
+      "exit": 0,
+      "stdout": "cc (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+      "stderr": "",
+      "seconds": 0.007
+    },
+    {
+      "label": "Source, prebuilt, recording and document integrity",
+      "command": [
+        "/usr/bin/python3",
+        "scripts/verify_submission.py"
+      ],
+      "cwd": "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review",
+      "exit": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"source_sha256\": \"ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267\",\n  \"package_input_files\": 137,\n  \"prebuilt_checksums\": 8,\n  \"prebuilt_source_inputs\": 8,\n  \"local_links_checked\": 129,\n  \"note\": \"Integrity verification is separate from executed tests and official submission.\"\n}\n",
+      "stderr": "",
+      "seconds": 0.05
+    },
+    {
+      "label": "Fresh native build, forbidden symbols and independent tests",
+      "command": [
+        "make",
+        "CC=cc",
+        "PYTHON=/usr/bin/python3",
+        "BUILD_DIR=build-evaluate-ewvynd1l/native",
+        "CFLAGS=-O2 -g",
+        "check"
+      ],
+      "cwd": "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review",
+      "exit": 0,
+      "stdout": "mkdir -p \"build-evaluate-ewvynd1l/native\"\ncc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -c src/allocator.c -o build-evaluate-ewvynd1l/native/allocator.o\n/usr/bin/python3 scripts/check_symbols.py build-evaluate-ewvynd1l/native/allocator.o\nPASS forbidden allocation symbol check\nar rcs build-evaluate-ewvynd1l/native/libmemctl.a build-evaluate-ewvynd1l/native/allocator.o\ncc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/test_allocator.c build-evaluate-ewvynd1l/native/libmemctl.a -pthread \\\n  -Wl,--wrap=mmap -Wl,--wrap=munmap -o build-evaluate-ewvynd1l/native/test_allocator\ntimeout 90s build-evaluate-ewvynd1l/native/test_allocator\nPASS zero semantics, alignment and size-class/large boundaries\nPASS injected mapping failures, realloc preservation and overflow\nPASS large cache reuse/zeroing, miss failure atomicity, shared cap and live-safe trim\nPASS full-region exhaustion, holes, reuse and trim with live objects\nPASS cross-thread realloc/free after producer thread exit\nPASS 240000 seeded mixed operations; bounded cache; zero mappings after trim\nAll independent allocator tests passed.\n",
+      "stderr": "",
+      "seconds": 0.905
+    },
+    {
+      "label": "Build the public-API example",
+      "command": [
+        "cc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Iinclude",
+        "examples/basic.c",
+        "build-evaluate-ewvynd1l/native/libmemctl.a",
+        "-pthread",
+        "-o",
+        "build-evaluate-ewvynd1l/native/example"
+      ],
+      "cwd": "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "seconds": 0.032
+    },
+    {
+      "label": "Run the documented example",
+      "command": [
+        "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review/build-evaluate-ewvynd1l/native/example"
+      ],
+      "cwd": "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review",
+      "exit": 0,
+      "stdout": "calloc: 8 zeroed items\nrealloc: 8 values preserved in a 32-item buffer\nfree + trim: example complete\n",
+      "stderr": "",
+      "seconds": 0.001
+    },
+    {
+      "label": "Unchanged official public tests",
+      "command": [
+        "make",
+        "CC=cc",
+        "PYTHON=/usr/bin/python3",
+        "BUILD_DIR=build-evaluate-ewvynd1l/native",
+        "CFLAGS=-O2 -g",
+        "OFFICIAL_DIR=/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/official/recheck-2026-11-10/Systems Programming/SYSPROG10",
+        "public-test"
+      ],
+      "cwd": "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review",
+      "exit": 0,
+      "stdout": "cc -D_GNU_SOURCE -Iinclude -O2 -g -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes \"/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/official/recheck-2026-11-10/Systems Programming/SYSPROG10/tests/test_runner.c\" build-evaluate-ewvynd1l/native/libmemctl.a -pthread -o build-evaluate-ewvynd1l/native/public_tests\ntimeout 90s build-evaluate-ewvynd1l/native/public_tests\n[PASS] basic allocation, free, and max_align_t alignment\n[PASS] calloc zeroing and multiplication overflow\n[PASS] realloc growth, shrink, and failure preservation\n[PASS] allocation boundary and neighboring-block integrity\n[PASS] mixed-size fragmentation and reuse stress\n  threaded workload: 160000 operations in 0.027 s (5930169 ops/s)\n[PASS] multithreaded allocation contention\n\nSummary: 6 passed, 0 failed\n",
+      "stderr": "",
+      "seconds": 0.226
+    },
+    {
+      "label": "Fresh ASan/UBSan build, independent tests and 59 annotation controls",
+      "command": [
+        "make",
+        "CC=cc",
+        "PYTHON=/usr/bin/python3",
+        "BUILD_DIR=build-evaluate-ewvynd1l/sanitized",
+        "CFLAGS=-O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all",
+        "check",
+        "annotation-check"
+      ],
+      "cwd": "/tmp/libmemctl-final-review-ba3lvv0z/zip/libmemctl-review",
+      "exit": 0,
+      "stdout": "mkdir -p \"build-evaluate-ewvynd1l/sanitized\"\ncc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes -fno-builtin-malloc -fno-builtin-free -fno-builtin-calloc -fno-builtin-realloc -c src/allocator.c -o build-evaluate-ewvynd1l/sanitized/allocator.o\n/usr/bin/python3 scripts/check_symbols.py build-evaluate-ewvynd1l/sanitized/allocator.o\nPASS forbidden allocation symbol check\nar rcs build-evaluate-ewvynd1l/sanitized/libmemctl.a build-evaluate-ewvynd1l/sanitized/allocator.o\ncc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/test_allocator.c build-evaluate-ewvynd1l/sanitized/libmemctl.a -pthread \\\n  -Wl,--wrap=mmap -Wl,--wrap=munmap -o build-evaluate-ewvynd1l/sanitized/test_allocator\ntimeout 90s build-evaluate-ewvynd1l/sanitized/test_allocator\nPASS zero semantics, alignment and size-class/large boundaries\nPASS injected mapping failures, realloc preservation and overflow\nPASS large cache reuse/zeroing, miss failure atomicity, shared cap and live-safe trim\nPASS full-region exhaustion, holes, reuse and trim with live objects\nPASS cross-thread realloc/free after producer thread exit\nPASS 240000 seeded mixed operations; bounded cache; zero mappings after trim\nAll independent allocator tests passed.\ncc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/test_annotations.c build-evaluate-ewvynd1l/sanitized/libmemctl.a -pthread -o build-evaluate-ewvynd1l/sanitized/test_annotations\ncc -D_GNU_SOURCE -Iinclude -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=all -std=c11 -Wall -Wextra -Wpedantic -Werror -Wshadow -Wstrict-prototypes -Wmissing-prototypes tests/asan_negative.c build-evaluate-ewvynd1l/sanitized/libmemctl.a -pthread -o build-evaluate-ewvynd1l/sanitized/asan_negative\nASAN_OPTIONS=detect_leaks=0 timeout 30s build-evaluate-ewvynd1l/sanitized/test_annotations\nPASS: exact payload, protected headers/tails, realloc, cache/reuse shadow\n/usr/bin/python3 scripts/check_annotations.py build-evaluate-ewvynd1l/sanitized/asan_negative \nAnnotation controls: 59/59 passed (25 valid, 34 deliberate errors)\n",
+      "stderr": "",
+      "seconds": 4.627
+    }
+  ],
+  "finished_utc": "2026-11-10T17:31:41.115612+00:00"
+}

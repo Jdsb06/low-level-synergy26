@@ -17,7 +17,9 @@
 - [x] Explicit package inventory, integrity checks and reproducible archive generation included.
 - [x] Fresh-copy build, sanitizer, prebuilt and archive checks recorded in final readiness evidence.
 - [x] Repository inventory reviewed: official kits, credentials, private contacts and other competitions excluded.
-- [x] Official form inspected read-only; known track/question/repo values documented; YouTube field is optional.
+- [x] Official form rechecked read-only on 10 November: GitHub URL delivery, optional YouTube, no ZIP-upload field.
+- [x] Latest official SYSPROG10 files compared with pinned kit; all six are byte-identical.
+- [x] One-command isolated judge check and explicit rubric-to-evidence map included.
 
 ## Participant's final actions
 

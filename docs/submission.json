@@ -48,10 +48,16 @@
     "results/checkpoint5-common-confirmation-2026-11-09/raw.json",
     "examples/basic.c",
     "docs/assets/overview.svg",
-    "docs/reproduction.md"
+    "docs/reproduction.md",
+    "scripts/evaluate.py"
   ],
   "artifacts": {
     "output/pdf/libmemctl-review.pdf": "3c81c11b5e7a13a3cb519bc1296748a2173fc3040dfb7485a39d5c526e2e669b",
     "demo/terminal-replay.mp4": "cf149d4d503a1d01d141347c4eda39a344399ad6c651d7481989d1f19c9d81f2"
+  },
+  "official_kit_recheck": {
+    "date": "2026-11-10",
+    "main_commit": "05b1aa7445770408bb4307c7f8c8999b502c0a6f",
+    "selected_problem_files_identical_to_pinned_commit": true
   }
 }

@@ -22,7 +22,7 @@ Jashandeep Singh · solo · IMT2024022
 | --- | --- |
 | Understand the design | [Architecture and invariants](docs/architecture.md) |
 | Check the implementation | [Allocator source](src/allocator.c) and [public interface](include/libmemctl.h) |
-| Run the correctness suite | `make check` |
+| Evaluate a fresh build | `python3 scripts/evaluate.py` — [rubric and review guide](docs/review-guide.md) |
 | See the measured trade-off | [The results below](#measured-results) and [full report](docs/report.md) |
 | Watch it working | [Actual terminal replay](demo/terminal-replay.mp4) or `bash demo/run_demo.sh` |
 
@@ -32,10 +32,17 @@ On **Linux x86-64**, use a C11 compiler, Make, binutils, pthreads, coreutils and
 Python 3.9+. No downloads or third-party Python packages are needed for these steps.
 
 ```bash
-make check
-cc -std=c11 -Wall -Wextra -Werror -Iinclude examples/basic.c build/libmemctl.a -pthread -o build/example
-./build/example
+git clone https://github.com/Jdsb06/low-level-synergy26.git
+cd low-level-synergy26
+python3 scripts/evaluate.py
 ```
+
+Already downloaded? Run the final command from the directory containing `Makefile`.
+It verifies source/binary/media/document integrity, builds in a fresh directory,
+checks forbidden symbols, runs the independent suite, and compiles/runs the example.
+Exact commands, outputs and exit codes are saved in `build-evaluate-*/evaluation.json`.
+For ASan/UBSan and all 59 annotation controls, add `--sanitizers`; the separately
+obtained official suite can be added with `--official-dir '/path/to/SYSPROG10'`.
 
 The [example](examples/basic.c) allocates zeroed storage, writes values, grows the
 buffer while checking that those values survive, then frees and trims it:
@@ -99,6 +106,9 @@ make sanitize                        # ASan/UBSan + expected-error controls
 LeakSanitizer being disabled, address-reuse detection limits and the supported
 concurrency contract. Invalid/double frees, signal safety and fork-time lock repair
 are outside the supported contract.
+
+The [review guide](docs/review-guide.md#evidence-against-the-official-rubric) maps
+correctness, throughput, space and engineering requirements to source and evidence.
 
 <details>
 <summary><strong>More: official tests, benchmarks, archives and project history</strong></summary>

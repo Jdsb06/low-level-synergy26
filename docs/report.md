@@ -1,6 +1,6 @@
 # libmemctl — design, validation and measured trade-offs
 
-Jashandeep Singh · solo · IMT2024022 · SYSPROG10 · 9 November 2026.
+Jashandeep Singh · solo · IMT2024022 · SYSPROG10. Updated 10 November 2026.
 Selected allocator SHA-256:
 `ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267`.
 
@@ -110,6 +110,30 @@ survivor fragmentation. Reuse is adopted for the repeatable improvement in a wea
 large path, accepting these space/mixed-throughput costs within the empty-cache cap.
 
 ![Measured trade-off](../results/checkpoint5.png)
+
+## Additional current-source scaling check — 10 November
+
+The selected allocator was also executed at **1, 2, 4 and 8 threads**, with five
+fresh processes per cell. Small/mixed traces use 5,000,000 API calls per worker;
+large uses 25,000. All60 timing processes and10 separate space samples exited0.
+These are a new current-source check, not replacements for the earlier paired
+comparison. GCC15.2.0, strict C11 `-O2 -g`, fixed seed12345, randomized order and
+physical-core-first shared CPU sets were recorded by the existing runner.
+
+| Threads | Small, M calls/s | Mixed, M calls/s | Large, calls/s |
+| --- | ---: | ---: | ---: |
+| 1 | 39.987 | 31.041 | 228,226 |
+| 2 | 38.885 | 29.406 | 310,597 |
+| 4 | 38.081 | 32.287 | 264,940 |
+| 8 | 59.201 | 51.383 | 233,274 |
+
+The scaling is workload-dependent and not linear: the large path's kernel mapping
+work and contention still limit it. Shared-desktop timing noise and overlapping
+ranges are retained; this is not an official-machine score or a new causal claim
+about sharding. Raw invocations, source/binary hashes, machine details, all runs and
+ranges: [small/mixed](../results/current-scaling-common-2026-11-10/raw.json) and
+[large](../results/current-scaling-large-2026-11-10/raw.json). Reproduction commands
+are in [the guide](reproduction.md#current-source-thread-scaling).
 
 ## Validation and compatibility
 

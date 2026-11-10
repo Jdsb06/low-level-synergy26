@@ -49,3 +49,17 @@ YouTube demo field explicitly optional. No form was filled and no OS-specific
 video/Docker/ranking rule is inferred for Systems Programming.
 Participant confirmed solo identity as Jashandeep Singh, IMT2024022 in chat;
 contact details and a portal receipt are not supplied or published.
+
+
+Delivery recheck, **10 November 2026**: official main advanced to
+`05b1aa7445770408bb4307c7f8c8999b502c0a6f` (commit-ID0003). A separate ignored clone
+was compared with the pinned kit: all six SYSPROG10 files are byte-identical,
+including statement SHA above and public runner SHA
+`37febda4b4a693c4fb5d315f27276aa12be8677c1e8576e2571c5ab31bf7a03c`.
+Original implementation provenance remains pinned; no changed track rule was ignored.
+The expanded organizer listing still gives 13 Nov23:59 IST, subject to change.
+The official form was open and still asks for name/institute/phone/email, track,
+question ID and a GitHub link, with optional YouTube and no file-upload field.
+No form interaction or organizer communication occurred. Signed-out GitHub returned
+404; the owner must establish public judge access before submitting. GitHub CLI
+was unauthenticated, while existing authorized SSH read access continued to work.

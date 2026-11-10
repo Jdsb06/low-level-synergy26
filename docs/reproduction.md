@@ -8,6 +8,18 @@ not a guarantee for every architecture or runtime.
 
 ## Build and example
 
+For a fresh isolated check with recorded commands and results:
+
+```bash
+python3 scripts/evaluate.py
+python3 scripts/evaluate.py --sanitizers --official-dir '/path/to/LLH-26/Systems Programming/SYSPROG10'
+```
+
+The default run checks authored tests and the example offline. Official tests and
+sanitizers are explicit additions; the official kit is obtained separately. Build
+outputs and `evaluation.json` stay in unique ignored `build-evaluate-*` directories.
+For manual builds instead:
+
 ```bash
 make check
 cc -std=c11 -Wall -Wextra -Werror -Iinclude examples/basic.c build/libmemctl.a -pthread -o build/example
@@ -84,6 +96,21 @@ make BUILD_DIR=build-no-large-cache CPPFLAGS='-D_GNU_SOURCE -Iinclude -DMEMCTL_L
 ```
 
 The additional cached-large sanitizer controls target the default enabled build.
+
+## Current-source thread scaling
+
+This separate check covers 1/2/4/8 threads on the selected source without an
+alternate allocator or official kit. It needs eight available logical CPUs:
+
+```bash
+make benchmark
+python3 scripts/run_benchmarks.py --algorithms eight_shards --threads 1 2 4 8 --repetitions 5 --operations 5000000 --workloads small mixed --output results/new-current-common
+python3 scripts/run_benchmarks.py --algorithms eight_shards --threads 1 2 4 8 --repetitions 5 --operations 25000 --workloads large --output results/new-current-large
+```
+
+Use a fresh checkout/build for measurement. These runs include60 timing processes
+and10 space samples; read the limits and ranges in the report. The different traces
+and durations must not be combined with the earlier comparison to invent a score.
 
 <details>
 <summary>Earlier sharding / libc / reference experiments</summary>
