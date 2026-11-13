@@ -1,4 +1,4 @@
-"""Compare exact checkpoint-4 source against capped large-object reuse."""
+"""Compare the pinned baseline allocator against bounded large-object reuse."""
 import argparse
 import csv
 from datetime import datetime, timezone
@@ -50,12 +50,12 @@ def main():
     cpus = cpu_order()
     if len(cpus) < 8:
         parser.error("eight available logical CPUs required")
-    baseline = ROOT / "build-checkpoint4/allocator.c"
+    baseline = ROOT / "build-baseline/allocator.c"
     if hashlib.sha256(baseline.read_bytes()).hexdigest() != BASELINE_SHA:
-        parser.error("baseline source must match exact checkpoint 4")
-    variants = {"checkpoint4": "build-checkpoint4", "capped_cache": "build"}
+        parser.error("baseline source must match the pinned baseline hash")
+    variants = {"baseline": "build-baseline", "capped_cache": "build"}
     binaries = ["latency", "benchmark_candidate", "lifetimes", "large_lifetimes"]
-    source_files = ["src/allocator.c", "build-checkpoint4/allocator.c", "bench/latency.c",
+    source_files = ["src/allocator.c", "build-baseline/allocator.c", "bench/latency.c",
                     "bench/benchmark.c", "bench/lifetimes.c", "bench/profile.h", "Makefile",
                     "scripts/compare_large_cache.py", "scripts/profile_workloads.py",
                     "scripts/run_benchmarks.py"]
@@ -74,7 +74,7 @@ def main():
                                "Latency: 2000 warmup calls/worker; nearest-rank process quantiles include timer and scheduling costs. Summary medians are not pooled quantiles.",
                                "Throughput: existing benchmark with endpoint checks and barrier overhead; 2000 warmup calls/worker. Large throughput uses 65537..196608 bytes; latency large uses 65537..131072.",
                                "Space: pre-allocation idle, all workers alive, all requested bytes touched. Phase samples are not exact transient peaks; high-water values are whole-process counters.",
-                               "Small/class lifetimes repeat checkpoint 4; added large lifetime trace has 512 burst objects, 64 sparse survivors and three cycles.",
+                               "Small/class lifetimes use the same baseline trace; the large lifetime trace has 512 burst objects, 64 sparse survivors and three cycles.",
                                "No official score, hidden trace, cluster timing, libc comparison or general speed guarantee."], runs=[])
     jobs = [(repeat, v, "latency", w, n) for repeat in range(args.repetitions)
             for v in variants for w in ("hot", "mixed", "large") for n in (1, 8)]

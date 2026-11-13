@@ -95,6 +95,8 @@ def verify(root=ROOT):
     if not (required | PREBUILT_FILES | BUILD_INPUTS).issubset(set(package)):
         raise ValueError("Package omits a required deliverable")
     for name in package:
+        if "checkpoint" in name.lower() or "history" in PurePosixPath(name).parts:
+            raise ValueError("Development-only artifact in submission: " + name)
         checked_path(root, name)
 
     # Judge-facing links must also work in a standalone clone/extracted package.

@@ -28,12 +28,10 @@
     "+faststart",
     "/home/jdsb/Desktop/BiULding/Hackathons/synergy-hackathons-26/02-low-level/libmemctl/demo/terminal-replay.mp4"
   ],
-  "cast_sha256": "689aabbedf6512bc6a2ef3aa57e9bb7258ab731e2e594266ac8148604f092bfe",
-  "video_sha256": "cf149d4d503a1d01d141347c4eda39a344399ad6c651d7481989d1f19c9d81f2",
-  "duration_seconds": 15.584335,
+  "cast_sha256": "dd8a5916622c65bbc25a4fd73f1d3d1ca09d95befbc04179e2436dd242a37f40",
+  "video_sha256": "8804e9fd2f4718bac48d82c43bfd4ef62b98da67d396e84b512607261d9526b3",
+  "duration_seconds": 14.429343,
   "fps": 15,
   "final_hold_seconds": 2,
-  "scope": "Rendered terminal replay at recorded event times; not an unedited desktop screen capture.",
-  "encoder_version": "ffmpeg version 8.0.1-3ubuntu2+esm5 Copyright (c) 2000-2025 the FFmpeg developers",
-  "pillow_version": "12.1.1"
+  "scope": "Rendered terminal replay at recorded event times; not an unedited desktop screen capture."
 }

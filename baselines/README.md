@@ -1,18 +1,18 @@
-# Authored comparison source
+# Comparison baseline
 
-`checkpoint4_allocator.c` is our earlier authored allocator, not the official
-one-mapping-per-object starter. It comes from development commit
-`ad2ae279664ea83473f3092767dd6c2ef2214ff3`, with SHA-256
+`allocator.c` is our authored allocator before bounded large-mapping reuse, not the
+official one-mapping-per-allocation starter. Its SHA-256 is
 `521932e19106be195857014b44c2531e137c2b6e54cd33927f93cb138952e9a0`.
+It makes the paired throughput/latency/space comparison reproducible offline.
 
-This explicit snapshot makes the checkpoint-5 comparison reproducible from a
-source archive without Git history or network access:
+Run from the project root:
 
 ```bash
-mkdir -p build-checkpoint4
-cp baselines/checkpoint4_allocator.c build-checkpoint4/allocator.c
-make BUILD_DIR=build-checkpoint4 ALLOCATOR_SRC=build-checkpoint4/allocator.c profiles benchmark
+mkdir -p build-baseline
+cp baselines/allocator.c build-baseline/allocator.c
+make BUILD_DIR=build-baseline ALLOCATOR_SRC=build-baseline/allocator.c profiles benchmark
 ```
 
-The selected implementation remains `src/allocator.c`. These implementations
-export the same API and must be linked into separate executables, not together.
+The submitted implementation is `src/allocator.c`. The two implementations export
+the same API and must be linked into separate executables, never together. The
+[reproduction guide](../docs/reproduction.md) supplies the complete comparison commands.

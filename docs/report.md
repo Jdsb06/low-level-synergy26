@@ -42,9 +42,9 @@ and debug free-list handling are described in [ARCHITECTURE.md](architecture.md)
 
 ## Measurement method
 
-The selected change is compared against the exact authored checkpoint-4 allocator,
+The selected change is compared against the exact authored uncached-large baseline allocator,
 SHA `521932e19106be195857014b44c2531e137c2b6e54cd33927f93cb138952e9a0`,
-included in [baselines/](../baselines/README.md). Both use eight shards, GCC 15.2.0,
+included in [baseline source](../baselines/README.md). Both use eight shards, GCC 15.2.0,
 strict C11 `-O2 -g`, identical harnesses and pthreads on the same i3-1315U laptop
 (six physical cores/eight logical CPUs, glibc 2.43). Runs are sequential fresh
 processes in a fixed randomized order, with trace seed 12345. Workers can migrate
@@ -109,7 +109,7 @@ raw output also retains process VmPeak/VmHWM. The small/class trace still pins
 survivor fragmentation. Reuse is adopted for the repeatable improvement in a weak
 large path, accepting these space/mixed-throughput costs within the empty-cache cap.
 
-![Measured trade-off](../results/checkpoint5.png)
+![Measured trade-off](../results/benchmarks/cache-reuse/tradeoff.png)
 
 ## Additional current-source scaling check — 10 November
 
@@ -131,8 +131,8 @@ The scaling is workload-dependent and not linear: the large path's kernel mappin
 work and contention still limit it. Shared-desktop timing noise and overlapping
 ranges are retained; this is not an official-machine score or a new causal claim
 about sharding. Raw invocations, source/binary hashes, machine details, all runs and
-ranges: [small/mixed](../results/current-scaling-common-2026-11-10/raw.json) and
-[large](../results/current-scaling-large-2026-11-10/raw.json). Reproduction commands
+ranges: [small/mixed](../results/benchmarks/thread-scaling/common/raw.json) and
+[large](../results/benchmarks/thread-scaling/large/raw.json). Reproduction commands
 are in [the guide](reproduction.md#current-source-thread-scaling).
 
 ## Validation and compatibility
@@ -166,13 +166,14 @@ claim or support promise beyond the tested Linux x86-64 target.
 Use the build and exact offline comparison commands in [the reproduction guide](reproduction.md).
 Full commands, environment, seeds, hashes, stdout/stderr and failures are preserved:
 
-- [Main 140-process comparison](../results/checkpoint5-2026-11-09/raw.json) and
-  [summary](../results/checkpoint5-2026-11-09/summary.csv).
-- [Longer common confirmation](../results/checkpoint5-common-confirmation-2026-11-09/raw.json).
-- [Native/sanitizer/static validation](../results/checkpoint5-validation-2026-11-09/final.json).
-- [Current-source compatibility evidence](history/checkpoint-6.md).
-- [Rejected initial trial](../results/checkpoint5-inline-trial-2026-11-09/raw.json) and
-  [earlier experiment history](history/initial-report.md), kept separate from selected results.
+- [Main 140-process comparison](../results/benchmarks/cache-reuse/raw.json) and
+  [summary](../results/benchmarks/cache-reuse/summary.csv).
+- [Longer common confirmation](../results/benchmarks/common-workloads/raw.json).
+- [Native/sanitizer/static validation](../results/correctness/validation.json),
+  [sanitizer controls](../results/correctness/sanitizer-controls.json) and
+  [stress tests](../results/correctness/stress.json).
+- [Compatibility and current-source execution](../results/README.md#compatibility).
+
 
 The statement and API provenance are pinned in [SOURCES.md](sources.md); official
 attachments are not redistributed. AI assistance and the participant-reported

@@ -12,15 +12,14 @@
   "source_sha256": "ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267",
   "official_kit_commit": "d23ac1d865df4cdacf7ad8e9fff3e1d560761c46",
   "prepared_on": "2026-11-09",
-  "delivery_state": "Repository prepared; owner controls public visibility and official form submission",
+  "delivery_state": "Selected source and evaluation artifacts",
   "required_paths": [
     "README.md",
-    "docs/submission.md",
+    "docs/deliverables.md",
     "docs/report.md",
     "docs/architecture.md",
     "docs/author.md",
     "docs/sources.md",
-    "docs/delivery-checklist.md",
     "Makefile",
     "src/allocator.c",
     "include/libmemctl.h",
@@ -44,20 +43,22 @@
     "demo/recording.json",
     "demo/terminal-replay.mp4",
     "demo/video.json",
-    "results/checkpoint5-2026-11-09/raw.json",
-    "results/checkpoint5-common-confirmation-2026-11-09/raw.json",
+    "results/benchmarks/cache-reuse/raw.json",
+    "results/benchmarks/common-workloads/raw.json",
     "examples/basic.c",
     "docs/assets/overview.svg",
     "docs/reproduction.md",
-    "scripts/evaluate.py"
+    "scripts/evaluate.py",
+    "results/README.md"
   ],
   "artifacts": {
-    "output/pdf/libmemctl-review.pdf": "3c81c11b5e7a13a3cb519bc1296748a2173fc3040dfb7485a39d5c526e2e669b",
-    "demo/terminal-replay.mp4": "cf149d4d503a1d01d141347c4eda39a344399ad6c651d7481989d1f19c9d81f2"
+    "output/pdf/libmemctl-review.pdf": "1352f65e038de9790a02ad041da27e72109bd36a47f428b438eba49f6e687337",
+    "demo/terminal-replay.mp4": "8804e9fd2f4718bac48d82c43bfd4ef62b98da67d396e84b512607261d9526b3"
   },
   "official_kit_recheck": {
     "date": "2026-11-10",
     "main_commit": "05b1aa7445770408bb4307c7f8c8999b502c0a6f",
     "selected_problem_files_identical_to_pinned_commit": true
-  }
+  },
+  "presentation_updated_on": "2026-11-13"
 }

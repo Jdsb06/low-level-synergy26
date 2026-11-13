@@ -18,14 +18,15 @@ printf '\nRecorded five-process comparison (shared laptop; not official scores):
 python3 - <<'PY'
 import csv
 from pathlib import Path
-main = list(csv.DictReader(Path('results/checkpoint5-2026-11-09/summary.csv').open()))
-long = list(csv.DictReader(Path('results/checkpoint5-common-confirmation-2026-11-09/summary.csv').open()))
+main = list(csv.DictReader(Path('results/benchmarks/cache-reuse/summary.csv').open()))
+long = list(csv.DictReader(Path('results/benchmarks/common-workloads/summary.csv').open()))
 for rows, workload, metric, label, scale in [
     (main, 'throughput_large', 'api_calls_per_second', 'Large throughput, 8 threads (calls/s)', 1),
     (main, 'latency_large', 'p99_ns', 'Large malloc p99, 8 threads (us)', 1000),
     (long, 'throughput_mixed', 'api_calls_per_second', 'Mixed throughput, 8 threads (M calls/s)', 1000000)]:
     values=[]
-    for variant in ('checkpoint4','capped_cache'):
+    baseline = next(row['variant'] for row in rows if row['variant'] != 'capped_cache')
+    for variant in (baseline, 'capped_cache'):
         row=next(r for r in rows if r['variant']==variant and r['workload']==workload
                  and r['threads']=='8' and r['metric']==metric
                  and r['api_or_phase']==('malloc' if workload.startswith('latency') else 'all'))
@@ -37,4 +38,4 @@ printf 'Limits: sparse survivors still pin regions; cache misses still have long
 sleep 4
 printf '\nReview: docs/architecture.md, docs/report.md and raw results.\n'
 printf 'AI assistance disclosed in docs/author.md; permission is user-reported SPOC approval.\n'
-printf 'This review candidate has not been officially submitted.\n'
+printf 'See docs/review-guide.md for the rubric and reproducible evaluation.\n'

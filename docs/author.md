@@ -1,20 +1,14 @@
 # Participant and attribution
 
-Jashandeep Singh - solo participant, roll number IMT2024022.
-The participant confirmed this identity and solo entry in chat on 9 November 2026.
-Registration is user-confirmed; a portal receipt has not been inspected.
+**Jashandeep Singh - solo participant - IMT2024022.**
 
-AI assistance was used for implementation, testing, debugging and documentation.
-Permission is attributed to the participant's report of the SPOC's phone confirmation,
-not to an explicit published AI-code clause. The participant should review the
-source, explain its invariants and reproduce the reported trade-offs before delivery.
+AI assistance was used for implementation, testing, debugging, analysis and
+documentation. The participant reports that the event SPOC explicitly permitted
+AI assistance by phone; this is not attributed to a published AI-code clause.
 
-The four API declarations and required semantics come from the official SYSPROG10
-kit. The implementation, independent tests, benchmark traces and review documents
-were authored during the permitted window. See [sources](sources.md) for pinned provenance.
-No third-party allocator implementation, official starter copies or private kit
-files are redistributed in the review package.
-
-Private contact information is omitted. The official form's full-name, institute,
-phone and email fields should be reviewed by the participant at delivery. No form
-has been filled or submitted, and no official submission receipt exists.
+The required API and semantics come from the official SYSPROG10 kit. The allocator,
+independent tests, workloads and documents were authored for the permitted event
+window. Standard C/POSIX/Linux interfaces and the public ASan annotation interface
+are used. No third-party allocator implementation or official starter/test copies
+are redistributed. [Sources and provenance](sources.md) identify the pinned contract
+and measurement artifacts.

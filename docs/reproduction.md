@@ -57,8 +57,7 @@ Sanitizer controls run both valid and deliberately invalid accesses in subproces
 All 59 controls should pass; the 34 deliberate errors must be detected. LeakSanitizer
 is disabled for the documented host limitation. The live demo prints real independent
 checks and reads recorded benchmark summaries; it does not create a new timing claim.
-The preserved MP4/cast/log predates documentation relocation, so its printed document
-names reflect that original run. Its allocator source hash is still the selected one.
+The preserved MP4/cast/log preserves its original output, including the capture-time paths. Its allocator source hash is still the selected one.
 
 Obtain the unchanged official kit separately; no kit files are bundled:
 
@@ -75,9 +74,9 @@ See [sources and pinned statement](sources.md).
 
 ```bash
 make profiles benchmark
-mkdir -p build-checkpoint4
-cp baselines/checkpoint4_allocator.c build-checkpoint4/allocator.c
-make BUILD_DIR=build-checkpoint4 ALLOCATOR_SRC=build-checkpoint4/allocator.c profiles benchmark
+mkdir -p build-baseline
+cp baselines/allocator.c build-baseline/allocator.c
+make BUILD_DIR=build-baseline ALLOCATOR_SRC=build-baseline/allocator.c profiles benchmark
 python3 scripts/compare_large_cache.py --repetitions 5 --output results/new-cache-comparison
 python3 scripts/compare_large_cache.py --repetitions 5 --throughput-operations 5000000 --common-throughput-only --output results/new-common-confirmation
 ```
@@ -112,25 +111,7 @@ Use a fresh checkout/build for measurement. These runs include60 timing processe
 and10 space samples; read the limits and ranges in the report. The different traces
 and durations must not be combined with the earlier comparison to invent a score.
 
-<details>
-<summary>Earlier sharding / libc / reference experiments</summary>
 
-These are separate experiments, not the comparison quoted on the front page:
-
-```bash
-make benchmark reference
-make BUILD_DIR=build-single CPPFLAGS='-D_GNU_SOURCE -Iinclude -DMEMCTL_SHARDS=1' check benchmark
-python3 scripts/run_benchmarks.py --repetitions 5 --operations 500000 --algorithms one_shard eight_shards --threads 1 8 --workloads mixed --output results/new-sharding-confirmation
-make profiles build/latency_libc build/lifetimes_libc
-make BUILD_DIR=build-single CPPFLAGS='-D_GNU_SOURCE -Iinclude -DMEMCTL_SHARDS=1' profiles
-python3 scripts/profile_workloads.py --repetitions 5 --operations 10000 --output results/new-profile
-```
-
-Only `reference` needs the kit. This is not a promise that a new run recreates
-historical numeric values. Earlier source revisions and experiment qualifications
-are preserved in [history](history/README.md) and raw result metadata.
-
-</details>
 
 ## Generate an archive
 

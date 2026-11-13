@@ -4,14 +4,14 @@
     "demo/run_demo.sh"
   ],
   "compiler": "gcc-13",
-  "started_utc": "2026-11-09T10:59:55.372588+00:00",
-  "finished_utc": "2026-11-09T11:00:08.957361+00:00",
+  "started_utc": "2026-11-13T10:53:18.717661+00:00",
+  "finished_utc": "2026-11-13T10:53:31.147281+00:00",
   "exit": 0,
-  "duration_seconds": 13.584785573999397,
+  "duration_seconds": 12.429599297000095,
   "source_sha256": "ce2e34f557608c4c1cd4277a12dc85fa88cdcc343e6540d74924ddd31024d267",
   "files": {
-    "terminal.cast": "689aabbedf6512bc6a2ef3aa57e9bb7258ab731e2e594266ac8148604f092bfe",
-    "run.log": "45938d74b8c78894ae30d5ea408460f7dad8185d9f313c089f0621d21d272c20"
+    "terminal.cast": "dd8a5916622c65bbc25a4fd73f1d3d1ca09d95befbc04179e2436dd242a37f40",
+    "run.log": "9898dc49be7a69bc3c26e78cfb462eece6af513c486e08cf96b0374b86dfaf2c"
   },
   "scope": "Actual subprocess PTY output, preserved without editing; not a desktop screen capture."
 }

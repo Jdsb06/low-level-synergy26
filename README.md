@@ -14,7 +14,7 @@ Jashandeep Singh · solo · IMT2024022
 
 [Design](docs/architecture.md) · [Results & methodology](docs/report.md) ·
 [PDF report](output/pdf/libmemctl-review.pdf) · [Demo video](demo/terminal-replay.mp4) ·
-[Submission guide](docs/submission.md)
+[Deliverables](docs/deliverables.md)
 
 ## Start here
 
@@ -111,14 +111,13 @@ The [review guide](docs/review-guide.md#evidence-against-the-official-rubric) ma
 correctness, throughput, space and engineering requirements to source and evidence.
 
 <details>
-<summary><strong>More: official tests, benchmarks, archives and project history</strong></summary>
+<summary><strong>More: reproduction, deliverables and attribution</strong></summary>
 
 - [Reproduction guide](docs/reproduction.md): official-suite path, stress, latency,
   memory profiles, exact comparison commands and deterministic packaging.
-- [Submission guide](docs/submission.md): required deliverables and final owner steps.
+- [Deliverables](docs/deliverables.md): required deliverables and final owner steps.
 - [Sources](docs/sources.md) and [participant / AI attribution](docs/author.md).
-- [Development history](docs/history/README.md): earlier milestones and rejected
-  experiments, preserved separately from the selected submission.
+- [Results index](results/README.md): benchmark datasets, correctness and compatibility evidence.
 
 `make` builds only `src/allocator.c`; baseline/trial sources are never selected
 implicitly. No official kit, credentials or other competitions are redistributed.

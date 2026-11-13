@@ -32,7 +32,7 @@ account, network or official files. This does not run hidden tests or assign a s
 | Category | Official weight | What to inspect |
 | --- | ---: | --- |
 | Correctness and API compliance | 40 | [Four-function header](../include/libmemctl.h), [allocator](../src/allocator.c), [failure/reuse/overflow/concurrency tests](../tests/test_allocator.c), [annotation controls](../tests/test_annotations.c) |
-| Throughput and scalability | 25 | [Report methodology and results](report.md#throughput-and-latency), [raw five-process comparison](../results/checkpoint5-2026-11-09/raw.json), [longer common confirmation](../results/checkpoint5-common-confirmation-2026-11-09/raw.json), [current 1/2/4/8-thread scaling](report.md) |
+| Throughput and scalability | 25 | [Report methodology and results](report.md#throughput-and-latency), [raw five-process comparison](../results/benchmarks/cache-reuse/raw.json), [longer common confirmation](../results/benchmarks/common-workloads/raw.json), [current 1/2/4/8-thread scaling](report.md) |
 | Space efficiency | 20 | [Space/reclamation measurements and costs](report.md#space-and-adoption-decision), [full-touch lifetime harness](../bench/lifetimes.c), bounded-cache and trim assertions in the independent suite |
 | Architecture and engineering quality | 15 | [Ownership, locks and invariants](architecture.md), [reproduction guide](reproduction.md), [working example](../examples/basic.c), [sources and attribution](sources.md) |
 
@@ -47,12 +47,11 @@ traces are unavailable; the table maps evidence and does not award points.
 3. [Report](report.md): methods, raw data, test coverage and known limitations.
 4. [Three-page PDF](../output/pdf/libmemctl-review.pdf) and [actual terminal replay](../demo/terminal-replay.mp4).
 
-The default Makefile compiles only `src/allocator.c`. [History](history/README.md)
-contains earlier experiments; those are optional background rather than alternate
-submission candidates. The preserved recording predates document relocation;
-its source hash still matches the selected allocator. No original recording bytes
-have been edited. [Prebuilt output](../prebuilt/README.md) includes the verified
-Linux x86-64 library/executables for a quick independent run.
+The default Makefile compiles only `src/allocator.c`. The [results index](../results/README.md)
+organizes the selected benchmark datasets, correctness runs and compatibility checks.
+Original capture logs are preserved byte-for-byte; their recorded paths and identifiers
+reflect the capture environment. [Prebuilt output](../prebuilt/README.md) includes the
+verified Linux x86-64 library and test executables for a quick independent run.
 
 The principal trade-off is explicit: bounded large reuse improves the recorded
 large trace, while raising burst VM and lowering the mixed-throughput median.
@@ -60,5 +59,4 @@ Sparse live objects can pin regions. See the report for ranges, environmental
 limits and sanitizer coverage; no universal speedup or official score is claimed.
 
 AI assistance and participant-reported SPOC permission are disclosed in
-[attribution](author.md). See [submission instructions](submission.md) for owner
-publication/form steps. A passing check or Git push is not a submission receipt.
+[attribution](author.md). The [deliverable map](deliverables.md) provides direct links to every artifact.

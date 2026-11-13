@@ -1,9 +1,0 @@
-variant,workload,threads,api_or_phase,metric,repetitions,median,min,max
-capped_cache,throughput_mixed,1,all,api_calls_per_second,5,30650447.365,24079369.841,32554518.352
-capped_cache,throughput_mixed,8,all,api_calls_per_second,5,51240058.543,48473371.283,63044323.606
-capped_cache,throughput_small,1,all,api_calls_per_second,5,37292567.644,36136839.457,38336360.513
-capped_cache,throughput_small,8,all,api_calls_per_second,5,59869976.839,59137182.33,71311402.465
-checkpoint4,throughput_mixed,1,all,api_calls_per_second,5,29486449.199,26432904.352,31831035.161
-checkpoint4,throughput_mixed,8,all,api_calls_per_second,5,57639379.307,49935517.455,63310067.949
-checkpoint4,throughput_small,1,all,api_calls_per_second,5,38277343.175,31095479.179,41287131.272
-checkpoint4,throughput_small,8,all,api_calls_per_second,5,60752757.713,54325789.303,74930642.324

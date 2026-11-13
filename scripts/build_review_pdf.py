@@ -54,14 +54,14 @@ def main():
         story.append(Spacer(1,8))
 
     p('libmemctl', 'ReviewTitle')
-    p('SYSPROG10 / Systems Programming / Review candidate', 'ReviewHead')
-    p('<b>Jashandeep Singh</b> - solo participant - IMT2024022<br/>9 November 2026')
+    p('SYSPROG10 / Systems Programming / Technical report', 'ReviewHead')
+    p('<b>Jashandeep Singh</b> - solo participant - IMT2024022<br/>13 November 2026')
     p('A C11 Linux allocator providing the four required my_* functions through private anonymous mappings. '
       'The current source combines reusable small-object regions, eight shards and capped dedicated-mapping '
-      'reuse for requests above 64 KiB through 1 MiB. This report is a review artifact, not an official score or submission receipt.')
+      'reuse for requests above 64 KiB through 1 MiB. The report covers design, measured trade-offs and executed validation; no official score is claimed.')
     heading('Measured improvement and cost')
     p('Five fresh processes per case on a shared i3-1315U laptop, GCC 15.2.0 and glibc 2.43. '
-      'The comparison uses the exact checkpoint-4 source with identical traces and flags. '
+      'The comparison uses the pinned baseline without large-mapping reuse, with identical traces and flags.  '
       'Small/mixed throughput below uses the longer five-million-call confirmation.')
     table([['Throughput (M API calls/s)','Threads','Old','Current'],
            ['Small',1,'38.277','37.293'],['Small',8,'60.753','59.870'],
@@ -71,7 +71,7 @@ def main():
       '<b>Costs:</b> eight-thread mixed-throughput median fell 11.1%, and held virtual memory in the full-touch large burst rose 34.7%. '
       'The corresponding resident-memory growth was nearly unchanged. One-thread large p99 rose 8.3%.')
     p('The mixed-throughput min-max ranges overlap, and clock, scheduling, thermal and desktop noise remain. '
-      'These observations do not establish a universal speedup. See CHECKPOINT5.md and its raw JSON/CSV for counts, seeds, ranges and the retained initial trial.', 'ReviewSmall')
+      'These observations do not establish a universal speedup. See docs/report.md and results/benchmarks/ for the methodology, counts, seeds and ranges. The paired comparison was captured on 9 November 2026.', 'ReviewSmall')
 
     story.append(PageBreak())
     p('Design and correctness', 'ReviewTitle')
@@ -96,32 +96,41 @@ def main():
       'Only the authored allocator mappings are covered by the independent reclamation accounting.', 'ReviewSmall')
 
     story.append(PageBreak())
-    p('Reproduce and review', 'ReviewTitle')
-    heading('Clean source package')
-    p('The review archives contain complete authored source, headers, tests, build instructions, design notes, '
-      'benchmark evidence and a terminal test recording. An explicit file allowlist excludes official kits, '
-      'credentials, other competitions and intermediate build products. Explicitly included prebuilt Linux binaries '
-      'are separately labeled and verified. Each archive includes per-file SHA-256 checksums.')
-    story.append(Preformatted('sha256sum -c MANIFEST.sha256\nmake check\nmake sanitize\nmake profiles benchmark\nbash demo/run_demo.sh', styles['ReviewCode']))
-    p('Only make public-test requires the separately obtained official participant kit. '
-      'Python 3.6+ suffices for the symbol checker; full evidence/package runners use Python 3.9+. '
-      'PDF regeneration additionally uses reportlab. No API credit or paid service is required.')
-    heading('Delivery review')
-    p('The official form was inspected read-only on 9 November. Known values: Systems Programming, '
-      'SYSPROG10 and the participant repository below. The YouTube demo field is explicitly optional. '
-      'Institute/contact details, final access/deadline and any later organizer updates still need participant review. '
-      'No form fields have been filled, no organizer has been contacted and no entry has been submitted.')
+    p('Evaluate and reproduce', 'ReviewTitle')
+    heading('One-command evaluation')
+    p('From the repository root, run the isolated evaluator. It verifies source and artifact integrity, '
+      'builds fresh objects, checks forbidden allocator references, runs independent correctness tests '
+      'and compiles/executes the public-API example. Each run saves exact commands, compiler version, '
+      'stdout/stderr, exit codes and the source hash in its own build directory.')
+    story.append(Preformatted('python3 scripts/evaluate.py\npython3 scripts/evaluate.py --sanitizers', styles['ReviewCode']))
+    p('Only the optional --official-dir argument needs the separately obtained official public tests. '
+      'The default check is offline. Linux x86-64, a C11 compiler, Make, binutils, pthreads, coreutils '
+      'and Python 3.9+ are required; report/plot/video tooling is optional.')
+    heading('Evidence map')
+    table([['Artifact','Location'],
+           ['Implementation / interface','src/allocator.c; include/libmemctl.h'],
+           ['Design / methodology','docs/architecture.md; docs/report.md'],
+           ['Throughput, latency and memory','results/benchmarks/'],
+           ['Correctness and stress','results/correctness/'],
+           ['Executed Linux environments','results/compatibility/'],
+           ['Library / test executables','prebuilt/ (source and binary checksums included)'],
+           ['Functional demonstration','demo/run_demo.sh; demo/terminal-replay.mp4']], [185,300])
+    p('The results index links the selected paired comparisons, longer common-workload confirmation '
+      'and current-source 1/2/4/8-thread scaling. Raw records preserve capture-time identifiers and '
+      'paths. The supplied baseline has a pinned source hash and is compiled separately for comparisons. '
+      'Current reproduction commands are in docs/reproduction.md.', 'ReviewSmall')
     heading('Attribution and sources')
-    p('AI assistance was used for implementation, testing, analysis and documents. Permission is attributed '
-      'to the participant\'s report of SPOC phone confirmation, not a published AI-code clause. '
-      'Registration and solo identity are participant-confirmed; no portal receipt has been inspected.')
-    p('<link href="https://github.com/Jdsb06/low-level-synergy26" color="#087e8b">Development repository and checkpoint evidence</link><br/>'
-      '<link href="https://github.com/rudra-shroff06/LLH-26/blob/d23ac1d865df4cdacf7ad8e9fff3e1d560761c46/Systems%20Programming/SYSPROG10/PROBLEM.md" color="#087e8b">Official selected statement, pinned d23ac1d</link><br/>'
-      '<link href="https://forms.cloud.microsoft/r/WDNMEiRVUG" color="#087e8b">Official submission form (review only)</link>')
-    p('Current allocator SHA-256:', 'ReviewSmall')
+    p('AI assistance was used for implementation, testing, analysis and documentation. Permission is '
+      'attributed to the participant\'s report of SPOC phone confirmation, not to a published AI-code clause. '
+      'The implementation and independent tests were authored for the permitted event window. '
+      'Official kit copies are not redistributed.')
+    p('<link href="https://github.com/Jdsb06/low-level-synergy26" color="#087e8b">Source, evaluator and recorded results</link><br/>'
+      '<link href="https://github.com/rudra-shroff06/LLH-26/blob/d23ac1d865df4cdacf7ad8e9fff3e1d560761c46/Systems%20Programming/SYSPROG10/PROBLEM.md" color="#087e8b">Official selected statement, pinned d23ac1d</link>')
+    p('Allocator SHA-256:', 'ReviewSmall')
     story.append(Preformatted(hashlib.sha256((ROOT/'src/allocator.c').read_bytes()).hexdigest(), styles['ReviewCode']))
-    p('The terminal video is a rendered replay of an actual preserved terminal run, not an unedited desktop screen capture. '
-      'Final upload requires separate explicit approval. Performance normalization targets were not supplied in the reviewed statement; no official points are calculated.', 'ReviewSmall')
+    p('The video replays an actual preserved terminal run; it is not a desktop screen capture. '
+      'No official normalization targets or hidden-test results are inferred. Benchmark limitations '
+      'and the throughput/space costs are retained in the full report.', 'ReviewSmall')
 
     def footer(canvas, doc):
         canvas.saveState()
@@ -129,14 +138,14 @@ def main():
         canvas.line(55,44,540,44)
         canvas.setFont('Review',7.5)
         canvas.setFillColor(NAVY)
-        canvas.drawString(55,31,'Review candidate | Jashandeep Singh | 9 November 2026')
+        canvas.drawString(55,31,'libmemctl | SYSPROG10 | Jashandeep Singh')
         canvas.drawRightString(540,31,str(doc.page))
         canvas.restoreState()
 
     target=ROOT/'output/pdf/libmemctl-review.pdf'
     target.parent.mkdir(parents=True, exist_ok=True)
     doc=SimpleDocTemplate(str(target),pagesize=A4,rightMargin=55,leftMargin=55,topMargin=52,bottomMargin=60,
-                          title='libmemctl - review candidate',author='Jashandeep Singh',
+                          title='libmemctl - technical report',author='Jashandeep Singh',
                           creator='libmemctl review generator (AI assisted)',invariant=1)
     doc.build(story,onFirstPage=footer,onLaterPages=footer)
     print(target)

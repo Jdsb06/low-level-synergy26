@@ -3,7 +3,7 @@
 These binaries and the static library were built from the source files listed in
 `BUILD_INPUTS.sha256` using GCC 9.3.1, glibc 2.17 and strict C11 flags. The actual
 build environment is in `BUILD_INFO.txt`; the build log and execution evidence are
-in [the compatibility results](../results/checkpoint6-compatibility-2026-11-09/nhpc-build.txt).
+in [the compatibility results](../results/compatibility/nhpc-build.txt).
 No official starter, system runtime libraries or intermediate object files are bundled.
 
 The executables passed on NHPC Linux 3.10/glibc 2.17 and native Ubuntu 26.04.1/glibc

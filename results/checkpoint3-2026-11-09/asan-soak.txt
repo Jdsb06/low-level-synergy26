@@ -1,3 +1,0 @@
-PASS mixed full-pattern soak seed=20261110
-PASS synchronized ownership handoffs seed=20261110
-PASS 1000000 mixed operations plus 65536 handoffs

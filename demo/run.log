@@ -26,6 +26,6 @@ Mixed throughput, 8 threads (M calls/s): 57.639 -> 51.240
 Cost: large burst VM rose 34.7%; mixed throughput median fell 11.1%.
 Limits: sparse survivors still pin regions; cache misses still have long tails.
 
-Review: ARCHITECTURE.md, CHECKPOINT5.md, CHECKPOINT6.md and raw results.
-AI assistance disclosed in AUTHOR.md; permission is user-reported SPOC approval.
-This review candidate has not been officially submitted.
+Review: docs/architecture.md, docs/report.md and raw results.
+AI assistance disclosed in docs/author.md; permission is user-reported SPOC approval.
+See docs/review-guide.md for the rubric and reproducible evaluation.
