@@ -57,7 +57,7 @@ Sanitizer controls run both valid and deliberately invalid accesses in subproces
 All 59 controls should pass; the 34 deliberate errors must be detected. LeakSanitizer
 is disabled for the documented host limitation. The live demo prints real independent
 checks and reads recorded benchmark summaries; it does not create a new timing claim.
-The preserved MP4/cast/log preserves its original output, including the capture-time paths. Its allocator source hash is still the selected one.
+The [demo guide](../demo/README.md) links the actual MP4/cast/log and their provenance.
 
 Obtain the unchanged official kit separately; no kit files are bundled:
 

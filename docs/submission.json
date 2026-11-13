@@ -49,7 +49,8 @@
     "docs/assets/overview.svg",
     "docs/reproduction.md",
     "scripts/evaluate.py",
-    "results/README.md"
+    "results/README.md",
+    "demo/README.md"
   ],
   "artifacts": {
     "output/pdf/libmemctl-review.pdf": "1352f65e038de9790a02ad041da27e72109bd36a47f428b438eba49f6e687337",

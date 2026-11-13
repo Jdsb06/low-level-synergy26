@@ -11,7 +11,7 @@ Jashandeep Singh - solo participant - IMT2024022.
 | Performance, memory and measured trade-off | [Technical report](report.md) and [results index](../results/README.md) |
 | Concise report | [PDF](../output/pdf/libmemctl-review.pdf) |
 | Precompiled testable output | [Library, tests and provenance](../prebuilt/README.md) |
-| Functional demonstration | [Terminal replay](../demo/terminal-replay.mp4), [live demo](../demo/LIVE_DEMO.md), [speaker notes](../demo/SPEAKER_NOTES.md) |
+| Functional demonstration | [Terminal replay](../demo/terminal-replay.mp4), [run instructions and recording provenance](../demo/README.md) |
 | Provenance and reproduction | [Sources](sources.md), [attribution](author.md), [reproduction guide](reproduction.md) |
 
 Run `python3 scripts/evaluate.py` from the project root for an isolated build,
@@ -22,5 +22,5 @@ the separately obtained public test suite. The default check works offline.
 The selected implementation is `src/allocator.c`. The baseline under `baselines/`
 is provided only for a reproducible comparison and is not compiled by the default
 build. Benchmark raw records, commands, hashes and limitations are included;
-no official score or hidden-test result is claimed. Official kit files and private
-contact information are excluded.
+no official score or hidden-test result is claimed. Official kit files are obtained
+separately; authored checks work offline.

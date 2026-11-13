@@ -115,11 +115,24 @@ correctness, throughput, space and engineering requirements to source and eviden
 
 - [Reproduction guide](docs/reproduction.md): official-suite path, stress, latency,
   memory profiles, exact comparison commands and deterministic packaging.
-- [Deliverables](docs/deliverables.md): required deliverables and final owner steps.
+- [Deliverables](docs/deliverables.md): source, reports, testable output and demonstration.
 - [Sources](docs/sources.md) and [participant / AI attribution](docs/author.md).
 - [Results index](results/README.md): benchmark datasets, correctness and compatibility evidence.
 
-`make` builds only `src/allocator.c`; baseline/trial sources are never selected
-implicitly. No official kit, credentials or other competitions are redistributed.
+| Directory | Purpose |
+| --- | --- |
+| [src/](src/) and [include/](include/) | Submitted allocator and its public API |
+| [examples/](examples/) | A complete working API example |
+| [tests/](tests/README.md) | Correctness, failure injection, sanitizer controls and stress |
+| [bench/](bench/README.md) | Throughput, latency and memory measurement harnesses |
+| [baselines/](baselines/README.md) | Pinned comparison implementation, built separately |
+| [prebuilt/](prebuilt/README.md) | Verified Linux library and executable tests |
+| [demo/](demo/README.md) | Recorded demonstration and live execution |
+| [docs/](docs/README.md) | Design, report, evaluation guide and provenance |
+| [scripts/](scripts/README.md) | Evaluation, reproduction and optional artifact tools |
+
+`make` builds only `src/allocator.c`. The comparison baseline is used only by the
+explicit reproduction commands. Official kit files are obtained separately; the
+authored checks work offline.
 
 </details>

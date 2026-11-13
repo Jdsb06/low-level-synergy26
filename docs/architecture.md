@@ -86,7 +86,7 @@ utilities. It does not use brk/sbrk, standard heap allocation, third-party alloc
 code or a framework. The API declarations and contract come from the official kit;
 the implementation and additional tests are authored in this workspace after the
 start. Architecture suggestions in the problem statement informed the region/
-size-class approach. AI assistance was used under the user's reported SPOC approval.
+size-class approach. AI assistance is disclosed in [participant attribution](author.md).
 
 Fixed limitations include mutex acquisition on every small allocation/free,
 cross-thread frees contending on the original shard, O(blocks) region initialization,
